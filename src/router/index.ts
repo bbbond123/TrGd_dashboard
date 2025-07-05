@@ -197,6 +197,46 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/files",
+    component: Layouts,
+    name: "Files",
+    meta: {
+      title: "文件管理",
+      elIcon: "Folder"
+    },
+    children: [
+      {
+        path: "",
+        component: () => import("@/pages/files/index.vue"),
+        name: "FileList",
+        meta: {
+          title: "文件管理",
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/ar-vision",
+    component: Layouts,
+    name: "ARVision",
+    meta: {
+      title: "AR图片识别",
+      elIcon: "Camera"
+    },
+    children: [
+      {
+        path: "",
+        component: () => import("@/pages/ar-vision/index.vue"),
+        name: "ARVisionAnalysis",
+        meta: {
+          title: "AR图片识别",
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
     path: "/link",
     meta: {
       title: "文档链接",

@@ -10,9 +10,21 @@ export interface FileDetail {
   fileSize: number
   fileType: FileType
   mimeType: string
+  filePath: string
   s3Key?: string
   imageUrl?: string
   userId?: number
+  uploaderId?: number
+  user?: {
+    userId: number
+    username: string
+    email?: string
+  }
+  uploader?: {
+    userId: number
+    username: string
+    email?: string
+  }
   createdAt: string
   updatedAt: string
 }
@@ -32,6 +44,7 @@ export interface FileUploadResponse {
 export interface FileListRequest extends PaginationRequest {
   fileType?: FileType
   userId?: number
+  uploaderId?: number
   fileName?: string
 }
 

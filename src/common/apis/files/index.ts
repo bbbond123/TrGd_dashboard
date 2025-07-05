@@ -43,6 +43,14 @@ export function downloadFileApi(fileId: number) {
   })
 }
 
+/** 删除文件 */
+export function deleteFileApi(fileId: number) {
+  return request<IBaseResponse<boolean>>({
+    url: `/files/${fileId}`,
+    method: "delete"
+  })
+}
+
 /** 图片视觉分析 */
 export function visionAnalyzeApi(file: File, userId?: number) {
   const formData = new FormData()
