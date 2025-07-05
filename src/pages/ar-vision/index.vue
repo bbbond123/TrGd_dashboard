@@ -262,7 +262,7 @@ function getConfidenceText(score: number) {
             </div>
 
             <!-- 推荐列表 -->
-            <div v-if="analysisResult.nearby_recommendations.length" class="recommendations-section">
+            <div v-if="analysisResult?.nearby_recommendations?.length" class="recommendations-section">
               <h3><el-icon><Star /></el-icon> 附近推荐</h3>
               <el-row :gutter="12">
                 <el-col
