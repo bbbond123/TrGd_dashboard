@@ -82,9 +82,9 @@ async function handleLike() {
     const res = await likeArticleApi(props.articleId)
     if (res.success) {
       if (articleData.value) {
-        articleData.value.likeCount = res.data.like_count
+        articleData.value.likeCount = res.data.likeCount
       }
-      ElMessage.success(res.data.liked ? "点赞成功" : "取消点赞")
+      ElMessage.success(res.data.isLiked ? "点赞成功" : "取消点赞")
       emit("refresh")
     } else {
       ElMessage.error(res.errMessage || "点赞失败")

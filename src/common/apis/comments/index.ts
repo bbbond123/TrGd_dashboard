@@ -5,7 +5,7 @@ import { request } from "@/http/axios"
 /** 获取评论列表 */
 export function getCommentListApi(data: CommentListRequest) {
   return request<IResponse<Comment>>({
-    url: "/api/comments/list",
+    url: "/comments/list",
     method: "post",
     data
   })
@@ -14,7 +14,7 @@ export function getCommentListApi(data: CommentListRequest) {
 /** 获取评论详情 */
 export function getCommentDetailApi(commentId: number) {
   return request<IBaseResponse<Comment>>({
-    url: `/api/comments/${commentId}`,
+    url: `/comments/${commentId}`,
     method: "get"
   })
 }
@@ -22,7 +22,7 @@ export function getCommentDetailApi(commentId: number) {
 /** 创建评论 */
 export function createCommentApi(data: CreateCommentRequest) {
   return request<IBaseResponse<Comment>>({
-    url: "/api/comments",
+    url: "/comments",
     method: "post",
     data
   })
@@ -31,7 +31,7 @@ export function createCommentApi(data: CreateCommentRequest) {
 /** 更新评论 */
 export function updateCommentApi(data: UpdateCommentRequest) {
   return request<IBaseResponse<Comment>>({
-    url: `/api/comments/${data.commentId}`,
+    url: `/comments/${data.commentId}`,
     method: "put",
     data
   })
@@ -40,7 +40,7 @@ export function updateCommentApi(data: UpdateCommentRequest) {
 /** 删除评论 */
 export function deleteCommentApi(commentId: number) {
   return request<IBaseResponse<boolean>>({
-    url: `/api/comments/${commentId}`,
+    url: `/comments/${commentId}`,
     method: "delete"
   })
 }

@@ -8,7 +8,7 @@ export function uploadFileApi(file: File) {
   formData.append("file", file)
 
   return request<IBaseResponse<FileUploadResponse>>({
-    url: "/api/files/upload",
+    url: "/files/upload",
     method: "post",
     data: formData,
     headers: {
@@ -20,7 +20,7 @@ export function uploadFileApi(file: File) {
 /** 获取文件列表 */
 export function getFileListApi(data: FileListRequest) {
   return request<IResponse<FileDetail>>({
-    url: "/api/files/list",
+    url: "/files/list",
     method: "post",
     data
   })
@@ -29,7 +29,7 @@ export function getFileListApi(data: FileListRequest) {
 /** 获取文件详情 */
 export function getFileDetailApi(fileId: number) {
   return request<IBaseResponse<FileDetail>>({
-    url: `/api/files/${fileId}`,
+    url: `/files/${fileId}`,
     method: "get"
   })
 }
@@ -37,7 +37,7 @@ export function getFileDetailApi(fileId: number) {
 /** 下载文件 */
 export function downloadFileApi(fileId: number) {
   return request<Blob>({
-    url: `/api/files/${fileId}/download`,
+    url: `/files/${fileId}/download`,
     method: "get",
     responseType: "blob"
   })
@@ -52,7 +52,7 @@ export function visionAnalyzeApi(file: File, userId?: number) {
   }
 
   return request<IBaseResponse<any>>({
-    url: "/api/files/vision-analyze",
+    url: "/files/vision-analyze",
     method: "post",
     data: formData,
     headers: {
@@ -67,7 +67,7 @@ export function analyzeImageApi(file: File) {
   formData.append("image", file)
 
   return request<IBaseResponse<any>>({
-    url: "/api/files/analyze",
+    url: "/files/analyze",
     method: "post",
     data: formData,
     headers: {
@@ -79,7 +79,7 @@ export function analyzeImageApi(file: File) {
 /** 测试S3功能 */
 export function testS3Api() {
   return request<IBaseResponse<any>>({
-    url: "/api/files/test-s3",
+    url: "/files/test-s3",
     method: "post"
   })
 }

@@ -9,7 +9,7 @@ import {
   RefreshRight,
   Search
 } from "@element-plus/icons-vue"
-import { ElMessage, ElMessageBox } from "element-plus"
+import { ElMessage } from "element-plus"
 import { reactive, ref, watch } from "vue"
 import ArticleComments from "./components/ArticleComments.vue"
 import ArticleDetail from "./components/ArticleDetail.vue"
@@ -158,43 +158,30 @@ function handleTagManager() {
 }
 
 // 删除文章
-function handleDelete(row: Article) {
-  ElMessageBox.confirm(`正在删除文章：${row.title}，确认删除？`, "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning"
-  }).then(async () => {
-    try {
-      await deleteArticleApi(row.articleId)
-      ElMessage.success("删除成功")
-      getTableData()
-    } catch (error) {
-      console.error("删除失败:", error)
-      ElMessage.error("删除失败")
-    }
-  })
+async function handleDelete(row: Article) {
+  try {
+    await deleteArticleApi(row.articleId)
+    ElMessage.success("删除成功")
+    getTableData()
+  } catch (error) {
+    console.error("删除失败:", error)
+    ElMessage.error("删除失败")
+  }
 }
 
 // 批量删除
-function handleBatchDelete() {
-  const titles = selectedArticles.value.map(item => item.title).join("、")
-  ElMessageBox.confirm(`正在删除文章：${titles}，确认删除？`, "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning"
-  }).then(async () => {
-    try {
-      const promises = selectedArticles.value.map(item =>
-        deleteArticleApi(item.articleId)
-      )
-      await Promise.all(promises)
-      ElMessage.success("批量删除成功")
-      getTableData()
-    } catch (error) {
-      console.error("批量删除失败:", error)
-      ElMessage.error("批量删除失败")
-    }
-  })
+async function handleBatchDelete() {
+  try {
+    const promises = selectedArticles.value.map(item =>
+      deleteArticleApi(item.articleId)
+    )
+    await Promise.all(promises)
+    ElMessage.success("批量删除成功")
+    getTableData()
+  } catch (error) {
+    console.error("批量删除失败:", error)
+    ElMessage.error("批量删除失败")
+  }
 }
 
 // 格式化日期时间
@@ -280,14 +267,22 @@ watch(
           <el-button type="warning" @click="handleTagManager">
             标签管理
           </el-button>
-          <el-button
-            type="danger"
-            :icon="Delete"
-            :disabled="!selectedArticles.length"
-            @click="handleBatchDelete"
+          <el-popconfirm
+            title="确定要批量删除选中的文章吗？"
+            confirm-button-text="确定"
+            cancel-button-text="取消"
+            @confirm="handleBatchDelete"
           >
-            批量删除 ({{ selectedArticles.length }})
-          </el-button>
+            <template #reference>
+              <el-button
+                type="danger"
+                :icon="Delete"
+                :disabled="!selectedArticles.length"
+              >
+                批量删除 ({{ selectedArticles.length }})
+              </el-button>
+            </template>
+          </el-popconfirm>
         </div>
         <div>
           <el-tooltip content="刷新当前页">
@@ -428,15 +423,23 @@ watch(
               >
                 评论
               </el-button>
-              <el-button
-                type="danger"
-                text
-                bg
-                size="small"
-                @click="handleDelete(scope.row)"
+              <el-popconfirm
+                :title="`确定要删除文章${scope.row.title}吗？`"
+                confirm-button-text="确定"
+                cancel-button-text="取消"
+                @confirm="handleDelete(scope.row)"
               >
-                删除
-              </el-button>
+                <template #reference>
+                  <el-button
+                    type="danger"
+                    text
+                    bg
+                    size="small"
+                  >
+                    删除
+                  </el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>

@@ -12,7 +12,7 @@ import { request } from "@/http/axios"
 /** 获取视觉识别历史列表 */
 export function getVisionHistoryListApi(data: VisionHistoryListRequest) {
   return request<ApiResponse<PaginationResponse<VisionHistory>>>({
-    url: "/api/vision-histories/list",
+    url: "/vision-histories/list",
     method: "post",
     data
   })
@@ -21,7 +21,7 @@ export function getVisionHistoryListApi(data: VisionHistoryListRequest) {
 /** 获取视觉识别历史详情 */
 export function getVisionHistoryDetailApi(visionId: number) {
   return request<ApiResponse<VisionHistory>>({
-    url: `/api/vision-histories/${visionId}`,
+    url: `/vision-histories/${visionId}`,
     method: "get"
   })
 }
@@ -29,7 +29,7 @@ export function getVisionHistoryDetailApi(visionId: number) {
 /** 创建视觉识别历史 */
 export function createVisionHistoryApi(data: CreateVisionHistoryRequest) {
   return request<ApiResponse<VisionHistory>>({
-    url: "/api/vision-histories",
+    url: "/vision-histories",
     method: "post",
     data
   })
@@ -38,7 +38,7 @@ export function createVisionHistoryApi(data: CreateVisionHistoryRequest) {
 /** 获取当前用户的视觉识别历史 */
 export function getMyVisionHistoriesApi() {
   return request<ApiResponse<VisionHistory[]>>({
-    url: "/api/vision-histories/my",
+    url: "/vision-histories/my",
     method: "get"
   })
 }
@@ -46,7 +46,7 @@ export function getMyVisionHistoriesApi() {
 /** 获取视觉识别历史统计信息 */
 export function getVisionHistoryStatisticsApi() {
   return request<ApiResponse<VisionHistoryStatistics>>({
-    url: "/api/vision-histories/statistics",
+    url: "/vision-histories/statistics",
     method: "get"
   })
 }
@@ -54,7 +54,7 @@ export function getVisionHistoryStatisticsApi() {
 /** 生成测试数据 */
 export function generateTestDataApi() {
   return request<ApiResponse<void>>({
-    url: "/api/vision-histories/generate-test-data",
+    url: "/vision-histories/generate-test-data",
     method: "post"
   })
 }
@@ -68,7 +68,7 @@ export function visionAnalyzeApi(imageFile: File, userId?: number) {
   }
 
   return request<ApiResponse<VisionHistoryResult>>({
-    url: "/api/files/vision-analyze",
+    url: "/files/vision-analyze",
     method: "post",
     headers: {
       "Content-Type": "multipart/form-data"
@@ -83,7 +83,7 @@ export function analyzeImageApi(imageFile: File) {
   formData.append("image", imageFile)
 
   return request<ApiResponse<VisionHistoryResult>>({
-    url: "/api/files/analyze",
+    url: "/files/analyze",
     method: "post",
     headers: {
       "Content-Type": "multipart/form-data"

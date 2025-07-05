@@ -17,7 +17,7 @@ import { request } from "@/http/axios"
 /** 获取当前登录用户详情 */
 export function getCurrentUserApi() {
   return request<IBaseResponse<{ username: string, roles: string[] }>>({
-    url: "/api/auth/user/profile",
+    url: "/auth/user/profile",
     method: "get"
   })
 }
@@ -25,7 +25,7 @@ export function getCurrentUserApi() {
 /** 获取用户列表 */
 export function getUserListApi(data: UserListRequest) {
   return request<IResponse<User>>({
-    url: "/api/users/list",
+    url: "/users/list",
     method: "post",
     data
   })
@@ -34,7 +34,7 @@ export function getUserListApi(data: UserListRequest) {
 /** 获取用户详情 */
 export function getUserDetailApi(userId: number) {
   return request<IBaseResponse<User>>({
-    url: `/api/users/${userId}`,
+    url: `/users/${userId}`,
     method: "get"
   })
 }
@@ -42,7 +42,7 @@ export function getUserDetailApi(userId: number) {
 /** 创建用户 */
 export function createUserApi(data: CreateUserRequest) {
   return request<IBaseResponse<User>>({
-    url: "/api/users",
+    url: "/users",
     method: "post",
     data
   })
@@ -51,7 +51,7 @@ export function createUserApi(data: CreateUserRequest) {
 /** 更新用户 */
 export function updateUserApi(data: UpdateUserRequest) {
   return request<IBaseResponse<any>>({
-    url: "/api/users",
+    url: "/users",
     method: "put",
     data
   })
@@ -60,7 +60,7 @@ export function updateUserApi(data: UpdateUserRequest) {
 /** 删除用户 */
 export function deleteUserApi(userId: number) {
   return request<IBaseResponse<any>>({
-    url: `/api/users/${userId}`,
+    url: `/users/${userId}`,
     method: "delete"
   })
 }
@@ -68,7 +68,7 @@ export function deleteUserApi(userId: number) {
 /** 获取用户统计信息 */
 export function getUserStatisticsApi() {
   return request<IBaseResponse<UserStatistics>>({
-    url: "/api/users/statistics",
+    url: "/users/statistics",
     method: "get"
   })
 }
@@ -76,7 +76,7 @@ export function getUserStatisticsApi() {
 /** 用户登录 */
 export function loginApi(data: LoginRequest) {
   return request<IBaseResponse<LoginResponse>>({
-    url: "/api/auth/login",
+    url: "/auth/login",
     method: "post",
     data
   })
@@ -85,7 +85,7 @@ export function loginApi(data: LoginRequest) {
 /** 刷新令牌 */
 export function refreshTokenApi(data: RefreshTokenRequest) {
   return request<IBaseResponse<LoginResponse>>({
-    url: "/api/auth/refresh",
+    url: "/auth/refresh",
     method: "post",
     data
   })
@@ -94,7 +94,7 @@ export function refreshTokenApi(data: RefreshTokenRequest) {
 /** 用户注册 */
 export function registerApi(data: RegisterRequest) {
   return request<IBaseResponse<void>>({
-    url: "/api/auth/register",
+    url: "/auth/register",
     method: "post",
     data
   })
@@ -103,7 +103,7 @@ export function registerApi(data: RegisterRequest) {
 /** 验证邮箱 */
 export function verifyEmailApi(data: VerifyEmailRequest) {
   return request<IBaseResponse<void>>({
-    url: "/api/auth/verify-email",
+    url: "/auth/verify-email",
     method: "post",
     data
   })
@@ -112,7 +112,7 @@ export function verifyEmailApi(data: VerifyEmailRequest) {
 /** 重发验证码 */
 export function resendVerifyCodeApi(data: ResendVerifyCodeRequest) {
   return request<IBaseResponse<void>>({
-    url: "/api/auth/resend-verify-code",
+    url: "/auth/resend-verify-code",
     method: "post",
     data
   })
@@ -121,7 +121,7 @@ export function resendVerifyCodeApi(data: ResendVerifyCodeRequest) {
 /** 初始化示例用户数据 */
 export function initSampleUsersApi() {
   return request<IBaseResponse<any>>({
-    url: "/api/users/init-sample",
+    url: "/users/init-sample",
     method: "post"
   })
 }

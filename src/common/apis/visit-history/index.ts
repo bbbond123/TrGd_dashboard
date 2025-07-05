@@ -11,7 +11,7 @@ import { request } from "@/http/axios"
 /** 获取访问历史列表 */
 export function getVisitHistoryListApi(data: VisitHistoryListRequest) {
   return request<ApiResponse<PaginationResponse<VisitHistory>>>({
-    url: "/api/visit-histories/list",
+    url: "/visit-histories/list",
     method: "post",
     data
   })
@@ -20,7 +20,7 @@ export function getVisitHistoryListApi(data: VisitHistoryListRequest) {
 /** 获取访问历史详情 */
 export function getVisitHistoryDetailApi(visitId: number) {
   return request<ApiResponse<VisitHistory>>({
-    url: `/api/visit-histories/${visitId}`,
+    url: `/visit-histories/${visitId}`,
     method: "get"
   })
 }
@@ -28,7 +28,7 @@ export function getVisitHistoryDetailApi(visitId: number) {
 /** 创建访问历史 */
 export function createVisitHistoryApi(data: CreateVisitHistoryRequest) {
   return request<ApiResponse<VisitHistory>>({
-    url: "/api/visit-histories",
+    url: "/visit-histories",
     method: "post",
     data
   })
@@ -37,7 +37,7 @@ export function createVisitHistoryApi(data: CreateVisitHistoryRequest) {
 /** 更新访问历史 */
 export function updateVisitHistoryApi(data: UpdateVisitHistoryRequest) {
   return request<ApiResponse<VisitHistory>>({
-    url: "/api/visit-histories",
+    url: "/visit-histories",
     method: "put",
     data
   })
@@ -46,7 +46,7 @@ export function updateVisitHistoryApi(data: UpdateVisitHistoryRequest) {
 /** 删除访问历史 */
 export function deleteVisitHistoryApi(visitId: number) {
   return request<ApiResponse<void>>({
-    url: `/api/visit-histories/${visitId}`,
+    url: `/visit-histories/${visitId}`,
     method: "delete"
   })
 }
@@ -60,7 +60,7 @@ export function processVisitApi(imageFile: File, userId?: number) {
   }
 
   return request<ApiResponse<VisitHistoryResult>>({
-    url: `${BASE_URL}/process`,
+    url: "/visit-histories/process",
     method: "post",
     headers: {
       "Content-Type": "multipart/form-data"
@@ -72,7 +72,7 @@ export function processVisitApi(imageFile: File, userId?: number) {
 /** 获取用户的访问历史 */
 export function getUserVisitHistoryApi(userId: number) {
   return request<ApiResponse<VisitHistory[]>>({
-    url: `${BASE_URL}/users/${userId}`,
+    url: `/visit-histories/users/${userId}`,
     method: "get"
   })
 }
@@ -80,7 +80,7 @@ export function getUserVisitHistoryApi(userId: number) {
 /** 获取特定地区的访问历史 */
 export function getLocationVisitHistoryApi(latitude: number, longitude: number, radius: number = 1) {
   return request<ApiResponse<VisitHistory[]>>({
-    url: `${BASE_URL}/location`,
+    url: "/visit-histories/location",
     method: "get",
     params: {
       latitude,

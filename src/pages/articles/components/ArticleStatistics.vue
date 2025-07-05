@@ -1,25 +1,35 @@
 <script setup lang="ts">
-import type { ArticleStatsRequest, ArticleStatsResponse } from "@@/apis/articles/type"
-import { getArticleStatsApi } from "@@/apis/articles"
-import { usePagination } from "@@/composables/usePagination"
-import { BarChart, Document, Reading, Star, View } from "@element-plus/icons-vue"
-import { ElMessage } from "element-plus"
-import { onMounted, reactive, ref } from "vue"
+import type {
+  ArticleStatsRequest,
+  ArticleStatsResponse,
+} from "@@/apis/articles/type";
+import { getArticleStatsApi } from "@@/apis/articles";
+import { usePagination } from "@@/composables/usePagination";
+import {
+  ChatDotRound,
+  Document,
+  Reading,
+  Star,
+  View,
+} from "@element-plus/icons-vue";
+import { ElMessage } from "element-plus";
+import { onMounted, reactive, ref, watch } from "vue";
 
 interface Props {
-  modelValue: boolean
+  modelValue: boolean;
 }
 
 interface Emits {
-  (e: "update:modelValue", value: boolean): void
+  (e: "update:modelValue", value: boolean): void;
 }
 
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
-const dialogVisible = ref(false)
-const loading = ref(false)
-const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
+const dialogVisible = ref(false);
+const loading = ref(false);
+const { paginationData, handleCurrentChange, handleSizeChange } =
+  usePagination();
 
 // 统计数据
 const statistics = ref({
@@ -30,84 +40,96 @@ const statistics = ref({
   totalLikes: 0,
   totalComments: 0,
   totalViews: 0,
-  avgLikesPerArticle: 0
-})
+  avgLikesPerArticle: 0,
+});
 
 // 搜索数据
 const searchData = reactive<Partial<ArticleStatsRequest>>({
   category: "",
   status: undefined,
-  keyword: ""
-})
+  keyword: "",
+});
 
 // 文章数据
-const articleData = ref<ArticleStatsResponse | null>(null)
+const articleData = ref<ArticleStatsResponse | null>(null);
 
 // 监听 modelValue 变化
 watch(
   () => props.modelValue,
   (val) => {
-    dialogVisible.value = val
+    dialogVisible.value = val;
     if (val) {
-      getStatistics()
+      getStatistics();
     }
   },
   { immediate: true }
-)
+);
 
 // 监听 dialogVisible 变化
 watch(dialogVisible, (val) => {
-  emit("update:modelValue", val)
-})
+  emit("update:modelValue", val);
+});
 
 // 获取统计数据
 async function getStatistics() {
-  loading.value = true
+  loading.value = true;
   try {
     const params: ArticleStatsRequest = {
       page: paginationData.currentPage,
       pageSize: paginationData.page_size,
-      ...searchData
-    }
+      ...searchData,
+    };
 
     // 清理空参数
-    if (params.category === "") delete params.category
-    if (params.status === undefined) delete params.status
-    if (params.keyword === "") delete params.keyword
+    if (params.category === "") delete params.category;
+    if (params.status === undefined) delete params.status;
+    if (params.keyword === "") delete params.keyword;
 
-    const res = await getArticleStatsApi(params)
+    const res = await getArticleStatsApi(params);
     if (res.code === 200) {
-      articleData.value = res.data
+      articleData.value = res.data;
 
       // 计算统计数据
-      const articles = res.data.articles || []
+      const articles = res.data.articles || [];
       statistics.value = {
         totalArticles: articles.length,
-        publishedArticles: articles.filter(a => a.status === 'published').length,
-        draftArticles: articles.filter(a => a.status === 'draft').length,
-        archivedArticles: articles.filter(a => a.status === 'archived').length,
+        publishedArticles: articles.filter((a) => a.status === "published")
+          .length,
+        draftArticles: articles.filter((a) => a.status === "draft").length,
+        archivedArticles: articles.filter((a) => a.status === "archived")
+          .length,
         totalLikes: articles.reduce((sum, a) => sum + (a.likeCount || 0), 0),
-        totalComments: articles.reduce((sum, a) => sum + (a.commentCount || 0), 0),
+        totalComments: articles.reduce(
+          (sum, a) => sum + (a.commentCount || 0),
+          0
+        ),
         totalViews: articles.length * 100, // 假设数据
-        avgLikesPerArticle: articles.length > 0 ? Math.round(articles.reduce((sum, a) => sum + (a.likeCount || 0), 0) / articles.length * 100) / 100 : 0
-      }
+        avgLikesPerArticle:
+          articles.length > 0
+            ? Math.round(
+                (articles.reduce((sum, a) => sum + (a.likeCount || 0), 0) /
+                  articles.length) *
+                  100
+              ) / 100
+            : 0,
+      };
 
-      paginationData.total = res.data.total
+      paginationData.total = res.data.total;
     } else {
-      ElMessage.error(res.errMessage || "获取统计数据失败")
+      ElMessage.error(res.errMessage || "获取统计数据失败");
     }
   } catch (error) {
-    console.error("获取统计数据失败:", error)
-    ElMessage.error("获取统计数据失败")
+    console.error("获取统计数据失败:", error);
+    ElMessage.error("获取统计数据失败");
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
 
 // 搜索
 function handleSearch() {
-  paginationData.currentPage = 1
-  getStatistics()
+  paginationData.currentPage = 1;
+  getStatistics();
 }
 
 // 重置搜索
@@ -115,28 +137,28 @@ function resetSearch() {
   Object.assign(searchData, {
     category: "",
     status: undefined,
-    keyword: ""
-  })
-  paginationData.currentPage = 1
-  getStatistics()
+    keyword: "",
+  });
+  paginationData.currentPage = 1;
+  getStatistics();
 }
 
 // 格式化日期时间
 function formatDateTime(dateTime: string) {
-  return new Date(dateTime).toLocaleString("zh-CN")
+  return new Date(dateTime).toLocaleString("zh-CN");
 }
 
 // 监听分页变化
 watch(
   [() => paginationData.currentPage, () => paginationData.page_size],
   getStatistics
-)
+);
 
 onMounted(() => {
   if (props.modelValue) {
-    getStatistics()
+    getStatistics();
   }
-})
+});
 </script>
 
 <template>
@@ -195,7 +217,9 @@ onMounted(() => {
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">文章总数</div>
-                  <div class="statistics-value">{{ statistics.totalArticles }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.totalArticles }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -208,7 +232,9 @@ onMounted(() => {
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">已发布</div>
-                  <div class="statistics-value">{{ statistics.publishedArticles }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.publishedArticles }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -221,7 +247,9 @@ onMounted(() => {
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">总点赞数</div>
-                  <div class="statistics-value">{{ statistics.totalLikes }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.totalLikes }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -230,11 +258,13 @@ onMounted(() => {
             <el-card shadow="hover" class="statistics-card">
               <div class="statistics-item">
                 <div class="statistics-icon comments">
-                  <el-icon><BarChart /></el-icon>
+                  <el-icon><ChatDotRound /></el-icon>
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">总评论数</div>
-                  <div class="statistics-value">{{ statistics.totalComments }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.totalComments }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -250,7 +280,9 @@ onMounted(() => {
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">草稿数</div>
-                  <div class="statistics-value">{{ statistics.draftArticles }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.draftArticles }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -263,7 +295,9 @@ onMounted(() => {
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">已归档</div>
-                  <div class="statistics-value">{{ statistics.archivedArticles }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.archivedArticles }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -276,7 +310,9 @@ onMounted(() => {
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">总浏览量</div>
-                  <div class="statistics-value">{{ statistics.totalViews }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.totalViews }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -289,7 +325,9 @@ onMounted(() => {
                 </div>
                 <div class="statistics-content">
                   <div class="statistics-title">平均点赞</div>
-                  <div class="statistics-value">{{ statistics.avgLikesPerArticle }}</div>
+                  <div class="statistics-value">
+                    {{ statistics.avgLikesPerArticle }}
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -300,7 +338,13 @@ onMounted(() => {
       <!-- 文章列表 -->
       <el-card shadow="never" style="margin-top: 16px">
         <template #header>
-          <div style="display: flex; justify-content: space-between; align-items: center">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
             <span>文章详情列表</span>
             <span v-if="articleData">
               总计: {{ articleData.total }} 篇文章
@@ -316,19 +360,51 @@ onMounted(() => {
         >
           <el-table-column prop="title" label="标题" min-width="200" />
           <el-table-column prop="category" label="分类" width="100" />
-          <el-table-column prop="status" label="状态" width="100" align="center">
+          <el-table-column
+            prop="status"
+            label="状态"
+            width="100"
+            align="center"
+          >
             <template #default="scope">
               <el-tag
-                :type="scope.row.status === 'published' ? 'success' : scope.row.status === 'draft' ? 'info' : 'warning'"
+                :type="
+                  scope.row.status === 'published'
+                    ? 'success'
+                    : scope.row.status === 'draft'
+                    ? 'info'
+                    : 'warning'
+                "
                 size="small"
               >
-                {{ scope.row.status === 'published' ? '已发布' : scope.row.status === 'draft' ? '草稿' : '已归档' }}
+                {{
+                  scope.row.status === "published"
+                    ? "已发布"
+                    : scope.row.status === "draft"
+                    ? "草稿"
+                    : "已归档"
+                }}
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column prop="likeCount" label="点赞数" width="100" align="center" />
-          <el-table-column prop="commentCount" label="评论数" width="100" align="center" />
-          <el-table-column prop="createdAt" label="创建时间" width="180" align="center">
+          <el-table-column
+            prop="likeCount"
+            label="点赞数"
+            width="100"
+            align="center"
+          />
+          <el-table-column
+            prop="commentCount"
+            label="评论数"
+            width="100"
+            align="center"
+          />
+          <el-table-column
+            prop="createdAt"
+            label="创建时间"
+            width="180"
+            align="center"
+          >
             <template #default="scope">
               {{ formatDateTime(scope.row.createdAt) }}
             </template>

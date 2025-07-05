@@ -307,7 +307,7 @@ onMounted(() => {
                 <el-color-picker
                   v-model="scope.row.color"
                   size="small"
-                  @change="(color) => editTagColor(scope.row, color)"
+                  @change="(color) => color && editTagColor(scope.row, color)"
                 />
                 <span class="color-text">{{ scope.row.color }}</span>
               </div>

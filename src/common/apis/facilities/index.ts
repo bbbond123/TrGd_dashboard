@@ -5,7 +5,7 @@ import { request } from "@/http/axios"
 /** 获取设施列表 */
 export function getFacilityListApi(data: FacilityListRequest) {
   return request<IResponse<Facility>>({
-    url: "/api/facilities/list",
+    url: "/facilities/list",
     method: "post",
     data
   })
@@ -14,7 +14,7 @@ export function getFacilityListApi(data: FacilityListRequest) {
 /** 获取设施详情 */
 export function getFacilityDetailApi(facilityId: number) {
   return request<IBaseResponse<Facility>>({
-    url: `/api/facilities/${facilityId}`,
+    url: `/facilities/${facilityId}`,
     method: "get"
   })
 }
@@ -22,7 +22,7 @@ export function getFacilityDetailApi(facilityId: number) {
 /** 创建设施 */
 export function createFacilityApi(data: CreateFacilityRequest) {
   return request<IBaseResponse<Facility>>({
-    url: "/api/facilities",
+    url: "/facilities",
     method: "post",
     data
   })
@@ -31,7 +31,7 @@ export function createFacilityApi(data: CreateFacilityRequest) {
 /** 更新设施 */
 export function updateFacilityApi(data: UpdateFacilityRequest) {
   return request<IBaseResponse<Facility>>({
-    url: `/api/facilities/${data.facilityId}`,
+    url: `/facilities/${data.facilityId}`,
     method: "put",
     data
   })
@@ -40,7 +40,7 @@ export function updateFacilityApi(data: UpdateFacilityRequest) {
 /** 删除设施 */
 export function deleteFacilityApi(facilityId: number) {
   return request<IBaseResponse<boolean>>({
-    url: `/api/facilities/${facilityId}`,
+    url: `/facilities/${facilityId}`,
     method: "delete"
   })
 }
@@ -48,7 +48,7 @@ export function deleteFacilityApi(facilityId: number) {
 /** 搜索附近设施 */
 export function getNearbyFacilitiesApi(data: NearbyFacilitiesRequest) {
   return request<IResponse<Facility>>({
-    url: "/api/facilities/nearby",
+    url: "/facilities/nearby",
     method: "post",
     data
   })
