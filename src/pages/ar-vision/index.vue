@@ -61,7 +61,7 @@ async function analyzeImage(file: File) {
   try {
     const res = await visionAnalyzeApi(file)
 
-    if (res.code === 200) {
+    if (res.success) {
       analysisResult.value = res.data
       ElMessage.success('图片分析完成！')
     } else {
