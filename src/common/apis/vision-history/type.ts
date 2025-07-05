@@ -3,10 +3,11 @@ import type { DateRangeRequest, PaginationRequest } from "../type"
 /** 地标结果 */
 export interface LandmarkResult {
   name: string
-  confidence: number
+  score: number
   latitude?: number
   longitude?: number
   description?: string
+  localFacilityId?: number
 }
 
 /** 推荐项目 */
@@ -14,8 +15,8 @@ export interface RecommendationItem {
   name: string
   type: string
   distance: number
-  rating?: number
   description?: string
+  category?: string
 }
 
 /** 视觉识别历史记录 */

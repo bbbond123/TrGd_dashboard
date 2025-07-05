@@ -25,31 +25,31 @@ const uploadInputKey = ref(0)
 // 图片上传处理
 async function handleImageUpload(file: UploadFile) {
   if (!file.raw) return false
-  
+
   // 检查文件类型
   const isImage = file.raw.type.startsWith('image/')
   if (!isImage) {
     ElMessage.error('只能上传图片文件！')
     return false
   }
-  
+
   // 检查文件大小 (10MB)
   const isLt10M = file.raw.size / 1024 / 1024 < 10
   if (!isLt10M) {
     ElMessage.error('图片大小不能超过 10MB！')
     return false
   }
-  
+
   // 显示上传的图片
   const reader = new FileReader()
   reader.onload = (e) => {
     uploadedImage.value = e.target?.result as string
   }
   reader.readAsDataURL(file.raw)
-  
+
   // 开始分析
   await analyzeImage(file.raw)
-  
+
   return false // 阻止自动上传
 }
 
@@ -57,10 +57,10 @@ async function handleImageUpload(file: UploadFile) {
 async function analyzeImage(file: File) {
   loading.value = true
   analysisResult.value = null
-  
+
   try {
     const res = await visionAnalyzeApi(file)
-    
+
     if (res.code === 200) {
       analysisResult.value = res.data
       ElMessage.success('图片分析完成！')
@@ -88,16 +88,16 @@ function formatDateTime(dateTime: string) {
 }
 
 // 获取置信度颜色
-function getConfidenceColor(confidence: number) {
-  if (confidence >= 0.8) return 'success'
-  if (confidence >= 0.6) return 'warning'
+function getConfidenceColor(score: number) {
+  if (score >= 0.7) return 'success'
+  if (score >= 0.5) return 'warning'
   return 'danger'
 }
 
 // 获取置信度文本
-function getConfidenceText(confidence: number) {
-  if (confidence >= 0.8) return '高'
-  if (confidence >= 0.6) return '中'
+function getConfidenceText(score: number) {
+  if (score >= 0.7) return '高'
+  if (score >= 0.5) return '中'
   return '低'
 }
 </script>
@@ -114,7 +114,7 @@ function getConfidenceText(confidence: number) {
               <span>AR图片识别</span>
             </div>
           </template>
-          
+
           <!-- 图片上传 -->
           <div v-if="!uploadedImage" class="upload-area">
             <el-upload
@@ -137,7 +137,7 @@ function getConfidenceText(confidence: number) {
               </div>
             </el-upload>
           </div>
-          
+
           <!-- 已上传的图片 -->
           <div v-else class="uploaded-image">
             <el-image
@@ -159,7 +159,7 @@ function getConfidenceText(confidence: number) {
           </div>
         </el-card>
       </el-col>
-      
+
       <!-- 右侧分析结果 -->
       <el-col :span="12">
         <el-card shadow="never" class="result-card" v-loading="loading">
@@ -169,11 +169,11 @@ function getConfidenceText(confidence: number) {
               <span>识别结果</span>
             </div>
           </template>
-          
+
           <div v-if="!analysisResult && !loading" class="no-result">
             <el-empty description="请先上传图片进行识别" />
           </div>
-          
+
           <div v-if="analysisResult" class="result-content">
             <!-- 基本信息 -->
             <el-descriptions :column="2" border class="mb-4">
@@ -197,13 +197,13 @@ function getConfidenceText(confidence: number) {
                 </el-tag>
               </el-descriptions-item>
             </el-descriptions>
-            
+
             <!-- 地标识别 -->
             <div v-if="analysisResult.has_landmark && analysisResult.landmarks.length" class="landmarks-section">
               <h3><el-icon><Location /></el-icon> 识别的地标</h3>
               <el-row :gutter="12">
-                <el-col 
-                  v-for="landmark in analysisResult.landmarks" 
+                <el-col
+                  v-for="landmark in analysisResult.landmarks"
                   :key="landmark.name"
                   :span="24"
                   class="mb-3"
@@ -212,34 +212,38 @@ function getConfidenceText(confidence: number) {
                     <div class="landmark-content">
                       <div class="landmark-header">
                         <h4>{{ landmark.name }}</h4>
-                        <el-tag 
-                          :type="getConfidenceColor(landmark.confidence)"
+                        <el-tag
+                          :type="getConfidenceColor(landmark.score)"
                           class="confidence-tag"
                         >
-                          置信度: {{ (landmark.confidence * 100).toFixed(1) }}% ({{ getConfidenceText(landmark.confidence) }})
+                          置信度: {{ (landmark.score * 100).toFixed(1) }}% ({{ getConfidenceText(landmark.score) }})
                         </el-tag>
                       </div>
-                      
+
                       <div v-if="landmark.description" class="landmark-description">
                         {{ landmark.description }}
                       </div>
-                      
+
                       <div v-if="landmark.latitude && landmark.longitude" class="landmark-location">
                         <el-icon><Location /></el-icon>
                         坐标: {{ landmark.latitude.toFixed(6) }}, {{ landmark.longitude.toFixed(6) }}
+                      </div>
+
+                      <div v-if="landmark.localFacilityId" class="landmark-facility">
+                        <el-tag size="small" type="info">设施ID: {{ landmark.localFacilityId }}</el-tag>
                       </div>
                     </div>
                   </el-card>
                 </el-col>
               </el-row>
             </div>
-            
+
             <!-- 识别标签 -->
             <div v-if="analysisResult.labels.length" class="labels-section">
               <h3><el-icon><Document /></el-icon> 识别标签</h3>
               <div class="labels-container">
-                <el-tag 
-                  v-for="label in analysisResult.labels" 
+                <el-tag
+                  v-for="label in analysisResult.labels"
                   :key="label"
                   class="label-tag"
                   type="info"
@@ -248,7 +252,7 @@ function getConfidenceText(confidence: number) {
                 </el-tag>
               </div>
             </div>
-            
+
             <!-- 文本内容 -->
             <div v-if="analysisResult.text_content" class="text-section">
               <h3><el-icon><Document /></el-icon> 识别的文本</h3>
@@ -256,13 +260,13 @@ function getConfidenceText(confidence: number) {
                 <p>{{ analysisResult.text_content }}</p>
               </el-card>
             </div>
-            
+
             <!-- 推荐列表 -->
             <div v-if="analysisResult.nearby_recommendations.length" class="recommendations-section">
               <h3><el-icon><Star /></el-icon> 附近推荐</h3>
               <el-row :gutter="12">
-                <el-col 
-                  v-for="recommendation in analysisResult.nearby_recommendations" 
+                <el-col
+                  v-for="recommendation in analysisResult.nearby_recommendations"
                   :key="recommendation.name"
                   :span="12"
                   class="mb-3"
@@ -271,21 +275,20 @@ function getConfidenceText(confidence: number) {
                     <div class="recommendation-content">
                       <div class="recommendation-header">
                         <h4>{{ recommendation.name }}</h4>
-                        <el-tag size="small">{{ recommendation.type }}</el-tag>
+                        <el-tag size="small" type="success">{{ recommendation.type }}</el-tag>
                       </div>
-                      
+
                       <div class="recommendation-details">
                         <div class="distance">
                           <el-icon><Location /></el-icon>
                           距离: {{ recommendation.distance.toFixed(2) }} km
                         </div>
-                        
-                        <div v-if="recommendation.rating" class="rating">
-                          <el-icon><Star /></el-icon>
-                          评分: {{ recommendation.rating }}/5
+
+                        <div v-if="recommendation.category" class="category">
+                          <el-tag size="small" type="info">{{ recommendation.category }}</el-tag>
                         </div>
                       </div>
-                      
+
                       <div v-if="recommendation.description" class="recommendation-description">
                         {{ recommendation.description }}
                       </div>
@@ -294,7 +297,7 @@ function getConfidenceText(confidence: number) {
                 </el-col>
               </el-row>
             </div>
-            
+
             <!-- 错误信息 -->
             <div v-if="analysisResult.error_message" class="error-section">
               <el-alert
@@ -325,11 +328,11 @@ function getConfidenceText(confidence: number) {
 
 .upload-card {
   height: fit-content;
-  
+
   .upload-area {
     .upload-dragger {
       width: 100%;
-      
+
       :deep(.el-upload-dragger) {
         width: 100%;
         height: 300px;
@@ -343,22 +346,22 @@ function getConfidenceText(confidence: number) {
         position: relative;
         overflow: hidden;
         transition: all 0.3s;
-        
+
         &:hover {
           border-color: #409eff;
         }
       }
-      
+
       .el-upload__text {
         margin-top: 16px;
         font-size: 16px;
-        
+
         em {
           color: #409eff;
           font-style: normal;
         }
       }
-      
+
       .el-upload__tip {
         margin-top: 8px;
         color: #999;
@@ -366,10 +369,10 @@ function getConfidenceText(confidence: number) {
       }
     }
   }
-  
+
   .uploaded-image {
     text-align: center;
-    
+
     .image-actions {
       margin-top: 16px;
     }
@@ -378,23 +381,23 @@ function getConfidenceText(confidence: number) {
 
 .result-card {
   min-height: 500px;
-  
+
   .no-result {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 400px;
   }
-  
+
   .result-content {
     .mb-4 {
       margin-bottom: 24px;
     }
-    
+
     .mb-3 {
       margin-bottom: 16px;
     }
-    
+
     h3 {
       display: flex;
       align-items: center;
@@ -404,66 +407,71 @@ function getConfidenceText(confidence: number) {
       font-weight: 500;
       color: #303133;
     }
-    
+
     .landmarks-section {
       .landmark-card {
         :deep(.el-card__body) {
           padding: 16px;
         }
-        
+
         .landmark-content {
           .landmark-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
-            
+
             h4 {
               margin: 0;
               font-size: 14px;
               font-weight: 500;
             }
-            
+
             .confidence-tag {
               font-size: 12px;
             }
           }
-          
+
           .landmark-description {
             color: #606266;
             font-size: 13px;
             margin-bottom: 8px;
             line-height: 1.4;
           }
-          
+
           .landmark-location {
             display: flex;
             align-items: center;
             gap: 4px;
             color: #909399;
             font-size: 12px;
+            margin-bottom: 8px;
+          }
+
+          .landmark-facility {
+            margin-top: 8px;
           }
         }
       }
     }
-    
+
     .labels-section {
       .labels-container {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        
+
         .label-tag {
           font-size: 12px;
         }
       }
     }
-    
+
     .text-section {
       .text-card {
         :deep(.el-card__body) {
           padding: 16px;
-          
+
           p {
             margin: 0;
             line-height: 1.6;
@@ -472,43 +480,47 @@ function getConfidenceText(confidence: number) {
         }
       }
     }
-    
+
     .recommendations-section {
       .recommendation-card {
         :deep(.el-card__body) {
           padding: 16px;
         }
-        
+
         .recommendation-content {
           .recommendation-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 8px;
-            
+
             h4 {
               margin: 0;
               font-size: 14px;
               font-weight: 500;
             }
           }
-          
+
           .recommendation-details {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 8px;
             margin-bottom: 8px;
-            
-            .distance,
-            .rating {
+
+            .distance {
               display: flex;
               align-items: center;
               gap: 4px;
               color: #909399;
               font-size: 12px;
             }
+
+            .category {
+              display: flex;
+              gap: 4px;
+            }
           }
-          
+
           .recommendation-description {
             color: #606266;
             font-size: 13px;
@@ -517,7 +529,7 @@ function getConfidenceText(confidence: number) {
         }
       }
     }
-    
+
     .error-section {
       margin-top: 16px;
     }
