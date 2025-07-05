@@ -128,7 +128,7 @@ export interface ArticleComments {
   total: number
 }
 
-export interface LikeAricle {
-  liked: boolean
-  like_count: number
+export interface LikeArticle {
+  isLiked: boolean
+  likeCount: number
 }

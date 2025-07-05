@@ -11,22 +11,19 @@ import type {
 } from "./type"
 import { request } from "@/http/axios"
 
-const BASE_URL = "/api/v1/stores"
-const TAG_URL = "/api/v1/tags"
-
 /** 获取商店列表 */
-export function getStoreListApi(params: StoreListRequest) {
+export function getStoreListApi(data: StoreListRequest) {
   return request<ApiResponse<PaginationResponse<Store>>>({
-    url: `${BASE_URL}/list`,
-    method: "get",
-    params
+    url: "/api/stores/list",
+    method: "post",
+    data
   })
 }
 
 /** 获取商店详情 */
 export function getStoreDetailApi(storeId: number) {
   return request<ApiResponse<Store>>({
-    url: `${BASE_URL}/${storeId}`,
+    url: `/api/stores/${storeId}`,
     method: "get"
   })
 }
@@ -34,7 +31,7 @@ export function getStoreDetailApi(storeId: number) {
 /** 创建商店 */
 export function createStoreApi(data: CreateStoreRequest) {
   return request<ApiResponse<Store>>({
-    url: BASE_URL,
+    url: "/api/stores",
     method: "post",
     data
   })
@@ -43,7 +40,7 @@ export function createStoreApi(data: CreateStoreRequest) {
 /** 更新商店 */
 export function updateStoreApi(data: UpdateStoreRequest) {
   return request<ApiResponse<Store>>({
-    url: `${BASE_URL}/${data.store_id}`,
+    url: "/api/stores",
     method: "put",
     data
   })
@@ -52,24 +49,24 @@ export function updateStoreApi(data: UpdateStoreRequest) {
 /** 删除商店 */
 export function deleteStoreApi(storeId: number) {
   return request<ApiResponse<void>>({
-    url: `${BASE_URL}/${storeId}`,
+    url: `/api/stores/${storeId}`,
     method: "delete"
   })
 }
 
 /** 获取标签列表 */
-export function getTagListApi(params: TagListRequest) {
+export function getTagListApi(data: TagListRequest) {
   return request<ApiResponse<PaginationResponse<StoreTag>>>({
-    url: `${TAG_URL}/list`,
-    method: "get",
-    params
+    url: "/api/tags/list",
+    method: "post",
+    data
   })
 }
 
 /** 创建标签 */
 export function createTagApi(data: CreateTagRequest) {
   return request<ApiResponse<StoreTag>>({
-    url: TAG_URL,
+    url: "/api/tags",
     method: "post",
     data
   })
@@ -78,7 +75,7 @@ export function createTagApi(data: CreateTagRequest) {
 /** 更新标签 */
 export function updateTagApi(data: UpdateTagRequest) {
   return request<ApiResponse<StoreTag>>({
-    url: `${TAG_URL}/${data.tag_id}`,
+    url: "/api/tags",
     method: "put",
     data
   })
@@ -87,7 +84,7 @@ export function updateTagApi(data: UpdateTagRequest) {
 /** 删除标签 */
 export function deleteTagApi(tagId: number) {
   return request<ApiResponse<void>>({
-    url: `${TAG_URL}/${tagId}`,
+    url: `/api/tags/${tagId}`,
     method: "delete"
   })
 }

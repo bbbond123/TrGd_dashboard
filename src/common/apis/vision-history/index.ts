@@ -9,21 +9,19 @@ import type {
 } from "./type"
 import { request } from "@/http/axios"
 
-const BASE_URL = "/api/v1/vision-history"
-
 /** 获取视觉识别历史列表 */
-export function getVisionHistoryListApi(params: VisionHistoryListRequest) {
+export function getVisionHistoryListApi(data: VisionHistoryListRequest) {
   return request<ApiResponse<PaginationResponse<VisionHistory>>>({
-    url: `${BASE_URL}/list`,
-    method: "get",
-    params
+    url: "/api/vision-histories/list",
+    method: "post",
+    data
   })
 }
 
 /** 获取视觉识别历史详情 */
 export function getVisionHistoryDetailApi(visionId: number) {
   return request<ApiResponse<VisionHistory>>({
-    url: `${BASE_URL}/${visionId}`,
+    url: `/api/vision-histories/${visionId}`,
     method: "get"
   })
 }
@@ -31,39 +29,38 @@ export function getVisionHistoryDetailApi(visionId: number) {
 /** 创建视觉识别历史 */
 export function createVisionHistoryApi(data: CreateVisionHistoryRequest) {
   return request<ApiResponse<VisionHistory>>({
-    url: BASE_URL,
+    url: "/api/vision-histories",
     method: "post",
     data
   })
 }
 
-/** 更新视觉识别历史 */
-export function updateVisionHistoryApi(data: UpdateVisionHistoryRequest) {
-  return request<ApiResponse<VisionHistory>>({
-    url: `${BASE_URL}/${data.vision_id}`,
-    method: "put",
-    data
-  })
-}
-
-/** 删除视觉识别历史 */
-export function deleteVisionHistoryApi(visionId: number) {
-  return request<ApiResponse<void>>({
-    url: `${BASE_URL}/${visionId}`,
-    method: "delete"
+/** 获取当前用户的视觉识别历史 */
+export function getMyVisionHistoriesApi() {
+  return request<ApiResponse<VisionHistory[]>>({
+    url: "/api/vision-histories/my",
+    method: "get"
   })
 }
 
 /** 获取视觉识别历史统计信息 */
 export function getVisionHistoryStatisticsApi() {
   return request<ApiResponse<VisionHistoryStatistics>>({
-    url: `${BASE_URL}/statistics`,
+    url: "/api/vision-histories/statistics",
     method: "get"
   })
 }
 
-/** 处理图片识别 */
-export function processImageApi(imageFile: File, userId?: number) {
+/** 生成测试数据 */
+export function generateTestDataApi() {
+  return request<ApiResponse<void>>({
+    url: "/api/vision-histories/generate-test-data",
+    method: "post"
+  })
+}
+
+/** 图片识别分析 */
+export function visionAnalyzeApi(imageFile: File, userId?: number) {
   const formData = new FormData()
   formData.append("image", imageFile)
   if (userId) {
@@ -71,7 +68,7 @@ export function processImageApi(imageFile: File, userId?: number) {
   }
 
   return request<ApiResponse<VisionHistoryResult>>({
-    url: `${BASE_URL}/process`,
+    url: "/api/files/vision-analyze",
     method: "post",
     headers: {
       "Content-Type": "multipart/form-data"
@@ -80,23 +77,17 @@ export function processImageApi(imageFile: File, userId?: number) {
   })
 }
 
-/** 获取用户的视觉识别历史统计 */
-export function getUserVisionHistoryStatsApi(userId: number) {
-  return request<ApiResponse<VisionHistoryStatistics>>({
-    url: `${BASE_URL}/users/${userId}/statistics`,
-    method: "get"
-  })
-}
+/** 通用图片分析 */
+export function analyzeImageApi(imageFile: File) {
+  const formData = new FormData()
+  formData.append("image", imageFile)
 
-/** 获取特定地区的视觉识别历史 */
-export function getLocationVisionHistoryApi(latitude: number, longitude: number, radius: number = 1) {
-  return request<ApiResponse<VisionHistory[]>>({
-    url: `${BASE_URL}/location`,
-    method: "get",
-    params: {
-      latitude,
-      longitude,
-      radius
-    }
+  return request<ApiResponse<VisionHistoryResult>>({
+    url: "/api/files/analyze",
+    method: "post",
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    data: formData
   })
 }

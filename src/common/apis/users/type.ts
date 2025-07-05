@@ -95,6 +95,7 @@ export interface LoginRequest {
 export interface LoginResponse {
   access_token: string
   refresh_token: string
+  user: User
 }
 
 /** 刷新令牌请求 */

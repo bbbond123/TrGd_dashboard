@@ -14,6 +14,9 @@ import { reactive, ref, watch } from "vue"
 import ArticleComments from "./components/ArticleComments.vue"
 import ArticleDetail from "./components/ArticleDetail.vue"
 import ArticleEdit from "./components/ArticleEdit.vue"
+import ArticlePreview from "./components/ArticlePreview.vue"
+import ArticleStatistics from "./components/ArticleStatistics.vue"
+import TagManager from "./components/TagManager.vue"
 
 defineOptions({
   name: "Articles"
@@ -27,6 +30,7 @@ const { paginationData, handleCurrentChange, handleSizeChange }
 const searchData = reactive<Partial<ArticleListRequest>>({
   title: "",
   category: "",
+  status: undefined,
   locationName: "",
   bodyText: ""
 })
@@ -39,6 +43,9 @@ const selectedArticles = ref<Article[]>([])
 const detailVisible = ref(false)
 const editVisible = ref(false)
 const commentsVisible = ref(false)
+const previewVisible = ref(false)
+const statisticsVisible = ref(false)
+const tagManagerVisible = ref(false)
 const currentArticleId = ref<number>(0)
 const currentArticleTitle = ref("")
 
@@ -63,6 +70,9 @@ async function getTableData() {
     }
     if (params.bodyText === "") {
       delete params.bodyText
+    }
+    if (params.status === undefined) {
+      delete params.status
     }
 
     const res = await getArticleListApi(params)
@@ -93,6 +103,7 @@ function resetSearch() {
   Object.assign(searchData, {
     title: "",
     category: "",
+    status: undefined,
     locationName: "",
     bodyText: ""
   })
@@ -128,6 +139,22 @@ function handleComments(row: Article) {
   currentArticleId.value = row.articleId
   currentArticleTitle.value = row.title
   commentsVisible.value = true
+}
+
+// 预览文章
+function handlePreview(row: Article) {
+  currentArticleId.value = row.articleId
+  previewVisible.value = true
+}
+
+// 查看统计
+function handleStatistics() {
+  statisticsVisible.value = true
+}
+
+// 标签管理
+function handleTagManager() {
+  tagManagerVisible.value = true
 }
 
 // 删除文章
@@ -203,6 +230,18 @@ watch(
             clearable
           />
         </el-form-item>
+        <el-form-item prop="status" label="状态">
+          <el-select
+            v-model="searchData.status"
+            placeholder="请选择状态"
+            clearable
+            style="width: 120px"
+          >
+            <el-option label="草稿" value="draft" />
+            <el-option label="已发布" value="published" />
+            <el-option label="已归档" value="archived" />
+          </el-select>
+        </el-form-item>
         <el-form-item prop="locationName" label="地点">
           <el-input
             v-model="searchData.locationName"
@@ -234,6 +273,12 @@ watch(
         <div>
           <el-button type="primary" :icon="Plus" @click="handleCreate">
             新增文章
+          </el-button>
+          <el-button type="success" @click="handleStatistics">
+            文章统计
+          </el-button>
+          <el-button type="warning" @click="handleTagManager">
+            标签管理
           </el-button>
           <el-button
             type="danger"
@@ -280,6 +325,21 @@ watch(
             align="center"
             width="120"
           />
+          <el-table-column
+            prop="status"
+            label="状态"
+            align="center"
+            width="100"
+          >
+            <template #default="scope">
+              <el-tag
+                :type="scope.row.status === 'published' ? 'success' : scope.row.status === 'draft' ? 'info' : 'warning'"
+                size="small"
+              >
+                {{ scope.row.status === 'published' ? '已发布' : scope.row.status === 'draft' ? '草稿' : '已归档' }}
+              </el-tag>
+            </template>
+          </el-table-column>
           <el-table-column
             prop="locationName"
             label="地点"
@@ -328,7 +388,7 @@ watch(
           <el-table-column
             fixed="right"
             label="操作"
-            width="200"
+            width="260"
             align="center"
           >
             <template #default="scope">
@@ -340,6 +400,15 @@ watch(
                 @click="handleView(scope.row)"
               >
                 查看
+              </el-button>
+              <el-button
+                type="warning"
+                text
+                bg
+                size="small"
+                @click="handlePreview(scope.row)"
+              >
+                预览
               </el-button>
               <el-button
                 type="success"
@@ -406,6 +475,23 @@ watch(
       v-model="commentsVisible"
       :article-id="currentArticleId"
       :article-title="currentArticleTitle"
+    />
+
+    <!-- 文章预览弹窗 -->
+    <ArticlePreview
+      v-model="previewVisible"
+      :article-id="currentArticleId"
+    />
+
+    <!-- 文章统计弹窗 -->
+    <ArticleStatistics
+      v-model="statisticsVisible"
+    />
+
+    <!-- 标签管理弹窗 -->
+    <TagManager
+      v-model="tagManagerVisible"
+      @refresh="getTableData"
     />
   </div>
 </template>

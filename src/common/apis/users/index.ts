@@ -14,12 +14,10 @@ import type {
 } from "./type"
 import { request } from "@/http/axios"
 
-const BASE_URL = "/api/v1/users"
-
 /** 获取当前登录用户详情 */
 export function getCurrentUserApi() {
   return request<IBaseResponse<{ username: string, roles: string[] }>>({
-    url: "/user/me",
+    url: "/api/auth/user/profile",
     method: "get"
   })
 }
@@ -78,7 +76,7 @@ export function getUserStatisticsApi() {
 /** 用户登录 */
 export function loginApi(data: LoginRequest) {
   return request<IBaseResponse<LoginResponse>>({
-    url: `${BASE_URL}/login`,
+    url: "/api/auth/login",
     method: "post",
     data
   })
@@ -87,7 +85,7 @@ export function loginApi(data: LoginRequest) {
 /** 刷新令牌 */
 export function refreshTokenApi(data: RefreshTokenRequest) {
   return request<IBaseResponse<LoginResponse>>({
-    url: `${BASE_URL}/refresh-token`,
+    url: "/api/auth/refresh",
     method: "post",
     data
   })
@@ -96,7 +94,7 @@ export function refreshTokenApi(data: RefreshTokenRequest) {
 /** 用户注册 */
 export function registerApi(data: RegisterRequest) {
   return request<IBaseResponse<void>>({
-    url: `${BASE_URL}/register`,
+    url: "/api/auth/register",
     method: "post",
     data
   })
@@ -105,7 +103,7 @@ export function registerApi(data: RegisterRequest) {
 /** 验证邮箱 */
 export function verifyEmailApi(data: VerifyEmailRequest) {
   return request<IBaseResponse<void>>({
-    url: `${BASE_URL}/verify-email`,
+    url: "/api/auth/verify-email",
     method: "post",
     data
   })
@@ -114,7 +112,7 @@ export function verifyEmailApi(data: VerifyEmailRequest) {
 /** 重发验证码 */
 export function resendVerifyCodeApi(data: ResendVerifyCodeRequest) {
   return request<IBaseResponse<void>>({
-    url: `${BASE_URL}/resend-verify-code`,
+    url: "/api/auth/resend-verify-code",
     method: "post",
     data
   })

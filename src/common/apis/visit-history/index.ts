@@ -8,21 +8,19 @@ import type {
 } from "./type"
 import { request } from "@/http/axios"
 
-const BASE_URL = "/api/v1/visit-history"
-
 /** 获取访问历史列表 */
-export function getVisitHistoryListApi(params: VisitHistoryListRequest) {
+export function getVisitHistoryListApi(data: VisitHistoryListRequest) {
   return request<ApiResponse<PaginationResponse<VisitHistory>>>({
-    url: `${BASE_URL}/list`,
-    method: "get",
-    params
+    url: "/api/visit-histories/list",
+    method: "post",
+    data
   })
 }
 
 /** 获取访问历史详情 */
-export function getVisitHistoryDetailApi(visionId: number) {
+export function getVisitHistoryDetailApi(visitId: number) {
   return request<ApiResponse<VisitHistory>>({
-    url: `${BASE_URL}/${visionId}`,
+    url: `/api/visit-histories/${visitId}`,
     method: "get"
   })
 }
@@ -30,7 +28,7 @@ export function getVisitHistoryDetailApi(visionId: number) {
 /** 创建访问历史 */
 export function createVisitHistoryApi(data: CreateVisitHistoryRequest) {
   return request<ApiResponse<VisitHistory>>({
-    url: BASE_URL,
+    url: "/api/visit-histories",
     method: "post",
     data
   })
@@ -39,16 +37,16 @@ export function createVisitHistoryApi(data: CreateVisitHistoryRequest) {
 /** 更新访问历史 */
 export function updateVisitHistoryApi(data: UpdateVisitHistoryRequest) {
   return request<ApiResponse<VisitHistory>>({
-    url: `${BASE_URL}/${data.vision_id}`,
+    url: "/api/visit-histories",
     method: "put",
     data
   })
 }
 
 /** 删除访问历史 */
-export function deleteVisitHistoryApi(visionId: number) {
+export function deleteVisitHistoryApi(visitId: number) {
   return request<ApiResponse<void>>({
-    url: `${BASE_URL}/${visionId}`,
+    url: `/api/visit-histories/${visitId}`,
     method: "delete"
   })
 }
