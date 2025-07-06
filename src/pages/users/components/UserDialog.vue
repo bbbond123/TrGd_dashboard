@@ -209,7 +209,9 @@ async function handleEdit() {
 
   // 如果输入了新密码，则加密后更新
   if (formData.password) {
-    editData.password = encryptPassword(formData.password)
+    // editData.password = encryptPassword(formData.password)
+    // 前端不用加密了。后端做处理了
+    editData.password = formData.password
   }
 
   await UserApi.updateUserApi(editData)
@@ -324,7 +326,7 @@ async function handleEdit() {
 
       <div v-if="formData.provider === 'email' && (dialogType === 'create' || dialogType === 'edit')">
         <el-form-item
-          :label="dialogType === 'create' ? '密码' : '新密码（留空则不修改）'"
+          :label="dialogType === 'create' ? '密码' : '新密码'"
           prop="password"
         >
           <el-input
@@ -333,7 +335,9 @@ async function handleEdit() {
             :placeholder="dialogType === 'create' ? '请输入密码' : '请输入新密码'"
             show-password
             clearable
+            style="max-width: 200px;"
           />
+          <el-alert type="info" v-if="dialogType !== 'create'" title="留空则不修改"></el-alert>
           <!-- 密码强度指示器 -->
           <div v-if="formData.password" class="password-strength-indicator">
             <div class="strength-bar">

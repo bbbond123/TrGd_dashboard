@@ -25,14 +25,15 @@ const showingChildNumber = computed(() => showingChildren.value.length)
 /** 唯一的子菜单项 */
 const theOnlyOneChild = computed(() => {
   const number = showingChildNumber.value
-  switch (true) {
-    case number > 1:
-      return null
-    case number === 1:
-      return showingChildren.value[0]
-    default:
-      return { ...props.item, path: "" }
-  }
+  // switch (true) {
+  //   case number > 1:
+  //     return null
+  //   case number === 1:
+  //     return showingChildren.value[0]
+  //   default:
+  //     return { ...props.item, path: "" }
+  // }
+  return {...props.item,path: ""}
 })
 
 /** 解析路径 */
