@@ -29,8 +29,8 @@ const codeUrl = ref("")
 
 /** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
-  email: "admin@ar-backend.com",
-  password: "admin123"
+  email: "",
+  password: ""
   // code: ""
 })
 
