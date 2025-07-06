@@ -15,7 +15,6 @@ defineOptions({
 const loading = ref<boolean>(false)
 const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 
-// #region 搜索
 const searchFormRef = ref()
 const searchData = reactive<UserReqList>({
   page: 1,
@@ -36,9 +35,7 @@ function resetSearch() {
   searchFormRef.value?.resetFields()
   handleSearch()
 }
-// #endregion
 
-// #region 用户统计
 const userStatistics = ref<UserStatistics>({
   totalUsers: 0,
   activeUsers: 0,
@@ -60,9 +57,7 @@ async function getUserStatistics() {
     console.error("获取用户统计信息失败:", error)
   }
 }
-// #endregion
 
-// #region 增删改查
 const tableData = ref<User[]>([])
 
 async function getTableData() {
@@ -89,7 +84,6 @@ async function getTableData() {
   }
 }
 
-// #region 弹窗
 const dialogVisible = ref<boolean>(false)
 const dialogType = ref<"view" | "create" | "edit">("view")
 const currentUser = ref<Partial<User>>({})
@@ -111,7 +105,6 @@ function handleEdit(row: User) {
   currentUser.value = { ...row }
   dialogVisible.value = true
 }
-// #endregion
 
 async function handleDelete(row: User) {
   try {
@@ -134,7 +127,6 @@ async function handleInitSample() {
     console.error("初始化示例数据失败:", error)
   }
 }
-// #endregion
 
 /** 监听分页参数的变化 */
 watchEffect(() => {
@@ -291,7 +283,7 @@ onMounted(() => {
           <el-button type="primary" :icon="CirclePlus" @click="handleCreate">
             新建用户
           </el-button>
-          <el-popconfirm
+          <!-- <el-popconfirm
             title="确认初始化示例用户数据吗？"
             confirm-button-text="确定"
             cancel-button-text="取消"
@@ -302,7 +294,7 @@ onMounted(() => {
                 初始化示例数据
               </el-button>
             </template>
-          </el-popconfirm>
+          </el-popconfirm> -->
         </div>
         <div>
           <el-tooltip content="刷新当前页">
