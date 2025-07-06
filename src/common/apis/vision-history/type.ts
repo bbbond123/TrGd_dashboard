@@ -108,15 +108,15 @@ export interface VisionHistoryStatistics {
 
 /** 视觉识别结果 */
 export interface VisionHistoryResult {
-  api_source: string
-  has_landmark: boolean
+  apiSource: string
+  hasLandmark: boolean
   landmarks: LandmarkResult[]
   labels: string[]
-  text_content?: string
+  textContent?: string
   country?: string
-  is_in_japan: boolean
-  processed_at: string
-  saved_to_database: boolean
+  isInJapan: boolean
+  processedAt: string
+  savedToDatabase: boolean
   error_message?: string
   nearby_recommendations: RecommendationItem[]
 }

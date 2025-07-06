@@ -178,28 +178,28 @@ function getConfidenceText(score: number) {
             <!-- 基本信息 -->
             <el-descriptions :column="2" border class="mb-4">
               <el-descriptions-item label="API来源">
-                <el-tag>{{ analysisResult.api_source }}</el-tag>
+                <el-tag>{{ analysisResult.apiSource }}</el-tag>
               </el-descriptions-item>
               <el-descriptions-item label="处理时间">
-                {{ formatDateTime(analysisResult.processed_at) }}
+                {{ formatDateTime(analysisResult.processedAt) }}
               </el-descriptions-item>
               <el-descriptions-item label="是否在日本">
-                <el-tag :type="analysisResult.is_in_japan ? 'success' : 'info'">
-                  {{ analysisResult.is_in_japan ? '是' : '否' }}
+                <el-tag :type="analysisResult.isInJapan ? 'success' : 'info'">
+                  {{ analysisResult.isInJapan ? '是' : '否' }}
                 </el-tag>
               </el-descriptions-item>
               <el-descriptions-item label="国家/地区">
                 {{ analysisResult.country || '未识别' }}
               </el-descriptions-item>
               <el-descriptions-item label="已保存到数据库">
-                <el-tag :type="analysisResult.saved_to_database ? 'success' : 'warning'">
-                  {{ analysisResult.saved_to_database ? '是' : '否' }}
+                <el-tag :type="analysisResult.savedToDatabase ? 'success' : 'warning'">
+                  {{ analysisResult.savedToDatabase ? '是' : '否' }}
                 </el-tag>
               </el-descriptions-item>
             </el-descriptions>
 
             <!-- 地标识别 -->
-            <div v-if="analysisResult.has_landmark && analysisResult.landmarks.length" class="landmarks-section">
+            <div v-if="analysisResult.hasLandmark && analysisResult.landmarks.length" class="landmarks-section">
               <h3><el-icon><Location /></el-icon> 识别的地标</h3>
               <el-row :gutter="12">
                 <el-col
@@ -254,10 +254,10 @@ function getConfidenceText(score: number) {
             </div>
 
             <!-- 文本内容 -->
-            <div v-if="analysisResult.text_content" class="text-section">
+            <div v-if="analysisResult.textContent" class="text-section">
               <h3><el-icon><Document /></el-icon> 识别的文本</h3>
               <el-card shadow="never" class="text-card">
-                <p>{{ analysisResult.text_content }}</p>
+                <p>{{ analysisResult.textContent }}</p>
               </el-card>
             </div>
 
