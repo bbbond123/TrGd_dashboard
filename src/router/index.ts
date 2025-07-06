@@ -82,7 +82,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/articles/index.vue"),
         name: "ArticleList",
         meta: {
-          title: "文章管理",
+          title: "文章列表",
           keepAlive: true
         }
       }
@@ -102,7 +102,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/users/index.vue"),
         name: "UserList",
         meta: {
-          title: "用户管理",
+          title: "用户列表",
           keepAlive: true
         }
       }
@@ -122,7 +122,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/files/index.vue"),
         name: "FileList",
         meta: {
-          title: "文件管理",
+          title: "文件列表",
           keepAlive: true
         }
       }
@@ -142,7 +142,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import("@/pages/ar-vision/index.vue"),
         name: "ARVisionAnalysis",
         meta: {
-          title: "AR图片识别",
+          title: "Google图片识别",
           keepAlive: true
         }
       }
@@ -156,21 +156,21 @@ export const constantRoutes: RouteRecordRaw[] = [
     },
     children: [
       {
-        path: "https://juejin.cn/post/7445151895121543209",
+        path: "https://ifoodme.com/swagger/index.html",
         component: () => {},
         name: "Link1",
         meta: {
-          title: "中文文档"
+          title: "Swagger API docs"
         }
       },
-      {
-        path: "https://juejin.cn/column/7207659644487139387",
-        component: () => {},
-        name: "Link2",
-        meta: {
-          title: "新手教程"
-        }
-      }
+      // {
+      //   path: "https://juejin.cn/column/7207659644487139387",
+      //   component: () => {},
+      //   name: "Link2",
+      //   meta: {
+      //     title: "新手教程"
+      //   }
+      // }
     ]
   },
    {

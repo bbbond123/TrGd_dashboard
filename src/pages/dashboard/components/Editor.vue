@@ -5,7 +5,7 @@ import SvgDashboard from "../images/dashboard.svg?component" // vite-svg-loader 
 <template>
   <div class="app-container center">
     <SvgDashboard class="svg" />
-    <p>欢迎来到「Editor」角色专属首页</p>
+    <p>welcome to travelview</p>
   </div>
 </template>
 

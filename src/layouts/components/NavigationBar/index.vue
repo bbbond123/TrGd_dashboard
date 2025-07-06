@@ -29,6 +29,11 @@ function logout() {
   userStore.logout()
   router.push("/login")
 }
+
+function openUserInfo () {
+
+}
+
 </script>
 
 <template>
@@ -53,12 +58,15 @@ function logout() {
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <a target="_blank" href="https://github.com/un-pany/v3-admin-vite">
+            <!-- <a target="_blank" href="https://github.com/un-pany/v3-admin-vite">
               <el-dropdown-item>GitHub</el-dropdown-item>
             </a>
             <a target="_blank" href="https://gitee.com/un-pany/v3-admin-vite">
               <el-dropdown-item>Gitee</el-dropdown-item>
-            </a>
+            </a> -->
+            <el-dropdown-item divided @click="openUserInfo">
+              个人信息
+            </el-dropdown-item>
             <el-dropdown-item divided @click="logout">
               退出登录
             </el-dropdown-item>
