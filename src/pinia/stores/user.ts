@@ -10,6 +10,8 @@ export const useUserStore = defineStore("user", () => {
   const token = ref<string>(getToken() || "")
   const roles = ref<string[]>([])
   const username = ref<string>("")
+  const userRole = ref<string>("")
+  const userEmail = ref<string>("")
 
   const tagsViewStore = useTagsViewStore()
   const settingsStore = useSettingsStore()
@@ -19,6 +21,24 @@ export const useUserStore = defineStore("user", () => {
     _setToken(value)
     token.value = value
   }
+
+  const setUsername = (value:string) => {
+    username.value = value
+  }
+
+  const setUserRole = (value: string) => {
+    userRole.value = value
+  }
+
+  const setUserEmail = (value: string) => {
+    userEmail.value = value
+  }
+
+  // 检查是否为管理员
+  const isAdmin = computed(() => userRole.value === "admin")
+
+  // 检查是否为admin@ar-backend.com
+  const isSystemAdmin = computed(() => userRole.value === "admin")
 
   // 获取用户详情
   const getInfo = async () => {
@@ -46,6 +66,9 @@ export const useUserStore = defineStore("user", () => {
     removeToken()
     token.value = ""
     roles.value = []
+    username.value = ""
+    userRole.value = ""
+    userEmail.value = ""
     resetRouter()
     resetTagsView()
   }
@@ -55,6 +78,9 @@ export const useUserStore = defineStore("user", () => {
     removeToken()
     token.value = ""
     roles.value = []
+    username.value = ""
+    userRole.value = ""
+    userEmail.value = ""
   }
 
   // 重置 Visited Views 和 Cached Views
@@ -65,7 +91,23 @@ export const useUserStore = defineStore("user", () => {
     }
   }
 
-  return { token, roles, username, setToken, getInfo, changeRoles, logout, resetToken }
+  return {
+    token,
+    roles,
+    username,
+    userRole,
+    userEmail,
+    isAdmin,
+    isSystemAdmin,
+    setToken,
+    getInfo,
+    changeRoles,
+    logout,
+    resetToken,
+    setUsername,
+    setUserRole,
+    setUserEmail
+  }
 })
 
 /**

@@ -9,6 +9,9 @@ export type AuthProvider = "email" | "google" | "apple"
 /** 用户性别 */
 export type Gender = "male" | "female"
 
+/** 用户角色 */
+export type UserRole = "admin" | "user"
+
 /** 用户基础信息 */
 export interface User {
   userId: number
@@ -22,6 +25,7 @@ export interface User {
   avatar?: string
   provider: AuthProvider
   status: UserStatus
+  role: UserRole
   googleId?: string
   appleId?: string
   password?: string
@@ -41,6 +45,7 @@ export interface CreateUserRequest {
   birth?: string
   provider: AuthProvider
   status: UserStatus
+  role?: UserRole
   googleId?: string
   appleId?: string
 }
@@ -58,6 +63,7 @@ export interface UpdateUserRequest {
   birth?: string
   provider?: AuthProvider
   status?: UserStatus
+  role?: UserRole
   googleId?: string
   appleId?: string
 }
@@ -71,6 +77,7 @@ export interface UserListRequest extends PaginationRequest {
   gender?: Gender
   provider?: AuthProvider
   status?: UserStatus
+  role?: UserRole
 }
 
 /** 用户统计信息 */
@@ -82,6 +89,8 @@ export interface UserStatistics {
   emailUsers: number
   googleUsers: number
   appleUsers: number
+  adminUsers: number
+  regularUsers: number
   timestamp: string
 }
 

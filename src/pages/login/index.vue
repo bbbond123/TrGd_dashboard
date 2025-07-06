@@ -29,7 +29,7 @@ const codeUrl = ref("")
 
 /** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
-  email: "",
+  email: "admin@ar-backend.com",
   password: ""
   // code: ""
 })

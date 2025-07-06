@@ -4,6 +4,7 @@ import type { FormInstance, FormRules } from "element-plus"
 import * as UserApi from "@@/apis/users"
 import { formatDateTime } from "@@/utils/datetime"
 import { encryptPassword, checkPasswordStrength } from "@@/utils/crypto"
+import { useUserStore } from "@/pinia/stores/user"
 import { ElMessage } from "element-plus"
 import { computed, reactive, ref, watch } from "vue"
 
@@ -29,6 +30,7 @@ interface Emits {
 const loading = ref<boolean>(false)
 const formRef = ref<FormInstance>()
 const passwordStrength = ref<'weak' | 'medium' | 'strong'>('weak')
+const userStore = useUserStore()
 
 // 弹窗显示状态
 const dialogVisible = computed({
@@ -46,6 +48,29 @@ const dialogTitle = computed(() => {
   return titleMap[props.dialogType]
 })
 
+// 权限控制
+const canEditRole = computed(() => {
+  // 只有admin@ar-backend.com可以修改角色
+  return userStore.isSystemAdmin
+})
+
+const canEditUser = computed(() => {
+  // 系统管理员可以编辑所有用户
+  if (userStore.isSystemAdmin) return true
+  
+  // 普通用户只能编辑自己
+  if (props.dialogType === "edit" && props.userData.email) {
+    return userStore.userEmail === props.userData.email
+  }
+  
+  // 创建用户时，只有系统管理员可以创建
+  if (props.dialogType === "create") {
+    return userStore.isSystemAdmin
+  }
+  
+  return false
+})
+
 // 表单数据
 const formData = reactive<Partial<User>>({
   name: "",
@@ -57,6 +82,7 @@ const formData = reactive<Partial<User>>({
   address: "",
   provider: "email",
   status: "active",
+  role: "user",
   googleId: "",
   appleId: "",
   password: ""
@@ -76,6 +102,9 @@ const formRules: FormRules = {
   ],
   status: [
     { required: true, message: "请选择状态", trigger: "change" }
+  ],
+  role: [
+    { required: true, message: "请选择角色", trigger: "change" }
   ],
   password: [
     {
@@ -135,6 +164,7 @@ function resetForm() {
     address: "",
     provider: "email",
     status: "active",
+    role: "user",
     googleId: "",
     appleId: "",
     password: ""
@@ -181,6 +211,7 @@ async function handleCreate() {
     address: formData.address,
     provider: formData.provider!,
     status: formData.status!,
+    role: formData.role,
     googleId: formData.googleId,
     appleId: formData.appleId,
     // 对密码进行加密
@@ -203,6 +234,7 @@ async function handleEdit() {
     address: formData.address,
     provider: formData.provider,
     status: formData.status,
+    role: formData.role,
     googleId: formData.googleId,
     appleId: formData.appleId
   }
@@ -230,7 +262,7 @@ async function handleEdit() {
       ref="formRef"
       :model="formData"
       :rules="formRules"
-      :disabled="dialogType === 'view'"
+      :disabled="dialogType === 'view' || !canEditUser"
       label-width="100px"
     >
       <el-row :gutter="20">
@@ -299,6 +331,28 @@ async function handleEdit() {
               <el-option label="待验证" value="pending" />
               <el-option label="非活跃" value="inactive" />
             </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-row :gutter="20" v-if="canEditRole">
+        <el-col :span="12">
+          <el-form-item label="角色" prop="role">
+            <el-select v-model="formData.role" placeholder="请选择角色" style="width: 100%">
+              <el-option label="管理员" value="admin" />
+              <el-option label="用户" value="user" />
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <!-- 非系统管理员只能查看角色 -->
+      <el-row :gutter="20" v-if="!canEditRole && formData.role">
+        <el-col :span="12">
+          <el-form-item label="角色">
+            <el-tag v-if="formData.role === 'admin'" type="danger">管理员</el-tag>
+            <el-tag v-else-if="formData.role === 'user'" type="primary">用户</el-tag>
+            <el-tag v-else type="info">{{ formData.role }}</el-tag>
           </el-form-item>
         </el-col>
       </el-row>
@@ -389,7 +443,7 @@ async function handleEdit() {
           取消
         </el-button>
         <el-button
-          v-if="dialogType !== 'view'"
+          v-if="dialogType !== 'view' && canEditUser"
           type="primary"
           :loading="loading"
           @click="handleConfirm"
