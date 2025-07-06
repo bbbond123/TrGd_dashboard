@@ -2,7 +2,7 @@
 import type { ArticleComment } from "@@/apis/articles/type"
 import { getArticleCommentsApi } from "@@/apis/articles"
 import { RefreshRight, Star } from "@element-plus/icons-vue"
-import { ElMessage, ElMessageBox } from "element-plus"
+import { ElMessage } from "element-plus"
 import { computed, ref, watch } from "vue"
 
 interface Props {
@@ -98,26 +98,16 @@ async function getComments() {
 }
 
 // 删除评论
-function handleDeleteComment(comment: ArticleComment) {
-  ElMessageBox.confirm(
-    `确认删除用户 ${comment.username} 的评论吗？`,
-    "删除确认",
-    {
-      confirmButtonText: "确定删除",
-      cancelButtonText: "取消",
-      type: "warning"
-    }
-  ).then(async () => {
-    try {
-      // 这里应该调用删除评论的 API
-      // await deleteCommentApi(comment.id)
-      ElMessage.success("评论删除成功")
-      getComments() // 重新加载评论
-    } catch (error) {
-      console.error("删除评论失败:", error)
-      ElMessage.error("删除评论失败")
-    }
-  })
+async function handleDeleteComment(comment: ArticleComment) {
+  try {
+    // 这里应该调用删除评论的 API
+    // await deleteCommentApi(comment.id)
+    ElMessage.success("评论删除成功")
+    getComments() // 重新加载评论
+  } catch (error) {
+    console.error("删除评论失败:", error)
+    ElMessage.error("删除评论失败")
+  }
 }
 
 // 生成头像URL
@@ -194,14 +184,22 @@ function handleClose() {
               <el-tag v-if="comment.parent_id" type="info" size="small">
                 回复
               </el-tag>
-              <el-button
-                type="danger"
-                text
-                size="small"
-                @click="handleDeleteComment(comment)"
+              <el-popconfirm
+                :title="`确认删除用户 ${comment.username} 的评论吗？`"
+                confirm-button-text="确定删除"
+                cancel-button-text="取消"
+                @confirm="handleDeleteComment(comment)"
               >
-                删除
-              </el-button>
+                <template #reference>
+                  <el-button
+                    type="danger"
+                    text
+                    size="small"
+                  >
+                    删除
+                  </el-button>
+                </template>
+              </el-popconfirm>
             </div>
           </div>
 
@@ -235,14 +233,22 @@ function handleClose() {
                     <span class="reply-time">{{ formatDateTime(reply.created_at) }}</span>
                   </div>
                 </div>
-                <el-button
-                  type="danger"
-                  text
-                  size="small"
-                  @click="handleDeleteComment(reply)"
+                <el-popconfirm
+                  :title="`确认删除用户 ${reply.username} 的回复吗？`"
+                  confirm-button-text="确定删除"
+                  cancel-button-text="取消"
+                  @confirm="handleDeleteComment(reply)"
                 >
-                  删除
-                </el-button>
+                  <template #reference>
+                    <el-button
+                      type="danger"
+                      text
+                      size="small"
+                    >
+                      删除
+                    </el-button>
+                  </template>
+                </el-popconfirm>
               </div>
               <div class="reply-content">
                 {{ reply.content }}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Plus, Delete } from "@element-plus/icons-vue"
-import { ElMessage, ElMessageBox } from "element-plus"
+import { ElMessage } from "element-plus"
 import { ref, reactive, onMounted } from "vue"
 
 interface Props {
@@ -33,7 +33,7 @@ const selectedTags = ref<Tag[]>([])
 
 // 预定义颜色
 const tagColors = [
-  "#409eff", "#67c23a", "#e6a23c", "#f56c6c", 
+  "#409eff", "#67c23a", "#e6a23c", "#f56c6c",
   "#909399", "#2196f3", "#4caf50", "#ff9800",
   "#ff5722", "#9c27b0", "#3f51b5", "#00bcd4"
 ]
@@ -58,7 +58,7 @@ watch(dialogVisible, (val) => {
 // 加载标签数据（模拟数据，实际应该从API获取）
 function loadTags() {
   loading.value = true
-  
+
   // 模拟API调用
   setTimeout(() => {
     tags.value = [
@@ -70,7 +70,7 @@ function loadTags() {
         createdAt: "2024-01-15T10:30:00Z"
       },
       {
-        id: "2", 
+        id: "2",
         name: "美食",
         count: 18,
         color: "#67c23a",
@@ -138,24 +138,12 @@ function addTag() {
 
 // 删除标签
 function deleteTag(tag: Tag) {
-  ElMessageBox.confirm(
-    `确认删除标签"${tag.name}"吗？此操作不可恢复。`,
-    "删除确认",
-    {
-      confirmButtonText: "确定",
-      cancelButtonText: "取消",
-      type: "warning"
-    }
-  ).then(() => {
-    const index = tags.value.findIndex(t => t.id === tag.id)
-    if (index > -1) {
-      tags.value.splice(index, 1)
-      ElMessage.success("删除成功")
-      emit("refresh")
-    }
-  }).catch(() => {
-    // 用户取消删除
-  })
+  const index = tags.value.findIndex(t => t.id === tag.id)
+  if (index > -1) {
+    tags.value.splice(index, 1)
+    ElMessage.success("删除成功")
+    emit("refresh")
+  }
 }
 
 // 批量删除标签
@@ -165,24 +153,11 @@ function batchDeleteTags() {
     return
   }
 
-  const tagNames = selectedTags.value.map(tag => tag.name).join("、")
-  ElMessageBox.confirm(
-    `确认删除选中的 ${selectedTags.value.length} 个标签吗？\n标签：${tagNames}`,
-    "批量删除确认",
-    {
-      confirmButtonText: "确定",
-      cancelButtonText: "取消", 
-      type: "warning"
-    }
-  ).then(() => {
-    const selectedIds = selectedTags.value.map(tag => tag.id)
-    tags.value = tags.value.filter(tag => !selectedIds.includes(tag.id))
-    selectedTags.value = []
-    ElMessage.success("批量删除成功")
-    emit("refresh")
-  }).catch(() => {
-    // 用户取消删除
-  })
+  const selectedIds = selectedTags.value.map(tag => tag.id)
+  tags.value = tags.value.filter(tag => !selectedIds.includes(tag.id))
+  selectedTags.value = []
+  ElMessage.success("批量删除成功")
+  emit("refresh")
 }
 
 // 表格选择变化
@@ -244,13 +219,13 @@ onMounted(() => {
             <el-statistic title="标签总数" :value="tags.length" />
           </el-col>
           <el-col :span="8">
-            <el-statistic 
-              title="总使用次数" 
-              :value="tags.reduce((sum, tag) => sum + tag.count, 0)" 
+            <el-statistic
+              title="总使用次数"
+              :value="tags.reduce((sum, tag) => sum + tag.count, 0)"
             />
           </el-col>
           <el-col :span="8">
-            <el-statistic 
+            <el-statistic
               title="平均使用次数"
               :value="tags.length > 0 ? Math.round(tags.reduce((sum, tag) => sum + tag.count, 0) / tags.length * 100) / 100 : 0"
             />
@@ -261,14 +236,22 @@ onMounted(() => {
       <!-- 操作栏 -->
       <div class="toolbar">
         <div>
-          <el-button
-            type="danger"
-            :icon="Delete"
-            :disabled="selectedTags.length === 0"
-            @click="batchDeleteTags"
+          <el-popconfirm
+            :title="`确认删除选中的 ${selectedTags.length} 个标签吗？`"
+            confirm-button-text="确定"
+            cancel-button-text="取消"
+            @confirm="batchDeleteTags"
           >
-            批量删除 ({{ selectedTags.length }})
-          </el-button>
+            <template #reference>
+              <el-button
+                type="danger"
+                :icon="Delete"
+                :disabled="selectedTags.length === 0"
+              >
+                批量删除 ({{ selectedTags.length }})
+              </el-button>
+            </template>
+          </el-popconfirm>
         </div>
         <div>
           <span class="tag-count">共 {{ tags.length }} 个标签</span>
@@ -277,16 +260,16 @@ onMounted(() => {
 
       <!-- 标签列表 -->
       <el-card shadow="never">
-        <el-table 
-          :data="tags" 
+        <el-table
+          :data="tags"
           border
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55" />
           <el-table-column prop="name" label="标签名称" min-width="120">
             <template #default="scope">
-              <el-tag 
-                :color="scope.row.color" 
+              <el-tag
+                :color="scope.row.color"
                 effect="dark"
                 style="color: white"
               >
@@ -320,15 +303,23 @@ onMounted(() => {
           </el-table-column>
           <el-table-column fixed="right" label="操作" width="120" align="center">
             <template #default="scope">
-              <el-button
-                type="danger"
-                text
-                bg
-                size="small"
-                @click="deleteTag(scope.row)"
+              <el-popconfirm
+                :title="`确认删除标签${scope.row.name}吗？此操作不可恢复。`"
+                confirm-button-text="确定"
+                cancel-button-text="取消"
+                @confirm="deleteTag(scope.row)"
               >
-                删除
-              </el-button>
+                <template #reference>
+                  <el-button
+                    type="danger"
+                    text
+                    bg
+                    size="small"
+                  >
+                    删除
+                  </el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
@@ -340,7 +331,7 @@ onMounted(() => {
           <span>预设颜色</span>
         </template>
         <div class="color-presets">
-          <div 
+          <div
             v-for="color in tagColors"
             :key="color"
             class="color-preset"

@@ -56,19 +56,13 @@ function resetForm() {
 
 // #region 删
 function handleDelete(row: TableData) {
-  ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning"
-  }).then(() => {
-    deleteTableDataApi(row.id).then((res) => {
-      if (res.success) {
-        ElMessage.success("删除成功")
-        getTableData()
-      } else {
-        ElMessage.error(res.errMessage || "删除失败")
-      }
-    })
+  deleteTableDataApi(row.id).then((res) => {
+    if (res.success) {
+      ElMessage.success("删除成功")
+      getTableData()
+    } else {
+      ElMessage.error(res.errMessage || "删除失败")
+    }
   })
 }
 // #endregion
@@ -198,9 +192,18 @@ watch([() => paginationData.currentPage, () => paginationData.page_size], getTab
               <el-button type="primary" text bg size="small" @click="handleUpdate(scope.row)">
                 修改
               </el-button>
-              <el-button type="danger" text bg size="small" @click="handleDelete(scope.row)">
-                删除
-              </el-button>
+              <el-popconfirm
+                :title="`正在删除用户：${scope.row.username}，确认删除？`"
+                confirm-button-text="确定"
+                cancel-button-text="取消"
+                @confirm="handleDelete(scope.row)"
+              >
+                <template #reference>
+                  <el-button type="danger" text bg size="small">
+                    删除
+                  </el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>

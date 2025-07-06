@@ -3,6 +3,7 @@ import type { User, UserReqCreate, UserReqEdit } from "@@/apis/users/type"
 import type { FormInstance, FormRules } from "element-plus"
 import * as UserApi from "@@/apis/users"
 import { formatDateTime } from "@@/utils/datetime"
+import { encryptPassword, checkPasswordStrength } from "@@/utils/crypto"
 import { ElMessage } from "element-plus"
 import { computed, reactive, ref, watch } from "vue"
 
@@ -27,6 +28,7 @@ interface Emits {
 
 const loading = ref<boolean>(false)
 const formRef = ref<FormInstance>()
+const passwordStrength = ref<'weak' | 'medium' | 'strong'>('weak')
 
 // 弹窗显示状态
 const dialogVisible = computed({
@@ -80,8 +82,10 @@ const formRules: FormRules = {
       validator: (rule, value, callback) => {
         if (props.dialogType === "create" && formData.provider === "email" && !value) {
           callback(new Error("请输入密码"))
-        } else if (value && value.length < 6) {
-          callback(new Error("密码长度不能少于6位"))
+        } else if (value && value.length < 8) {
+          callback(new Error("密码长度不能少于8位"))
+        } else if (value && checkPasswordStrength(value) === 'weak') {
+          callback(new Error("密码强度太低，请包含大小写字母、数字和特殊字符"))
         } else {
           callback()
         }
@@ -104,6 +108,18 @@ watch(
     }
   },
   { immediate: true }
+)
+
+// 监听密码变化，检测强度
+watch(
+  () => formData.password,
+  (newPassword) => {
+    if (newPassword) {
+      passwordStrength.value = checkPasswordStrength(newPassword)
+    } else {
+      passwordStrength.value = 'weak'
+    }
+  }
 )
 
 // 重置表单
@@ -167,6 +183,8 @@ async function handleCreate() {
     status: formData.status!,
     googleId: formData.googleId,
     appleId: formData.appleId,
+    // 对密码进行加密
+    // ? encryptPassword(formData.password) : undefined
     password: formData.password
   }
   await UserApi.createUserApi(createData)
@@ -188,6 +206,12 @@ async function handleEdit() {
     googleId: formData.googleId,
     appleId: formData.appleId
   }
+
+  // 如果输入了新密码，则加密后更新
+  if (formData.password) {
+    editData.password = encryptPassword(formData.password)
+  }
+
   await UserApi.updateUserApi(editData)
 }
 </script>
@@ -298,14 +322,44 @@ async function handleEdit() {
         </el-form-item>
       </div>
 
-      <div v-if="formData.provider === 'email' && dialogType === 'create'">
-        <el-form-item label="密码" prop="password">
+      <div v-if="formData.provider === 'email' && (dialogType === 'create' || dialogType === 'edit')">
+        <el-form-item
+          :label="dialogType === 'create' ? '密码' : '新密码（留空则不修改）'"
+          prop="password"
+        >
           <el-input
             v-model="formData.password"
             type="password"
-            placeholder="请输入密码"
+            :placeholder="dialogType === 'create' ? '请输入密码' : '请输入新密码'"
             show-password
+            clearable
           />
+          <!-- 密码强度指示器 -->
+          <div v-if="formData.password" class="password-strength-indicator">
+            <div class="strength-bar">
+              <div
+                class="strength-fill"
+                :class="{
+                  'weak': passwordStrength === 'weak',
+                  'medium': passwordStrength === 'medium',
+                  'strong': passwordStrength === 'strong'
+                }"
+              />
+            </div>
+            <span
+              class="strength-text"
+              :class="{
+                'weak': passwordStrength === 'weak',
+                'medium': passwordStrength === 'medium',
+                'strong': passwordStrength === 'strong'
+              }"
+            >
+              {{ passwordStrength === 'weak' ? '弱' : passwordStrength === 'medium' ? '中' : '强' }}
+            </span>
+          </div>
+          <div class="password-tip">
+            密码要求：至少8位，包含大小写字母、数字和特殊字符
+          </div>
         </el-form-item>
       </div>
 
@@ -346,5 +400,65 @@ async function handleEdit() {
 <style lang="scss" scoped>
 .dialog-footer {
   text-align: right;
+}
+
+.password-strength-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+
+  .strength-bar {
+    flex: 1;
+    height: 4px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    overflow: hidden;
+
+    .strength-fill {
+      height: 100%;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+
+      &.weak {
+        width: 33%;
+        background-color: #f56c6c;
+      }
+
+      &.medium {
+        width: 66%;
+        background-color: #e6a23c;
+      }
+
+      &.strong {
+        width: 100%;
+        background-color: #67c23a;
+      }
+    }
+  }
+
+  .strength-text {
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 16px;
+
+    &.weak {
+      color: #f56c6c;
+    }
+
+    &.medium {
+      color: #e6a23c;
+    }
+
+    &.strong {
+      color: #67c23a;
+    }
+  }
+}
+
+.password-tip {
+  font-size: 12px;
+  color: #909399;
+  margin-top: 4px;
 }
 </style>

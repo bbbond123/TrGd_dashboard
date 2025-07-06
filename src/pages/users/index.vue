@@ -4,7 +4,7 @@ import * as UserApi from "@@/apis/users"
 import { usePagination } from "@@/composables/usePagination"
 import { formatDateTime } from "@@/utils/datetime"
 import { Check, CirclePlus, Clock, Close, Refresh, RefreshRight, Search, User as UserIcon } from "@element-plus/icons-vue"
-import { ElMessage, ElMessageBox } from "element-plus"
+import { ElMessage } from "element-plus"
 import { onMounted, reactive, ref, watchEffect } from "vue"
 import UserDialog from "./components/UserDialog.vue"
 
@@ -113,38 +113,26 @@ function handleEdit(row: User) {
 }
 // #endregion
 
-function handleDelete(row: User) {
-  ElMessageBox.confirm(`确认删除用户"${row.name}"吗？`, "警告", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning"
-  }).then(async () => {
-    try {
-      await UserApi.deleteUserApi(row.userId)
-      ElMessage.success("删除成功")
-      getTableData()
-      getUserStatistics()
-    } catch (error) {
-      console.error("删除用户失败:", error)
-    }
-  })
+async function handleDelete(row: User) {
+  try {
+    await UserApi.deleteUserApi(row.userId)
+    ElMessage.success("删除成功")
+    getTableData()
+    getUserStatistics()
+  } catch (error) {
+    console.error("删除用户失败:", error)
+  }
 }
 
-function handleInitSample() {
-  ElMessageBox.confirm("确认初始化示例用户数据吗？", "提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "info"
-  }).then(async () => {
-    try {
-      await UserApi.initSampleUsersApi()
-      ElMessage.success("初始化示例数据成功")
-      getTableData()
-      getUserStatistics()
-    } catch (error) {
-      console.error("初始化示例数据失败:", error)
-    }
-  })
+async function handleInitSample() {
+  try {
+    await UserApi.initSampleUsersApi()
+    ElMessage.success("初始化示例数据成功")
+    getTableData()
+    getUserStatistics()
+  } catch (error) {
+    console.error("初始化示例数据失败:", error)
+  }
 }
 // #endregion
 
@@ -303,9 +291,18 @@ onMounted(() => {
           <el-button type="primary" :icon="CirclePlus" @click="handleCreate">
             新建用户
           </el-button>
-          <el-button type="success" :icon="RefreshRight" @click="handleInitSample">
-            初始化示例数据
-          </el-button>
+          <el-popconfirm
+            title="确认初始化示例用户数据吗？"
+            confirm-button-text="确定"
+            cancel-button-text="取消"
+            @confirm="handleInitSample"
+          >
+            <template #reference>
+              <el-button type="success" :icon="RefreshRight">
+                初始化示例数据
+              </el-button>
+            </template>
+          </el-popconfirm>
         </div>
         <div>
           <el-tooltip content="刷新当前页">
@@ -376,9 +373,18 @@ onMounted(() => {
               <el-button type="success" text bg size="small" @click="handleEdit(row)">
                 编辑
               </el-button>
-              <el-button type="danger" text bg size="small" @click="handleDelete(row)">
-                删除
-              </el-button>
+              <el-popconfirm
+                :title="`确认删除用户${row.name}吗？`"
+                confirm-button-text="确定"
+                cancel-button-text="取消"
+                @confirm="handleDelete(row)"
+              >
+                <template #reference>
+                  <el-button type="danger" text bg size="small">
+                    删除
+                  </el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
