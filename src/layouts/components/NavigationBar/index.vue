@@ -104,10 +104,10 @@ async function saveUserInfo() {
   if (!userInfoFormRef.value) return
 
   // 权限检查：只能更新自己的信息
-  // if (!userStore.isSystemAdmin && userStore.userEmail !== userInfoForm.email) {
-  //   ElMessage.error("您只能修改自己的信息")
-  //   return
-  // }
+  if (!userStore.isAdmin && userStore.userEmail !== userInfoForm.email) {
+    ElMessage.error("您只能修改自己的信息")
+    return
+  }
 
   try {
     const valid = await userInfoFormRef.value.validate()
@@ -165,10 +165,10 @@ function cancelEdit() {
     <Breadcrumb v-if="!isTop || isMobile" class="breadcrumb" />
     <Sidebar v-if="isTop && !isMobile" class="sidebar" />
     <div class="right-menu">
-      <SearchMenu v-if="showSearchMenu" class="right-menu-item" />
+      <!-- <SearchMenu v-if="showSearchMenu" class="right-menu-item" /> -->
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
-      <Notify v-if="showNotify" class="right-menu-item" />
+      <!-- <Notify v-if="showNotify" class="right-menu-item" /> -->
       <el-dropdown>
         <div class="right-menu-item user">
           <el-avatar :icon="UserFilled" :size="30" />

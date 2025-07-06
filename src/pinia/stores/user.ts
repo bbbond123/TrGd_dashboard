@@ -43,10 +43,18 @@ export const useUserStore = defineStore("user", () => {
   // 获取用户详情
   const getInfo = async () => {
     const res = await getCurrentUserApi()
-    if (res.success) {
-      username.value = res.data.username
-      // 验证返回的 roles 是否为一个非空数组，否则塞入一个没有任何作用的默认角色，防止路由守卫逻辑进入无限循环
-      roles.value = res.data.roles?.length > 0 ? res.data.roles : routerConfig.defaultRoles
+    if (res.code === 200) {
+      // 设置用户基本信息
+      username.value = res.data.name || res.data.email || ""
+      userEmail.value = res.data.email || ""
+      userRole.value = res.data.role || "user"
+      
+      // 基于角色设置权限数组，防止路由守卫逻辑进入无限循环
+      if (res.data.role === "admin") {
+        roles.value = ["admin"]
+      } else {
+        roles.value = routerConfig.defaultRoles || ["user"]
+      }
     } else {
       throw new Error(res.errMessage || "获取用户信息失败")
     }

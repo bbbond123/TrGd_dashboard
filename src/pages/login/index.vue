@@ -63,9 +63,15 @@ function handleLogin() {
       password:loginFormData.password
     }
 
-    loginApi(encryptedLoginData).then((res) => {
-      if (res.success) {
+    loginApi(encryptedLoginData).then(async (res) => {
+      if (res.code === 200) {
         userStore.setToken(res.data.access_token)
+        // 设置用户基本信息
+        if (res.data.user) {
+          userStore.setUsername(res.data.user.name || res.data.user.email || "")
+          userStore.setUserEmail(res.data.user.email || "")
+          userStore.setUserRole(res.data.user.role || "user")
+        }
         router.push("/")
       } else {
         ElMessage.error(res.errMessage || "登录失败")

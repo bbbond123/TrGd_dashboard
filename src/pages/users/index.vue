@@ -330,7 +330,7 @@ onMounted(() => {
       <div class="toolbar-wrapper">
         <div>
           <el-button
-            v-if="userStore.isSystemAdmin"
+            v-if="userStore.isAdmin"
             type="primary"
             :icon="CirclePlus"
             @click="handleCreate"
@@ -491,7 +491,7 @@ onMounted(() => {
                 查看
               </el-button>
               <el-button
-                v-if="userStore.isSystemAdmin"
+                v-if="userStore.isAdmin || userStore.userEmail === row.email"
                 type="success"
                 text
                 bg
@@ -501,7 +501,7 @@ onMounted(() => {
                 编辑
               </el-button>
               <el-popconfirm
-                v-if="userStore.isSystemAdmin"
+                v-if="userStore.isAdmin"
                 :title="`确认删除用户${row.name}吗？`"
                 confirm-button-text="确定"
                 cancel-button-text="取消"

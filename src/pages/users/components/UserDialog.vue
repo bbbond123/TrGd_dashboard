@@ -50,22 +50,22 @@ const dialogTitle = computed(() => {
 
 // 权限控制
 const canEditRole = computed(() => {
-  // 只有admin@ar-backend.com可以修改角色
-  return userStore.isSystemAdmin
+  // 只有admin角色可以修改角色
+  return userStore.isAdmin
 })
 
 const canEditUser = computed(() => {
-  // 系统管理员可以编辑所有用户
-  if (userStore.isSystemAdmin) return true
+  // 管理员可以编辑所有用户
+  if (userStore.isAdmin) return true
   
   // 普通用户只能编辑自己
   if (props.dialogType === "edit" && props.userData.email) {
     return userStore.userEmail === props.userData.email
   }
   
-  // 创建用户时，只有系统管理员可以创建
+  // 创建用户时，只有管理员可以创建
   if (props.dialogType === "create") {
-    return userStore.isSystemAdmin
+    return userStore.isAdmin
   }
   
   return false

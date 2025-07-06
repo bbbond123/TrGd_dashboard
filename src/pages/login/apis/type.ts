@@ -28,6 +28,7 @@ export interface User {
   user_id: number
   verify_code: string
   verify_code_expire: string
+  role: 'admin' | 'user'
 }
 
 export interface LoginResponse {
