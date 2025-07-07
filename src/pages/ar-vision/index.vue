@@ -290,14 +290,14 @@ function openWikipediaPage(pageUrl: string) {
                   <el-descriptions-item label="API来源">
                     <el-tag>
                       {{
-                        analysisResult.basicVisionResult.apiSource ||
+                        analysisResult?.basicVisionResult?.apiSource ||
                         "Google Vision API"
                       }}
                     </el-tag>
                   </el-descriptions-item>
                   <el-descriptions-item label="处理时间">
                     {{
-                      analysisResult.basicVisionResult.processedAt
+                      analysisResult?.basicVisionResult?.processedAt
                         ? formatDateTime(
                             analysisResult.basicVisionResult.processedAt
                           )
