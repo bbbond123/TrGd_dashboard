@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { EnhancedVisionResult } from "@@/apis/files/type"
-import type { UploadFile } from "element-plus"
-import { visionAnalyzeApi } from "@@/apis/files"
+import type { EnhancedVisionResult } from "@@/apis/files/type";
+import type { UploadFile } from "element-plus";
+import { visionAnalyzeApi } from "@@/apis/files";
 import {
   Camera,
   Document,
@@ -11,134 +11,107 @@ import {
   Picture,
   Star,
   Upload,
-  View
-} from "@element-plus/icons-vue"
-import { ElMessage } from "element-plus"
-import { ref } from "vue"
+  View,
+} from "@element-plus/icons-vue";
+import { ElMessage } from "element-plus";
+import { ref } from "vue";
 
 defineOptions({
-  name: "ARVision"
-})
+  name: "ARVision",
+});
 
-const loading = ref<boolean>(false)
-const uploadedImage = ref<string>("")
-function initQueryData(): EnhancedVisionResult {
-  return {
-    basicVisionResult: {
-      landmarks: [],
-      labels: [],
-      textContent: "",
-      safeSearchAnnotation: {}
-    },
-    enhancedLandmarks: [],
-    nearbyRecommendations: [],
-    processingStatus: {
-      success: true,
-      errorMessage: "",
-      warnings: [],
-      googleVisionSuccess: true,
-      googlePlacesSuccess: false,
-      wikipediaSuccess: false,
-      localDatabaseSuccess: true,
-      processingTime: 5676
-    },
-    metadata: {
-      apiVersion: "",
-      processedAt: "",
-      language: ""
-    }
-  }
-}
-const analysisResult = ref<EnhancedVisionResult>(initQueryData())
-const uploadInputKey = ref(0)
+const loading = ref<boolean>(false);
+const uploadedImage = ref<string>("");
+
+const analysisResult = ref<EnhancedVisionResult | null>(null);
+const uploadInputKey = ref(0);
 
 // 图片上传处理
 async function handleImageUpload(file: UploadFile) {
-  if (!file.raw) return false
+  if (!file.raw) return false;
 
   // 检查文件类型
-  const isImage = file.raw.type.startsWith("image/")
+  const isImage = file.raw.type.startsWith("image/");
   if (!isImage) {
-    ElMessage.error("只能上传图片文件！")
-    return false
+    ElMessage.error("只能上传图片文件！");
+    return false;
   }
 
   // 检查文件大小 (10MB)
-  const isLt10M = file.raw.size / 1024 / 1024 < 10
+  const isLt10M = file.raw.size / 1024 / 1024 < 10;
   if (!isLt10M) {
-    ElMessage.error("图片大小不能超过 10MB！")
-    return false
+    ElMessage.error("图片大小不能超过 10MB！");
+    return false;
   }
 
   // 显示上传的图片
-  const reader = new FileReader()
+  const reader = new FileReader();
   reader.onload = (e) => {
-    uploadedImage.value = e.target?.result as string
-  }
-  reader.readAsDataURL(file.raw)
+    uploadedImage.value = e.target?.result as string;
+  };
+  reader.readAsDataURL(file.raw);
 
   // 开始分析
-  await analyzeImage(file.raw)
+  await analyzeImage(file.raw);
 
-  return false // 阻止自动上传
+  return false; // 阻止自动上传
 }
 
 // 分析图片
 async function analyzeImage(file: File) {
-  loading.value = true
-  analysisResult.value = initQueryData()
+  loading.value = true;
+  analysisResult.value = null;
 
   try {
     const res = await visionAnalyzeApi(file, {
       enablePlaces: true,
       enableWikipedia: true,
-      enableCache: true
-    })
+      enableCache: true,
+    });
 
     if (res.code === 200) {
-      analysisResult.value = res.data
-      ElMessage.success("图片分析完成！")
+      analysisResult.value = res.data;
+      ElMessage.success("图片分析完成！");
     } else {
-      ElMessage.error(res.errMessage || "图片分析失败")
+      ElMessage.error(res.errMessage || "图片分析失败");
     }
   } catch (error) {
-    console.error("图片分析失败:", error)
-    ElMessage.error("图片分析失败，请重试")
+    console.error("图片分析失败:", error);
+    ElMessage.error("图片分析失败，请重试");
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
 
 // 重新上传
 function handleReupload() {
-  uploadedImage.value = ""
-  analysisResult.value = initQueryData()
-  uploadInputKey.value += 1
+  uploadedImage.value = "";
+  analysisResult.value = null;
+  uploadInputKey.value += 1;
 }
 
 // 格式化日期时间
 function formatDateTime(dateTime: string) {
-  return new Date(dateTime).toLocaleString("zh-CN")
+  return new Date(dateTime).toLocaleString("zh-CN");
 }
 
 // 获取置信度颜色
 function getConfidenceColor(score: number) {
-  if (score >= 0.7) return "success"
-  if (score >= 0.5) return "warning"
-  return "danger"
+  if (score >= 0.7) return "success";
+  if (score >= 0.5) return "warning";
+  return "danger";
 }
 
 // 获取置信度文本
 function getConfidenceText(score: number) {
-  if (score >= 0.7) return "高"
-  if (score >= 0.5) return "中"
-  return "低"
+  if (score >= 0.7) return "高";
+  if (score >= 0.5) return "中";
+  return "低";
 }
 
 function openWikipediaPage(pageUrl: string) {
-  window.open(pageUrl, "_blank")
+  window.open(pageUrl, "_blank");
 }
-
 </script>
 
 <template>
@@ -277,7 +250,7 @@ function openWikipediaPage(pageUrl: string) {
 
               <!-- 基础识别标签 -->
               <div
-                v-if="analysisResult.basicVisionResult?.labels?.length"
+                v-if="analysisResult?.basicVisionResult?.labels?.length"
                 class="section"
               >
                 <h4>
@@ -297,7 +270,7 @@ function openWikipediaPage(pageUrl: string) {
 
               <!-- 文本内容 -->
               <div
-                v-if="analysisResult.basicVisionResult?.textContent"
+                v-if="analysisResult?.basicVisionResult?.textContent"
                 class="section"
               >
                 <h4>
@@ -317,16 +290,18 @@ function openWikipediaPage(pageUrl: string) {
                   <el-descriptions-item label="API来源">
                     <el-tag>
                       {{
-                        analysisResult.basicVisionResult.apiSource
-                          || "Google Vision API"
+                        analysisResult.basicVisionResult.apiSource ||
+                        "Google Vision API"
                       }}
                     </el-tag>
                   </el-descriptions-item>
                   <el-descriptions-item label="处理时间">
                     {{
                       analysisResult.basicVisionResult.processedAt
-                        ? formatDateTime(analysisResult.basicVisionResult.processedAt)
-                        : '未知'
+                        ? formatDateTime(
+                            analysisResult.basicVisionResult.processedAt
+                          )
+                        : "未知"
                     }}
                   </el-descriptions-item>
                   <el-descriptions-item label="国家">
@@ -432,14 +407,18 @@ function openWikipediaPage(pageUrl: string) {
                           class="info-item"
                         >
                           <el-icon><InfoFilled /></el-icon>
-                          <span>国家: {{ landmark.geographicInfo.country }}</span>
+                          <span
+                            >国家: {{ landmark.geographicInfo.country }}</span
+                          >
                         </div>
                         <div
                           v-if="landmark.geographicInfo.region"
                           class="info-item"
                         >
                           <el-icon><Location /></el-icon>
-                          <span>地区: {{ landmark.geographicInfo.region }}</span>
+                          <span
+                            >地区: {{ landmark.geographicInfo.region }}</span
+                          >
                         </div>
                         <div
                           v-if="landmark.geographicInfo.city"
@@ -480,7 +459,10 @@ function openWikipediaPage(pageUrl: string) {
                           {{ landmark.wikipediaInfo.extract }}
                         </div>
                         <div
-                          v-if="landmark.wikipediaInfo.url || landmark.wikipediaInfo.pageUrl"
+                          v-if="
+                            landmark.wikipediaInfo.url ||
+                            landmark.wikipediaInfo.pageUrl
+                          "
                           class="wiki-link"
                         >
                           <el-button
@@ -488,7 +470,11 @@ function openWikipediaPage(pageUrl: string) {
                             size="small"
                             :icon="Link"
                             @click="
-                              openWikipediaPage(landmark.wikipediaInfo.url || landmark.wikipediaInfo.pageUrl || '')
+                              openWikipediaPage(
+                                landmark.wikipediaInfo.url ||
+                                  landmark.wikipediaInfo.pageUrl ||
+                                  ''
+                              )
                             "
                           >
                             查看Wikipedia页面
@@ -561,15 +547,15 @@ function openWikipediaPage(pageUrl: string) {
                             :key="index"
                             :src="image.imageUrl || image.url"
                             :preview-src-list="
-                              landmark.relatedImages.map((img) => img.imageUrl || img.url)
+                              landmark.relatedImages.map(
+                                (img) => img.imageUrl || img.url
+                              )
                             "
                             class="gallery-image"
                             fit="cover"
                           >
                             <template #error>
-                              <div class="image-error">
-                                加载失败
-                              </div>
+                              <div class="image-error">加载失败</div>
                             </template>
                           </el-image>
                         </div>
@@ -620,13 +606,18 @@ function openWikipediaPage(pageUrl: string) {
               <template #header>
                 <div class="panel-header">
                   <el-icon><Location /></el-icon>
-                  <span>附近推荐 ({{
-                    analysisResult.nearbyRecommendations.length
-                  }}个)</span>
+                  <span
+                    >附近推荐 ({{
+                      analysisResult.nearbyRecommendations.length
+                    }}个)</span
+                  >
                 </div>
               </template>
 
-              <el-row :gutter="12" v-if="analysisResult?.nearbyRecommendations?.length > 0">
+              <el-row
+                :gutter="12"
+                v-if="analysisResult?.nearbyRecommendations?.length > 0"
+              >
                 <el-col
                   v-for="recommendation in analysisResult?.nearbyRecommendations"
                   :key="recommendation.name"
@@ -693,9 +684,7 @@ function openWikipediaPage(pageUrl: string) {
                           <div class="factor-item">
                             <span>距离:</span>
                             <el-tag size="small">
-                              {{
-                                recommendation.scoreFactors.distanceScore
-                              }}
+                              {{ recommendation.scoreFactors.distanceScore }}
                             </el-tag>
                           </div>
                           <div class="factor-item">
@@ -703,7 +692,7 @@ function openWikipediaPage(pageUrl: string) {
                             <el-tag size="small">
                               {{
                                 recommendation.scoreFactors.popularityScore?.toFixed(
-                                  1,
+                                  1
                                 )
                               }}
                             </el-tag>
@@ -711,17 +700,13 @@ function openWikipediaPage(pageUrl: string) {
                           <div class="factor-item">
                             <span>评分:</span>
                             <el-tag size="small">
-                              {{
-                                recommendation.scoreFactors.ratingScore
-                              }}
+                              {{ recommendation.scoreFactors.ratingScore }}
                             </el-tag>
                           </div>
                           <div class="factor-item">
                             <span>相关性:</span>
                             <el-tag size="small">
-                              {{
-                                recommendation.scoreFactors.relevanceScore
-                              }}
+                              {{ recommendation.scoreFactors.relevanceScore }}
                             </el-tag>
                           </div>
                         </div>
@@ -739,15 +724,15 @@ function openWikipediaPage(pageUrl: string) {
                             :key="index"
                             :src="image.imageUrl || image.url"
                             :preview-src-list="
-                              recommendation.images.map((img) => img.imageUrl || img.url)
+                              recommendation.images.map(
+                                (img) => img.imageUrl || img.url
+                              )
                             "
                             class="gallery-image small"
                             fit="cover"
                           >
                             <template #error>
-                              <div class="image-error">
-                                加载失败
-                              </div>
+                              <div class="image-error">加载失败</div>
                             </template>
                           </el-image>
                         </div>
@@ -830,9 +815,7 @@ function openWikipediaPage(pageUrl: string) {
                 </el-descriptions-item>
                 <el-descriptions-item label="总处理时间">
                   <el-tag>
-                    {{
-                      analysisResult.processingStatus.processingTime
-                    }}
+                    {{ analysisResult.processingStatus.processingTime }}
                     秒
                   </el-tag>
                 </el-descriptions-item>
@@ -851,9 +834,7 @@ function openWikipediaPage(pageUrl: string) {
               <el-descriptions :column="2" border>
                 <el-descriptions-item label="API版本">
                   <el-tag>
-                    {{
-                      analysisResult.metadata.apiVersion || "v1"
-                    }}
+                    {{ analysisResult.metadata.apiVersion || "v1" }}
                   </el-tag>
                 </el-descriptions-item>
                 <el-descriptions-item label="处理时间">
@@ -861,9 +842,7 @@ function openWikipediaPage(pageUrl: string) {
                 </el-descriptions-item>
                 <el-descriptions-item label="语言">
                   <el-tag>
-                    {{
-                      analysisResult.metadata.language || "zh"
-                    }}
+                    {{ analysisResult.metadata.language || "zh" }}
                   </el-tag>
                 </el-descriptions-item>
                 <el-descriptions-item label="用户ID">
@@ -891,16 +870,12 @@ function openWikipediaPage(pageUrl: string) {
                 </el-descriptions-item>
                 <el-descriptions-item label="识别地标总数">
                   <el-tag>
-                    {{
-                      analysisResult.metadata.totalLandmarks || 0
-                    }}
+                    {{ analysisResult.metadata.totalLandmarks || 0 }}
                   </el-tag>
                 </el-descriptions-item>
                 <el-descriptions-item label="增强地标数">
                   <el-tag>
-                    {{
-                      analysisResult.metadata.enhancedCount || 0
-                    }}
+                    {{ analysisResult.metadata.enhancedCount || 0 }}
                   </el-tag>
                 </el-descriptions-item>
               </el-descriptions>
