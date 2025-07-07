@@ -60,7 +60,7 @@ export function visionAnalyzeApi(file: File, userId?: number) {
   }
 
   return request<IBaseResponse<any>>({
-    url: "/files/vision-analyze",
+    url: "/files/vision-analyze-enhanced",
     method: "post",
     data: formData,
     headers: {
