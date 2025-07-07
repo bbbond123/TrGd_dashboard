@@ -1,120 +1,144 @@
 <script setup lang="ts">
-import type { EnhancedVisionResult } from "@@/apis/files/type";
-import { visionAnalyzeApi } from "@@/apis/files";
+import type { EnhancedVisionResult } from "@@/apis/files/type"
+import type { UploadFile } from "element-plus"
+import { visionAnalyzeApi } from "@@/apis/files"
 import {
   Camera,
-  Picture,
-  Upload,
-  View,
-  Location,
-  Star,
   Document,
-  Link,
-  Warning,
   InfoFilled,
-} from "@element-plus/icons-vue";
-import { ElMessage, type UploadFile } from "element-plus";
-import { ref } from "vue";
+  Link,
+  Location,
+  Picture,
+  Star,
+  Upload,
+  View
+} from "@element-plus/icons-vue"
+import { ElMessage } from "element-plus"
+import { ref } from "vue"
 
 defineOptions({
-  name: "ARVision",
-});
+  name: "ARVision"
+})
 
-const loading = ref<boolean>(false);
-const uploadedImage = ref<string>("");
-const analysisResult = ref<EnhancedVisionResult | null>(null);
-const uploadInputKey = ref(0);
+const loading = ref<boolean>(false)
+const uploadedImage = ref<string>("")
+function initQueryData(): EnhancedVisionResult {
+  return {
+    basicVisionResult: {
+      landmarks: [],
+      labels: [],
+      textContent: "",
+      safeSearchAnnotation: {}
+    },
+    enhancedLandmarks: [],
+    nearbyRecommendations: [],
+    processingStatus: {
+      success: true,
+      errorMessage: "",
+      warnings: [],
+      googleVisionSuccess: true,
+      googlePlacesSuccess: false,
+      wikipediaSuccess: false,
+      localDatabaseSuccess: true,
+      processingTime: 5676
+    },
+    metadata: {
+      apiVersion: "",
+      processedAt: "",
+      language: ""
+    }
+  }
+}
+const analysisResult = ref<EnhancedVisionResult>(initQueryData())
+const uploadInputKey = ref(0)
 
 // 图片上传处理
 async function handleImageUpload(file: UploadFile) {
-  if (!file.raw) return false;
+  if (!file.raw) return false
 
   // 检查文件类型
-  const isImage = file.raw.type.startsWith("image/");
+  const isImage = file.raw.type.startsWith("image/")
   if (!isImage) {
-    ElMessage.error("只能上传图片文件！");
-    return false;
+    ElMessage.error("只能上传图片文件！")
+    return false
   }
 
   // 检查文件大小 (10MB)
-  const isLt10M = file.raw.size / 1024 / 1024 < 10;
+  const isLt10M = file.raw.size / 1024 / 1024 < 10
   if (!isLt10M) {
-    ElMessage.error("图片大小不能超过 10MB！");
-    return false;
+    ElMessage.error("图片大小不能超过 10MB！")
+    return false
   }
 
   // 显示上传的图片
-  const reader = new FileReader();
+  const reader = new FileReader()
   reader.onload = (e) => {
-    uploadedImage.value = e.target?.result as string;
-  };
-  reader.readAsDataURL(file.raw);
+    uploadedImage.value = e.target?.result as string
+  }
+  reader.readAsDataURL(file.raw)
 
   // 开始分析
-  await analyzeImage(file.raw);
+  await analyzeImage(file.raw)
 
-  return false; // 阻止自动上传
+  return false // 阻止自动上传
 }
 
 // 分析图片
 async function analyzeImage(file: File) {
-  loading.value = true;
-  analysisResult.value = null;
+  loading.value = true
+  analysisResult.value = initQueryData()
 
   try {
     const res = await visionAnalyzeApi(file, {
       enablePlaces: true,
       enableWikipedia: true,
-      enableCache: true,
-    });
+      enableCache: true
+    })
 
     if (res.code === 200) {
-      analysisResult.value = res.data;
-      ElMessage.success("图片分析完成！");
+      analysisResult.value = res.data
+      ElMessage.success("图片分析完成！")
     } else {
-      ElMessage.error(res.errMessage || "图片分析失败");
+      ElMessage.error(res.errMessage || "图片分析失败")
     }
   } catch (error) {
-    console.error("图片分析失败:", error);
-    ElMessage.error("图片分析失败，请重试");
+    console.error("图片分析失败:", error)
+    ElMessage.error("图片分析失败，请重试")
   } finally {
-    loading.value = false;
+    loading.value = false
   }
 }
 
 // 重新上传
 function handleReupload() {
-  uploadedImage.value = "";
-  analysisResult.value = null;
-  uploadInputKey.value += 1;
+  uploadedImage.value = ""
+  analysisResult.value = initQueryData()
+  uploadInputKey.value += 1
 }
 
 // 格式化日期时间
 function formatDateTime(dateTime: string) {
-  return new Date(dateTime).toLocaleString("zh-CN");
+  return new Date(dateTime).toLocaleString("zh-CN")
 }
 
 // 获取置信度颜色
 function getConfidenceColor(score: number) {
-  if (score >= 0.7) return "success";
-  if (score >= 0.5) return "warning";
-  return "danger";
+  if (score >= 0.7) return "success"
+  if (score >= 0.5) return "warning"
+  return "danger"
 }
 
 // 获取置信度文本
 function getConfidenceText(score: number) {
-  if (score >= 0.7) return "高";
-  if (score >= 0.5) return "中";
-  return "低";
+  if (score >= 0.7) return "高"
+  if (score >= 0.5) return "中"
+  return "低"
 }
 
 function openWikipediaPage(pageUrl: string) {
-  window.open(pageUrl, "_blank");
+  window.open(pageUrl, "_blank")
 }
 
-function openWebsite(website: string) {
-   window.open(website, '_blank')
-}
 </script>
 
 <template>
@@ -193,78 +217,187 @@ function openWebsite(website: string) {
           </div>
 
           <div v-if="analysisResult" class="result-content">
-            <!-- 处理状态 -->
-            <div v-if="!analysisResult.processingStatus.success" class="mb-4">
-              <el-alert
-                :title="
-                  analysisResult.processingStatus.errorMessage || '处理失败'
-                "
-                type="error"
-                show-icon
-                :closable="false"
-              />
-            </div>
+            <!-- Panel 1: 基础视觉识别结果 -->
+            <el-card shadow="never" class="panel-card mb-4">
+              <template #header>
+                <div class="panel-header">
+                  <el-icon><View /></el-icon>
+                  <span>基础视觉识别结果</span>
+                </div>
+              </template>
 
-            <!-- 警告信息 -->
-            <div
-              v-if="analysisResult.processingStatus.warnings?.length"
-              class="mb-4"
-            >
-              <el-alert
-                v-for="warning in analysisResult.processingStatus.warnings"
-                :key="warning"
-                :title="warning"
-                type="warning"
-                show-icon
-                :closable="false"
-                class="mb-2"
-              />
-            </div>
+              <!-- 基础地标识别 -->
+              <div
+                v-if="analysisResult?.basicVisionResult?.landmarks?.length"
+                class="section"
+              >
+                <h4>
+                  <el-icon><Location /></el-icon> 地标识别
+                </h4>
+                <el-row :gutter="12">
+                  <el-col
+                    v-for="landmark in analysisResult.basicVisionResult
+                      .landmarks"
+                    :key="landmark.name"
+                    :span="12"
+                    class="mb-3"
+                  >
+                    <el-card shadow="hover" class="landmark-card">
+                      <div class="landmark-content">
+                        <div class="landmark-header">
+                          <h5>{{ landmark.name }}</h5>
+                          <el-tag
+                            :type="getConfidenceColor(landmark.score)"
+                            class="confidence-tag"
+                          >
+                            置信度: {{ (landmark.score * 100).toFixed(1) }}% ({{
+                              getConfidenceText(landmark.score)
+                            }})
+                          </el-tag>
+                        </div>
+                        <div
+                          v-if="landmark.latitude && landmark.longitude"
+                          class="landmark-location"
+                        >
+                          <el-icon><Location /></el-icon>
+                          坐标: {{ landmark.latitude.toFixed(6) }},
+                          {{ landmark.longitude.toFixed(6) }}
+                        </div>
+                        <div
+                          v-if="landmark?.description"
+                          class="landmark-description"
+                        >
+                          {{ landmark.description }}
+                        </div>
+                      </div>
+                    </el-card>
+                  </el-col>
+                </el-row>
+              </div>
 
-            <!-- 基本信息 -->
-            <el-descriptions :column="2" border class="mb-4">
-              <el-descriptions-item label="API版本">
-                <el-tag>{{
-                  analysisResult.metadata.apiVersion || "v1"
-                }}</el-tag>
-              </el-descriptions-item>
-              <el-descriptions-item label="处理时间">
-                {{ formatDateTime(analysisResult.metadata.processedAt) }}
-              </el-descriptions-item>
-              <el-descriptions-item label="识别地标数">
-                {{ analysisResult.metadata.totalLandmarks || 0 }}
-              </el-descriptions-item>
-              <el-descriptions-item label="增强地标数">
-                {{ analysisResult.metadata.enhancedCount || 0 }}
-              </el-descriptions-item>
-              <el-descriptions-item label="使用缓存">
-                <el-tag
-                  :type="analysisResult.metadata.cacheUsed ? 'success' : 'info'"
-                >
-                  {{ analysisResult.metadata.cacheUsed ? "是" : "否" }}
-                </el-tag>
-              </el-descriptions-item>
-              <el-descriptions-item label="已保存到数据库">
-                <el-tag
-                  :type="
-                    analysisResult.metadata.savedToDatabase
-                      ? 'success'
-                      : 'warning'
-                  "
-                >
-                  {{ analysisResult.metadata.savedToDatabase ? "是" : "否" }}
-                </el-tag>
-              </el-descriptions-item>
-            </el-descriptions>
+              <!-- 基础识别标签 -->
+              <div
+                v-if="analysisResult.basicVisionResult?.labels?.length"
+                class="section"
+              >
+                <h4>
+                  <el-icon><Document /></el-icon> 识别标签
+                </h4>
+                <div class="labels-container">
+                  <el-tag
+                    v-for="label in analysisResult.basicVisionResult.labels"
+                    :key="label"
+                    class="label-tag"
+                    type="info"
+                  >
+                    {{ label }}
+                  </el-tag>
+                </div>
+              </div>
 
-            <!-- 增强地标识别 -->
-            <div
+              <!-- 文本内容 -->
+              <div
+                v-if="analysisResult.basicVisionResult?.textContent"
+                class="section"
+              >
+                <h4>
+                  <el-icon><Document /></el-icon> 识别的文本
+                </h4>
+                <el-card shadow="never" class="text-card">
+                  <p>{{ analysisResult.basicVisionResult.textContent }}</p>
+                </el-card>
+              </div>
+
+              <!-- 基础信息 -->
+              <div class="section">
+                <h4>
+                  <el-icon><InfoFilled /></el-icon> 基础信息
+                </h4>
+                <el-descriptions :column="2" border>
+                  <el-descriptions-item label="API来源">
+                    <el-tag>
+                      {{
+                        analysisResult.basicVisionResult.apiSource
+                          || "Google Vision API"
+                      }}
+                    </el-tag>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="处理时间">
+                    {{
+                      analysisResult.basicVisionResult.processedAt
+                        ? formatDateTime(analysisResult.basicVisionResult.processedAt)
+                        : '未知'
+                    }}
+                  </el-descriptions-item>
+                  <el-descriptions-item label="国家">
+                    <el-tag
+                      v-if="analysisResult.basicVisionResult.country"
+                      type="success"
+                    >
+                      {{ analysisResult.basicVisionResult.country }}
+                    </el-tag>
+                    <span v-else>未知</span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="是否在日本">
+                    <el-tag
+                      :type="
+                        analysisResult.basicVisionResult.isInJapan
+                          ? 'success'
+                          : 'info'
+                      "
+                    >
+                      {{
+                        analysisResult.basicVisionResult.isInJapan ? "是" : "否"
+                      }}
+                    </el-tag>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="包含地标">
+                    <el-tag
+                      :type="
+                        analysisResult.basicVisionResult.hasLandmark
+                          ? 'success'
+                          : 'info'
+                      "
+                    >
+                      {{
+                        analysisResult.basicVisionResult.hasLandmark
+                          ? "是"
+                          : "否"
+                      }}
+                    </el-tag>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="已保存到数据库">
+                    <el-tag
+                      :type="
+                        analysisResult.basicVisionResult.savedToDatabase
+                          ? 'success'
+                          : 'warning'
+                      "
+                    >
+                      {{
+                        analysisResult.basicVisionResult.savedToDatabase
+                          ? "是"
+                          : "否"
+                      }}
+                    </el-tag>
+                  </el-descriptions-item>
+                </el-descriptions>
+              </div>
+            </el-card>
+
+            <!-- Panel 2: 增强地标信息 -->
+            <el-card
               v-if="analysisResult.enhancedLandmarks?.length"
-              class="landmarks-section"
+              shadow="never"
+              class="panel-card mb-4"
             >
-              <h3>
-                <el-icon><Location /></el-icon> 增强地标识别结果
-              </h3>
+              <template #header>
+                <div class="panel-header">
+                  <el-icon><Star /></el-icon>
+                  <span>增强地标信息</span>
+                </div>
+              </template>
+
               <el-row :gutter="12">
                 <el-col
                   v-for="landmark in analysisResult.enhancedLandmarks"
@@ -291,20 +424,22 @@ function openWebsite(website: string) {
                         v-if="landmark.geographicInfo"
                         class="geographic-info"
                       >
+                        <h5>
+                          <el-icon><Location /></el-icon> 地理信息
+                        </h5>
                         <div
                           v-if="landmark.geographicInfo.country"
                           class="info-item"
                         >
                           <el-icon><InfoFilled /></el-icon>
-                          <span
-                            >国家: {{ landmark.geographicInfo.country }}</span
-                          >
-                          <el-tag
-                            v-if="landmark.geographicInfo.isInJapan"
-                            type="success"
-                            size="small"
-                            >日本</el-tag
-                          >
+                          <span>国家: {{ landmark.geographicInfo.country }}</span>
+                        </div>
+                        <div
+                          v-if="landmark.geographicInfo.region"
+                          class="info-item"
+                        >
+                          <el-icon><Location /></el-icon>
+                          <span>地区: {{ landmark.geographicInfo.region }}</span>
                         </div>
                         <div
                           v-if="landmark.geographicInfo.city"
@@ -326,18 +461,26 @@ function openWebsite(website: string) {
                       </div>
 
                       <!-- Wikipedia 信息 -->
-                      <div
-                        v-if="landmark.wikipediaInfo?.extract"
-                        class="wikipedia-info"
-                      >
+                      <div v-if="landmark.wikipediaInfo" class="wikipedia-info">
                         <h5>
                           <el-icon><Document /></el-icon> Wikipedia 信息
                         </h5>
-                        <p class="wiki-extract">
-                          {{ landmark.wikipediaInfo.extract }}
-                        </p>
                         <div
-                          v-if="landmark.wikipediaInfo.pageUrl"
+                          v-if="landmark.wikipediaInfo.title"
+                          class="info-item"
+                        >
+                          <strong>标题:</strong>
+                          {{ landmark.wikipediaInfo.title }}
+                        </div>
+                        <div
+                          v-if="landmark.wikipediaInfo.extract"
+                          class="wiki-extract"
+                        >
+                          <strong>摘要:</strong>
+                          {{ landmark.wikipediaInfo.extract }}
+                        </div>
+                        <div
+                          v-if="landmark.wikipediaInfo.url || landmark.wikipediaInfo.pageUrl"
                           class="wiki-link"
                         >
                           <el-button
@@ -345,11 +488,19 @@ function openWebsite(website: string) {
                             size="small"
                             :icon="Link"
                             @click="
-                              openWikipediaPage(landmark.wikipediaInfo.pageUrl)
+                              openWikipediaPage(landmark.wikipediaInfo.url || landmark.wikipediaInfo.pageUrl || '')
                             "
                           >
                             查看Wikipedia页面
                           </el-button>
+                        </div>
+                        <div
+                          v-if="landmark.wikipediaInfo.coordinates"
+                          class="wiki-coordinates"
+                        >
+                          <strong>Wikipedia坐标:</strong>
+                          {{ landmark.wikipediaInfo.coordinates.lat }},
+                          {{ landmark.wikipediaInfo.coordinates.lon }}
                         </div>
                       </div>
 
@@ -358,62 +509,40 @@ function openWebsite(website: string) {
                         <h5>
                           <el-icon><Star /></el-icon> Google Places 信息
                         </h5>
+                        <div v-if="landmark.placesInfo.name" class="info-item">
+                          <strong>名称:</strong> {{ landmark.placesInfo.name }}
+                        </div>
                         <div
-                          v-if="landmark.placesInfo.address"
+                          v-if="landmark.placesInfo.formattedAddress"
                           class="info-item"
                         >
-                          <span>地址: {{ landmark.placesInfo.address }}</span>
+                          <strong>地址:</strong>
+                          {{ landmark.placesInfo.formattedAddress }}
                         </div>
                         <div
                           v-if="landmark.placesInfo.rating"
                           class="info-item"
                         >
-                          <span>评分: {{ landmark.placesInfo.rating }}/5</span>
-                          <span v-if="landmark.placesInfo.userRatingsTotal"
-                            >({{
-                              landmark.placesInfo.userRatingsTotal
-                            }}
-                            条评价)</span
-                          >
+                          <strong>评分:</strong>
+                          {{ landmark.placesInfo.rating }}/5
+                          <span v-if="landmark.placesInfo.userRatingsTotal">
+                            ({{ landmark.placesInfo.userRatingsTotal }} 条评价)
+                          </span>
                         </div>
                         <div
-                          v-if="landmark.placesInfo.phoneNumber"
+                          v-if="landmark.placesInfo.types?.length"
                           class="info-item"
                         >
-                          <span
-                            >电话: {{ landmark.placesInfo.phoneNumber }}</span
-                          >
-                        </div>
-                        <div
-                          v-if="landmark.placesInfo.website"
-                          class="info-item"
-                        >
-                          <el-button
-                            type="primary"
+                          <strong>类型:</strong>
+                          <el-tag
+                            v-for="type in landmark.placesInfo.types"
+                            :key="type"
                             size="small"
-                            :icon="Link"
-                            @click="openWebsite(landmark.placesInfo.website)"
+                            class="ml-1"
                           >
-                            访问网站
-                          </el-button>
+                            {{ type }}
+                          </el-tag>
                         </div>
-                      </div>
-
-                      <!-- 本地设施信息 -->
-                      <div
-                        v-if="landmark.localInfo?.facilityId"
-                        class="local-info"
-                      >
-                        <el-tag size="small" type="info"
-                          >本地设施ID:
-                          {{ landmark.localInfo.facilityId }}</el-tag
-                        >
-                        <span
-                          v-if="landmark.localInfo.description"
-                          class="local-desc"
-                        >
-                          {{ landmark.localInfo.description }}
-                        </span>
                       </div>
 
                       <!-- 相关图片 -->
@@ -421,72 +550,85 @@ function openWebsite(website: string) {
                         v-if="landmark.relatedImages?.length"
                         class="related-images"
                       >
-                        <h5>相关图片</h5>
+                        <h5>
+                          <el-icon><Picture /></el-icon> 相关图片 ({{
+                            landmark.relatedImages.length
+                          }}张)
+                        </h5>
                         <div class="image-gallery">
                           <el-image
-                            v-for="(
-                              image, index
-                            ) in landmark.relatedImages.slice(0, 3)"
+                            v-for="(image, index) in landmark.relatedImages"
                             :key="index"
-                            :src="image.url"
+                            :src="image.imageUrl || image.url"
                             :preview-src-list="
-                              landmark.relatedImages.map((img) => img.url)
+                              landmark.relatedImages.map((img) => img.imageUrl || img.url)
                             "
                             class="gallery-image"
                             fit="cover"
-                          />
+                          >
+                            <template #error>
+                              <div class="image-error">
+                                加载失败
+                              </div>
+                            </template>
+                          </el-image>
+                        </div>
+                        <div class="image-details">
+                          <div
+                            v-for="(image, index) in landmark.relatedImages"
+                            :key="index"
+                            class="image-detail"
+                          >
+                            <div class="image-info">
+                              <span class="image-title">{{ image.title }}</span>
+                              <el-tag
+                                size="small"
+                                :type="
+                                  image.source === 'wikipedia'
+                                    ? 'primary'
+                                    : 'success'
+                                "
+                              >
+                                {{
+                                  image.source === "wikipedia"
+                                    ? "Wikipedia"
+                                    : "Google Places"
+                                }}
+                              </el-tag>
+                            </div>
+                            <div class="image-description">
+                              {{ image.description }}
+                            </div>
+                            <div class="image-size">
+                              {{ image.width }} × {{ image.height }}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </el-card>
                 </el-col>
               </el-row>
-            </div>
+            </el-card>
 
-            <!-- 基础识别标签 -->
-            <div
-              v-if="analysisResult.basicVisionResult?.labels?.length"
-              class="labels-section"
-            >
-              <h3>
-                <el-icon><Document /></el-icon> 基础识别标签
-              </h3>
-              <div class="labels-container">
-                <el-tag
-                  v-for="label in analysisResult.basicVisionResult.labels"
-                  :key="label"
-                  class="label-tag"
-                  type="info"
-                >
-                  {{ label }}
-                </el-tag>
-              </div>
-            </div>
-
-            <!-- 文本内容 -->
-            <div
-              v-if="analysisResult.basicVisionResult?.textContent"
-              class="text-section"
-            >
-              <h3>
-                <el-icon><Document /></el-icon> 识别的文本
-              </h3>
-              <el-card shadow="never" class="text-card">
-                <p>{{ analysisResult.basicVisionResult.textContent }}</p>
-              </el-card>
-            </div>
-
-            <!-- 增强推荐列表 -->
-            <div
+            <!-- Panel 3: 附近推荐 -->
+            <el-card
               v-if="analysisResult.nearbyRecommendations?.length"
-              class="recommendations-section"
+              shadow="never"
+              class="panel-card mb-4"
             >
-              <h3>
-                <el-icon><Star /></el-icon> 附近推荐
-              </h3>
-              <el-row :gutter="12">
+              <template #header>
+                <div class="panel-header">
+                  <el-icon><Location /></el-icon>
+                  <span>附近推荐 ({{
+                    analysisResult.nearbyRecommendations.length
+                  }}个)</span>
+                </div>
+              </template>
+
+              <el-row :gutter="12" v-if="analysisResult?.nearbyRecommendations?.length > 0">
                 <el-col
-                  v-for="recommendation in analysisResult.nearbyRecommendations"
+                  v-for="recommendation in analysisResult?.nearbyRecommendations"
                   :key="recommendation.name"
                   :span="12"
                   class="mb-3"
@@ -502,6 +644,13 @@ function openWebsite(website: string) {
                         >
                           {{ recommendation.category }}
                         </el-tag>
+                        <el-tag
+                          v-if="recommendation.type"
+                          size="small"
+                          type="info"
+                        >
+                          {{ recommendation.type }}
+                        </el-tag>
                       </div>
 
                       <div class="recommendation-details">
@@ -510,10 +659,20 @@ function openWebsite(website: string) {
                           距离:
                           {{ (recommendation.distance / 1000).toFixed(2) }} km
                         </div>
-
                         <div v-if="recommendation.placesRating" class="rating">
                           <el-icon><Star /></el-icon>
                           评分: {{ recommendation.placesRating }}/5
+                          <span v-if="recommendation.placesReviews">
+                            ({{ recommendation.placesReviews }} 条评价)
+                          </span>
+                        </div>
+                        <div
+                          v-if="recommendation.recommendationScore"
+                          class="recommendation-score"
+                        >
+                          <el-icon><Star /></el-icon>
+                          推荐度:
+                          {{ recommendation.recommendationScore.toFixed(2) }}
                         </div>
                       </div>
 
@@ -524,31 +683,228 @@ function openWebsite(website: string) {
                         {{ recommendation.description }}
                       </div>
 
+                      <!-- 评分因子 -->
+                      <div
+                        v-if="recommendation.scoreFactors"
+                        class="score-factors"
+                      >
+                        <h6>评分因子:</h6>
+                        <div class="factor-grid">
+                          <div class="factor-item">
+                            <span>距离:</span>
+                            <el-tag size="small">
+                              {{
+                                recommendation.scoreFactors.distanceScore
+                              }}
+                            </el-tag>
+                          </div>
+                          <div class="factor-item">
+                            <span>热度:</span>
+                            <el-tag size="small">
+                              {{
+                                recommendation.scoreFactors.popularityScore?.toFixed(
+                                  1,
+                                )
+                              }}
+                            </el-tag>
+                          </div>
+                          <div class="factor-item">
+                            <span>评分:</span>
+                            <el-tag size="small">
+                              {{
+                                recommendation.scoreFactors.ratingScore
+                              }}
+                            </el-tag>
+                          </div>
+                          <div class="factor-item">
+                            <span>相关性:</span>
+                            <el-tag size="small">
+                              {{
+                                recommendation.scoreFactors.relevanceScore
+                              }}
+                            </el-tag>
+                          </div>
+                        </div>
+                      </div>
+
                       <!-- 推荐项目的图片 -->
                       <div
                         v-if="recommendation.images?.length"
                         class="recommendation-images"
                       >
+                        <h6>图片 ({{ recommendation.images.length }}张):</h6>
                         <div class="image-gallery">
                           <el-image
-                            v-for="(
-                              image, index
-                            ) in recommendation.images.slice(0, 2)"
+                            v-for="(image, index) in recommendation?.images"
                             :key="index"
-                            :src="image.url"
+                            :src="image.imageUrl || image.url"
                             :preview-src-list="
-                              recommendation.images.map((img) => img.url)
+                              recommendation.images.map((img) => img.imageUrl || img.url)
                             "
                             class="gallery-image small"
                             fit="cover"
-                          />
+                          >
+                            <template #error>
+                              <div class="image-error">
+                                加载失败
+                              </div>
+                            </template>
+                          </el-image>
                         </div>
                       </div>
                     </div>
                   </el-card>
                 </el-col>
               </el-row>
-            </div>
+            </el-card>
+
+            <!-- Panel 4: 处理状态 -->
+            <el-card shadow="never" class="panel-card mb-4">
+              <template #header>
+                <div class="panel-header">
+                  <el-icon><InfoFilled /></el-icon>
+                  <span>处理状态</span>
+                </div>
+              </template>
+
+              <el-descriptions :column="2" border>
+                <el-descriptions-item label="Google Vision API">
+                  <el-tag
+                    :type="
+                      analysisResult?.processingStatus.googleVisionSuccess
+                        ? 'success'
+                        : 'danger'
+                    "
+                  >
+                    {{
+                      analysisResult.processingStatus.googleVisionSuccess
+                        ? "成功"
+                        : "失败"
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="Google Places API">
+                  <el-tag
+                    :type="
+                      analysisResult.processingStatus.googlePlacesSuccess
+                        ? 'success'
+                        : 'danger'
+                    "
+                  >
+                    {{
+                      analysisResult.processingStatus.googlePlacesSuccess
+                        ? "成功"
+                        : "失败"
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="Wikipedia API">
+                  <el-tag
+                    :type="
+                      analysisResult.processingStatus.wikipediaSuccess
+                        ? 'success'
+                        : 'danger'
+                    "
+                  >
+                    {{
+                      analysisResult.processingStatus.wikipediaSuccess
+                        ? "成功"
+                        : "失败"
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="本地数据库">
+                  <el-tag
+                    :type="
+                      analysisResult.processingStatus.localDatabaseSuccess
+                        ? 'success'
+                        : 'danger'
+                    "
+                  >
+                    {{
+                      analysisResult.processingStatus.localDatabaseSuccess
+                        ? "成功"
+                        : "失败"
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="总处理时间">
+                  <el-tag>
+                    {{
+                      analysisResult.processingStatus.processingTime
+                    }}
+                    秒
+                  </el-tag>
+                </el-descriptions-item>
+              </el-descriptions>
+            </el-card>
+
+            <!-- Panel 5: 元数据信息 -->
+            <el-card shadow="never" class="panel-card mb-4">
+              <template #header>
+                <div class="panel-header">
+                  <el-icon><Document /></el-icon>
+                  <span>元数据信息</span>
+                </div>
+              </template>
+
+              <el-descriptions :column="2" border>
+                <el-descriptions-item label="API版本">
+                  <el-tag>
+                    {{
+                      analysisResult.metadata.apiVersion || "v1"
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="处理时间">
+                  {{ formatDateTime(analysisResult.metadata.processedAt) }}
+                </el-descriptions-item>
+                <el-descriptions-item label="语言">
+                  <el-tag>
+                    {{
+                      analysisResult.metadata.language || "zh"
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="用户ID">
+                  <el-tag>{{ analysisResult.metadata.userId || "N/A" }}</el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="已保存到数据库">
+                  <el-tag
+                    :type="
+                      analysisResult.metadata.savedToDatabase
+                        ? 'success'
+                        : 'warning'
+                    "
+                  >
+                    {{ analysisResult.metadata.savedToDatabase ? "是" : "否" }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="使用缓存">
+                  <el-tag
+                    :type="
+                      analysisResult.metadata.cacheUsed ? 'success' : 'info'
+                    "
+                  >
+                    {{ analysisResult.metadata.cacheUsed ? "是" : "否" }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="识别地标总数">
+                  <el-tag>
+                    {{
+                      analysisResult.metadata.totalLandmarks || 0
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+                <el-descriptions-item label="增强地标数">
+                  <el-tag>
+                    {{
+                      analysisResult.metadata.enhancedCount || 0
+                    }}
+                  </el-tag>
+                </el-descriptions-item>
+              </el-descriptions>
+            </el-card>
           </div>
         </el-card>
       </el-col>
@@ -640,6 +996,10 @@ function openWebsite(website: string) {
       margin-bottom: 16px;
     }
 
+    .ml-1 {
+      margin-left: 4px;
+    }
+
     h3 {
       display: flex;
       align-items: center;
@@ -650,117 +1010,189 @@ function openWebsite(website: string) {
       color: #303133;
     }
 
-    .landmarks-section {
-      .landmark-card {
-        :deep(.el-card__body) {
-          padding: 16px;
+    h4 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 16px 0 10px 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: #409eff;
+    }
+
+    h5 {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 12px 0 8px 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #409eff;
+    }
+
+    h6 {
+      margin: 8px 0 6px 0;
+      font-size: 13px;
+      font-weight: 500;
+      color: #606266;
+    }
+
+    .panel-card {
+      border-radius: 8px;
+
+      .panel-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        color: #303133;
+      }
+
+      .section {
+        margin-bottom: 20px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .landmark-card {
+      :deep(.el-card__body) {
+        padding: 16px;
+      }
+
+      .landmark-content {
+        .landmark-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 12px;
+
+          h4,
+          h5 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #303133;
+          }
+
+          .confidence-tag {
+            font-size: 12px;
+          }
         }
 
-        .landmark-content {
-          .landmark-header {
+        .geographic-info,
+        .wikipedia-info,
+        .places-info,
+        .local-info {
+          margin: 12px 0;
+          padding: 8px 0;
+          border-bottom: 1px solid #f0f0f0;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          .info-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #606266;
+          }
+
+          .wiki-extract {
+            color: #606266;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 8px 0;
+          }
+
+          .wiki-link,
+          .places-link {
+            margin-top: 8px;
+          }
+
+          .wiki-coordinates {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #909399;
+          }
+        }
+
+        .landmark-location {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          color: #909399;
+          font-size: 12px;
+          margin: 8px 0;
+        }
+
+        .landmark-description {
+          color: #606266;
+          font-size: 13px;
+          margin: 8px 0;
+        }
+
+        .related-images {
+          margin-top: 12px;
+
+          .image-gallery {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
             margin-bottom: 12px;
 
-            h4 {
-              margin: 0;
-              font-size: 16px;
-              font-weight: 500;
-              color: #303133;
-            }
-
-            .confidence-tag {
-              font-size: 12px;
-            }
-          }
-
-          .geographic-info,
-          .wikipedia-info,
-          .places-info,
-          .local-info {
-            margin: 12px 0;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-
-            &:last-child {
-              border-bottom: none;
-            }
-
-            h5 {
-              margin: 0 0 8px 0;
-              font-size: 14px;
-              font-weight: 500;
-              color: #409eff;
-              display: flex;
-              align-items: center;
-              gap: 6px;
-            }
-
-            .info-item {
-              display: flex;
-              align-items: center;
-              gap: 6px;
-              margin-bottom: 6px;
-              font-size: 13px;
-              color: #606266;
-            }
-
-            .wiki-extract {
-              color: #606266;
-              font-size: 13px;
-              line-height: 1.5;
-              margin-bottom: 8px;
-              max-height: 100px;
+            .gallery-image {
+              width: 120px;
+              height: 90px;
+              border-radius: 6px;
               overflow: hidden;
-              text-overflow: ellipsis;
-            }
+              cursor: pointer;
 
-            .wiki-link,
-            .places-link {
-              margin-top: 8px;
+              .image-error {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                background: #f5f7fa;
+                color: #909399;
+                font-size: 12px;
+              }
             }
+          }
 
-            .local-desc {
-              margin-left: 8px;
-              color: #606266;
+          .image-details {
+            .image-detail {
+              margin-bottom: 8px;
+              padding: 8px;
+              background: #f8f9fa;
+              border-radius: 4px;
               font-size: 12px;
-            }
-          }
 
-          .landmark-location {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: #909399;
-            font-size: 12px;
-            margin-bottom: 8px;
-          }
+              .image-info {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 4px;
 
-          .related-images {
-            margin-top: 12px;
-
-            h5 {
-              margin: 0 0 8px 0;
-              font-size: 14px;
-              font-weight: 500;
-            }
-
-            .image-gallery {
-              display: flex;
-              gap: 8px;
-              flex-wrap: wrap;
-
-              .gallery-image {
-                width: 80px;
-                height: 80px;
-                border-radius: 4px;
-                overflow: hidden;
-
-                &.small {
-                  width: 60px;
-                  height: 60px;
+                .image-title {
+                  font-weight: 500;
+                  color: #303133;
                 }
+              }
+
+              .image-description {
+                color: #606266;
+                margin-bottom: 4px;
+              }
+
+              .image-size {
+                color: #909399;
               }
             }
           }
@@ -768,15 +1200,13 @@ function openWebsite(website: string) {
       }
     }
 
-    .labels-section {
-      .labels-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+    .labels-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
 
-        .label-tag {
-          font-size: 12px;
-        }
+      .label-tag {
+        font-size: 12px;
       }
     }
 
@@ -794,66 +1224,99 @@ function openWebsite(website: string) {
       }
     }
 
-    .recommendations-section {
-      .recommendation-card {
-        :deep(.el-card__body) {
-          padding: 16px;
+    .recommendation-card {
+      :deep(.el-card__body) {
+        padding: 16px;
+      }
+
+      .recommendation-content {
+        .recommendation-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+          flex-wrap: wrap;
+          gap: 8px;
+
+          h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 500;
+          }
         }
 
-        .recommendation-content {
-          .recommendation-header {
+        .recommendation-details {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          margin-bottom: 8px;
+
+          .distance,
+          .rating,
+          .recommendation-score {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
-
-            h4 {
-              margin: 0;
-              font-size: 14px;
-              font-weight: 500;
-            }
+            gap: 4px;
+            color: #909399;
+            font-size: 12px;
           }
+        }
 
-          .recommendation-details {
-            display: flex;
-            flex-direction: column;
+        .recommendation-description {
+          color: #606266;
+          font-size: 13px;
+          line-height: 1.4;
+          margin-bottom: 8px;
+        }
+
+        .score-factors {
+          margin: 12px 0;
+          padding: 8px;
+          background: #f8f9fa;
+          border-radius: 4px;
+
+          .factor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 6px;
-            margin-bottom: 8px;
+            margin-top: 6px;
 
-            .distance,
-            .rating {
+            .factor-item {
               display: flex;
+              justify-content: space-between;
               align-items: center;
-              gap: 4px;
-              color: #909399;
               font-size: 12px;
-            }
 
-            .category {
-              display: flex;
-              gap: 4px;
+              span {
+                color: #606266;
+              }
             }
           }
+        }
 
-          .recommendation-description {
-            color: #606266;
-            font-size: 13px;
-            line-height: 1.4;
-            margin-bottom: 8px;
-          }
+        .recommendation-images {
+          margin-top: 8px;
 
-          .recommendation-images {
-            margin-top: 8px;
+          .image-gallery {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
 
-            .image-gallery {
-              display: flex;
-              gap: 6px;
+            .gallery-image.small {
+              width: 80px;
+              height: 60px;
+              border-radius: 4px;
+              overflow: hidden;
+              cursor: pointer;
 
-              .gallery-image.small {
-                width: 50px;
-                height: 50px;
-                border-radius: 4px;
-                overflow: hidden;
+              .image-error {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                background: #f5f7fa;
+                color: #909399;
+                font-size: 10px;
               }
             }
           }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Plus, Delete } from "@element-plus/icons-vue"
+import { Delete, Plus } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
-import { ref, reactive, onMounted } from "vue"
+import { onMounted, ref } from "vue"
 
 interface Props {
   modelValue: boolean
@@ -33,9 +33,18 @@ const selectedTags = ref<Tag[]>([])
 
 // 预定义颜色
 const tagColors = [
-  "#409eff", "#67c23a", "#e6a23c", "#f56c6c",
-  "#909399", "#2196f3", "#4caf50", "#ff9800",
-  "#ff5722", "#9c27b0", "#3f51b5", "#00bcd4"
+  "#409eff",
+  "#67c23a",
+  "#e6a23c",
+  "#f56c6c",
+  "#909399",
+  "#2196f3",
+  "#4caf50",
+  "#ff9800",
+  "#ff5722",
+  "#9c27b0",
+  "#3f51b5",
+  "#00bcd4"
 ]
 
 // 监听 modelValue 变化
@@ -337,7 +346,7 @@ onMounted(() => {
             class="color-preset"
             :style="{ backgroundColor: color }"
             :title="color"
-          ></div>
+          />
         </div>
       </el-card>
     </div>

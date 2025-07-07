@@ -1,7 +1,6 @@
 import type { ApiResponse, PaginationResponse } from "../type"
 import type {
   CreateVisionHistoryRequest,
-  UpdateVisionHistoryRequest,
   VisionHistory,
   VisionHistoryListRequest,
   VisionHistoryResult,

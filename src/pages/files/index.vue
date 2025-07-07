@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { FileDetail, FileListRequest } from "@@/apis/files/type"
+import type { UploadFile } from "element-plus"
 import { deleteFileApi, downloadFileApi, getFileListApi, uploadFileApi } from "@@/apis/files"
 import { usePagination } from "@@/composables/usePagination"
 import {
@@ -11,7 +12,7 @@ import {
   Search,
   Upload
 } from "@element-plus/icons-vue"
-import { ElMessage, type UploadFile } from "element-plus"
+import { ElMessage } from "element-plus"
 import { reactive, ref, watch } from "vue"
 
 defineOptions({
@@ -122,7 +123,7 @@ async function handleDownload(row: FileDetail) {
   try {
     const blob = await downloadFileApi(row.fileId)
     const url = window.URL.createObjectURL(blob)
-    const link = document.createElement('a')
+    const link = document.createElement("a")
     link.href = url
     link.download = row.fileName
     document.body.appendChild(link)
@@ -163,7 +164,7 @@ async function handleBatchDelete() {
 
 // 格式化文件大小
 function formatFileSize(size: number) {
-  const units = ['B', 'KB', 'MB', 'GB']
+  const units = ["B", "KB", "MB", "GB"]
   let index = 0
   while (size >= 1024 && index < units.length - 1) {
     size /= 1024
@@ -297,9 +298,9 @@ watch(
           >
             <template #default="scope">
               <el-tag
-                :type="scope.row.fileType === 'image' ? 'success' :
-                      scope.row.fileType === 'document' ? 'info' :
-                      scope.row.fileType === 'video' ? 'warning' : 'danger'"
+                :type="scope.row.fileType === 'image' ? 'success'
+                  : scope.row.fileType === 'document' ? 'info'
+                    : scope.row.fileType === 'video' ? 'warning' : 'danger'"
                 size="small"
               >
                 {{ scope.row.fileType }}
@@ -329,7 +330,9 @@ watch(
             width="150"
           >
             <template #default="scope">
-              <div v-if="scope.row.userName" class="user-info">{{ scope.row.userName }}</div>
+              <div v-if="scope.row.userName" class="user-info">
+                {{ scope.row.userName }}
+              </div>
               <span v-else class="text-gray-400">未知用户</span>
             </template>
           </el-table-column>
@@ -419,7 +422,9 @@ watch(
 
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="uploadDialogVisible = false">取消</el-button>
+          <el-button @click="uploadDialogVisible = false">
+            取消
+          </el-button>
         </div>
       </template>
     </el-dialog>

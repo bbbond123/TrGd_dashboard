@@ -61,20 +61,20 @@ async function getArticleDetail() {
 // 获取状态显示文本
 function getStatusText(status?: string) {
   switch (status) {
-    case 'published': return '已发布'
-    case 'draft': return '草稿'
-    case 'archived': return '已归档'
-    default: return '未知'
+    case "published": return "已发布"
+    case "draft": return "草稿"
+    case "archived": return "已归档"
+    default: return "未知"
   }
 }
 
 // 获取状态标签类型
 function getStatusType(status?: string) {
   switch (status) {
-    case 'published': return 'success'
-    case 'draft': return 'info'
-    case 'archived': return 'warning'
-    default: return 'info'
+    case "published": return "success"
+    case "draft": return "info"
+    case "archived": return "warning"
+    default: return "info"
   }
 }
 </script>
@@ -90,8 +90,10 @@ function getStatusType(status?: string) {
       <template v-if="article">
         <!-- 文章头部信息 -->
         <div class="article-header">
-          <h1 class="article-title">{{ article.title }}</h1>
-          
+          <h1 class="article-title">
+            {{ article.title }}
+          </h1>
+
           <div class="article-meta">
             <div class="meta-left">
               <el-tag :type="getStatusType(article.status)" size="small">
@@ -101,7 +103,7 @@ function getStatusType(status?: string) {
                 分类: {{ article.category }}
               </span>
               <span v-if="article.tags && article.tags.length" class="tags">
-                标签: 
+                标签:
                 <el-tag
                   v-for="tag in article.tags"
                   :key="tag"
@@ -152,7 +154,7 @@ function getStatusType(status?: string) {
         <!-- 文章内容 -->
         <div class="article-content">
           <h3>文章内容</h3>
-          <div class="content-body" v-html="article.bodyText || '暂无内容'"></div>
+          <div class="content-body" v-html="article.bodyText || '暂无内容'" />
         </div>
 
         <!-- 位置信息 -->
@@ -166,7 +168,7 @@ function getStatusType(status?: string) {
               <strong>详细地址:</strong> {{ article.address }}
             </p>
             <p>
-              <strong>坐标:</strong> 
+              <strong>坐标:</strong>
               纬度 {{ article.latitude }}, 经度 {{ article.longitude }}
             </p>
             <div class="location-map">
@@ -235,7 +237,8 @@ function getStatusType(status?: string) {
         align-items: center;
         gap: 12px;
 
-        .category, .tags {
+        .category,
+        .tags {
           font-size: 14px;
           color: #666;
         }

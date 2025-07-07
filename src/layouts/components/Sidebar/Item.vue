@@ -33,7 +33,7 @@ const theOnlyOneChild = computed(() => {
   //   default:
   //     return { ...props.item, path: "" }
   // }
-  return {...props.item,path: ""}
+  return { ...props.item, path: "" }
 })
 
 /** 解析路径 */

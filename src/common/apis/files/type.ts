@@ -75,7 +75,17 @@ export interface VisitHistoryResult {
   landmarks?: Landmark[]
   labels?: string[]
   textContent?: string
+  latitude?: number
+  longitude?: number
+  description?: string
   safeSearchAnnotation?: any
+  hasLandmark?: boolean
+  processedAt?: string
+  apiSource?: string
+  nearbyRecommendations?: any
+  country?: string
+  isInJapan?: boolean
+  savedToDatabase?: boolean
 }
 
 /** 地标信息 */
@@ -84,6 +94,7 @@ export interface Landmark {
   score: number
   latitude?: number
   longitude?: number
+  description?: string
 }
 
 /** 增强地标信息 */
@@ -117,38 +128,76 @@ export interface LocalFacilityInfo {
 /** Google Places信息 */
 export interface PlacesInfo {
   placeId?: string
+  name?: string
   address?: string
+  formattedAddress?: string
   phoneNumber?: string
   website?: string
   rating?: number
   userRatingsTotal?: number
   photos?: string[]
+  types?: string[]
+  reviews?: any
+  priceLevel?: number
 }
 
 /** Wikipedia信息 */
 export interface WikipediaInfo {
+  pageId?: number
   title?: string
   extract?: string
+  url?: string
   pageUrl?: string
   imageUrl?: string
+  language?: string
+  images?: WikipediaImage[]
+  categories?: string[]
+  coordinates?: {
+    lat: number
+    lon: number
+  }
+}
+
+/** Wikipedia图片信息 */
+export interface WikipediaImage {
+  source: string
+  width: number
+  height: number
+  description?: string
 }
 
 /** 相关图片 */
 export interface RelatedImage {
   url: string
+  imageUrl?: string
   thumbnail?: string
   caption?: string
+  source?: string
+  title?: string
+  description?: string
+  width?: number
+  height?: number
 }
 
 /** 增强推荐信息 */
 export interface EnhancedRecommendation {
   name: string
+  type?: string
   category?: string
   description?: string
   distance?: number
   imageUrl?: string
   images?: RelatedImage[]
+  rating?: number
   placesRating?: number
+  placesReviews?: number
+  recommendationScore?: number
+  scoreFactors?: {
+    distanceScore: number
+    popularityScore?: number
+    ratingScore: number
+    relevanceScore: number
+  }
 }
 
 /** 视觉识别元数据 */
@@ -165,7 +214,12 @@ export interface VisionMetadata {
 
 /** 处理状态 */
 export interface ProcessingStatus {
-  success: boolean
+  success?: boolean
   errorMessage?: string
   warnings?: string[]
+  googleVisionSuccess: boolean
+  googlePlacesSuccess: boolean
+  localDatabaseSuccess: boolean
+  wikipediaSuccess: boolean
+  processingTime: number
 }

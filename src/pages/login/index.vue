@@ -6,7 +6,6 @@ import { Lock, User } from "@element-plus/icons-vue"
 import { useSettingsStore } from "@/pinia/stores/settings"
 import { useUserStore } from "@/pinia/stores/user"
 import { getCaptchaApi, loginApi } from "./apis"
-import { encryptPassword } from "@@/utils/crypto"
 import Owl from "./components/Owl.vue"
 import { useFocus } from "./composables/useFocus"
 
@@ -60,7 +59,7 @@ function handleLogin() {
     // 加密密码后进行登录
     const encryptedLoginData = {
       ...loginFormData,
-      password:loginFormData.password
+      password: loginFormData.password
     }
 
     loginApi(encryptedLoginData).then(async (res) => {

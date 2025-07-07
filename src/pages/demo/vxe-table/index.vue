@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { TableData } from "@@/apis/tables/type"
+import type { ElMessageBoxOptions } from "element-plus"
 import type {
   VxeFormInstance,
   VxeFormProps,
@@ -12,7 +13,6 @@ import type { IResponse } from "@/common/apis/type"
 import { deleteTableDataApi, getTableDataApi } from "@@/apis/tables"
 import { RoleColumnSlots } from "./tsx/RoleColumnSlots"
 import { StatusColumnSlots } from "./tsx/StatusColumnSlots"
-import { ElMessageBoxOptions } from "element-plus"
 
 defineOptions({
   // 命名当前组件

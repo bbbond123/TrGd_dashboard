@@ -1,21 +1,19 @@
 <script lang="ts" setup>
-import Notify from "@@/components/Notify/index.vue"
+import type { User } from "@@/apis/users/type"
+import type { FormInstance, FormRules } from "element-plus"
+import { getCurrentUserApi, updateUserApi } from "@@/apis/users"
 import Screenfull from "@@/components/Screenfull/index.vue"
-import SearchMenu from "@@/components/SearchMenu/index.vue"
 import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
 import { useDevice } from "@@/composables/useDevice"
 import { useLayoutMode } from "@@/composables/useLayoutMode"
+import { checkPasswordStrength } from "@@/utils/crypto"
+import { formatDateTime } from "@@/utils/datetime"
 import { UserFilled } from "@element-plus/icons-vue"
+import { ElMessage } from "element-plus"
 import { useAppStore } from "@/pinia/stores/app"
 import { useSettingsStore } from "@/pinia/stores/settings"
 import { useUserStore } from "@/pinia/stores/user"
-import { encryptPassword, checkPasswordStrength } from "@@/utils/crypto"
-import { getCurrentUserApi, updateUserApi } from "@@/apis/users"
-import type { User } from "@@/apis/users/type"
-import type { FormInstance, FormRules } from "element-plus"
-import { ElMessage } from "element-plus"
 import { Breadcrumb, Hamburger, Sidebar } from "../index"
-import { formatDateTime } from "@@/utils/datetime"
 
 const { isMobile } = useDevice()
 const { isTop } = useLayoutMode()
@@ -50,15 +48,15 @@ const userInfoRules: FormRules = {
     { type: "email", message: "请输入正确的邮箱格式", trigger: "blur" }
   ],
   password: [
-     {
+    {
       validator: (rule, value, callback) => {
-        if(!value){
+        if (!value) {
           callback()
         }
 
-       if (value && value.length < 8) {
+        if (value && value.length < 8) {
           callback(new Error("密码长度不能少于8位"))
-        } else if (value && checkPasswordStrength(value) === 'weak') {
+        } else if (value && checkPasswordStrength(value) === "weak") {
           callback(new Error("密码强度太低，请包含大小写字母、数字和特殊字符"))
         } else {
           callback()
@@ -151,7 +149,6 @@ function cancelEdit() {
   userInfoDialogVisible.value = false
   userInfoFormRef.value?.clearValidate()
 }
-
 </script>
 
 <template>
@@ -268,26 +265,40 @@ function cancelEdit() {
         </el-form-item>
 
         <el-form-item label="注册方式">
-          <el-tag v-if="userInfoForm.provider === 'email'" type="info">邮箱注册</el-tag>
-          <el-tag v-else-if="userInfoForm.provider === 'google'" type="success">Google登录</el-tag>
-          <el-tag v-else-if="userInfoForm.provider === 'apple'" type="warning">Apple登录</el-tag>
-          <el-tag v-else type="info">{{ userInfoForm.provider || '未知' }}</el-tag>
+          <el-tag v-if="userInfoForm.provider === 'email'" type="info">
+            邮箱注册
+          </el-tag>
+          <el-tag v-else-if="userInfoForm.provider === 'google'" type="success">
+            Google登录
+          </el-tag>
+          <el-tag v-else-if="userInfoForm.provider === 'apple'" type="warning">
+            Apple登录
+          </el-tag>
+          <el-tag v-else type="info">
+            {{ userInfoForm.provider || '未知' }}
+          </el-tag>
         </el-form-item>
 
         <el-form-item label="状态">
           <el-tag
-            :type="userInfoForm.status === 'active' ? 'success' :
-                   userInfoForm.status === 'pending' ? 'warning' : 'danger'"
+            :type="userInfoForm.status === 'active' ? 'success'
+              : userInfoForm.status === 'pending' ? 'warning' : 'danger'"
           >
-            {{ userInfoForm.status === 'active' ? '正常' :
-               userInfoForm.status === 'pending' ? '待激活' : '已禁用' }}
+            {{ userInfoForm.status === 'active' ? '正常'
+              : userInfoForm.status === 'pending' ? '待激活' : '已禁用' }}
           </el-tag>
         </el-form-item>
 
         <el-form-item label="角色">
-          <el-tag v-if="userInfoForm.role === 'admin'" type="danger">管理员</el-tag>
-          <el-tag v-else-if="userInfoForm.role === 'user'" type="primary">用户</el-tag>
-          <el-tag v-else type="info">{{ userInfoForm.role || '未知' }}</el-tag>
+          <el-tag v-if="userInfoForm.role === 'admin'" type="danger">
+            管理员
+          </el-tag>
+          <el-tag v-else-if="userInfoForm.role === 'user'" type="primary">
+            用户
+          </el-tag>
+          <el-tag v-else type="info">
+            {{ userInfoForm.role || '未知' }}
+          </el-tag>
         </el-form-item>
 
         <el-form-item label="创建时间">
@@ -297,7 +308,9 @@ function cancelEdit() {
 
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="cancelEdit">取消</el-button>
+          <el-button @click="cancelEdit">
+            取消
+          </el-button>
           <el-button
             type="primary"
             @click="saveUserInfo"
@@ -371,5 +384,4 @@ function cancelEdit() {
     }
   }
 }
-
 </style>

@@ -22,7 +22,7 @@ export const useUserStore = defineStore("user", () => {
     token.value = value
   }
 
-  const setUsername = (value:string) => {
+  const setUsername = (value: string) => {
     username.value = value
   }
 
@@ -48,7 +48,7 @@ export const useUserStore = defineStore("user", () => {
       username.value = res.data.name || res.data.email || ""
       userEmail.value = res.data.email || ""
       userRole.value = res.data.role || "user"
-      
+
       // 基于角色设置权限数组，防止路由守卫逻辑进入无限循环
       if (res.data.role === "admin") {
         roles.value = ["admin"]

@@ -51,8 +51,8 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: Layouts,
     redirect: "/dashboard",
     meta: {
-      svgIcon: 'dashboard',
-      title: '首页'
+      svgIcon: "dashboard",
+      title: "首页"
     },
     children: [
       {
@@ -162,7 +162,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: {
           title: "Swagger API docs"
         }
-      },
+      }
       // {
       //   path: "https://juejin.cn/column/7207659644487139387",
       //   component: () => {},
@@ -173,7 +173,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       // }
     ]
   },
-   {
+  {
     path: "/demo",
     component: Layouts,
     redirect: "/demo/unocss",
@@ -265,7 +265,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         ]
       }
     ]
-  },
+  }
 ]
 
 /**

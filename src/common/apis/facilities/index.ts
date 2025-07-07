@@ -1,5 +1,5 @@
 import type { IBaseResponse, IResponse } from "../type"
-import type { Facility, FacilityListRequest, CreateFacilityRequest, UpdateFacilityRequest, NearbyFacilitiesRequest } from "./type"
+import type { CreateFacilityRequest, Facility, FacilityListRequest, NearbyFacilitiesRequest, UpdateFacilityRequest } from "./type"
 import { request } from "@/http/axios"
 
 /** 获取设施列表 */

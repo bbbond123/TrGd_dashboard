@@ -2,11 +2,11 @@
 import type { User, UserReqCreate, UserReqEdit } from "@@/apis/users/type"
 import type { FormInstance, FormRules } from "element-plus"
 import * as UserApi from "@@/apis/users"
+import { checkPasswordStrength } from "@@/utils/crypto"
 import { formatDateTime } from "@@/utils/datetime"
-import { encryptPassword, checkPasswordStrength } from "@@/utils/crypto"
-import { useUserStore } from "@/pinia/stores/user"
 import { ElMessage } from "element-plus"
 import { computed, reactive, ref, watch } from "vue"
+import { useUserStore } from "@/pinia/stores/user"
 
 defineOptions({
   name: "UserDialog"
@@ -29,7 +29,7 @@ interface Emits {
 
 const loading = ref<boolean>(false)
 const formRef = ref<FormInstance>()
-const passwordStrength = ref<'weak' | 'medium' | 'strong'>('weak')
+const passwordStrength = ref<"weak" | "medium" | "strong">("weak")
 const userStore = useUserStore()
 
 // 弹窗显示状态
@@ -57,17 +57,17 @@ const canEditRole = computed(() => {
 const canEditUser = computed(() => {
   // 管理员可以编辑所有用户
   if (userStore.isAdmin) return true
-  
+
   // 普通用户只能编辑自己
   if (props.dialogType === "edit" && props.userData.email) {
     return userStore.userEmail === props.userData.email
   }
-  
+
   // 创建用户时，只有管理员可以创建
   if (props.dialogType === "create") {
     return userStore.isAdmin
   }
-  
+
   return false
 })
 
@@ -113,7 +113,7 @@ const formRules: FormRules = {
           callback(new Error("请输入密码"))
         } else if (value && value.length < 8) {
           callback(new Error("密码长度不能少于8位"))
-        } else if (value && checkPasswordStrength(value) === 'weak') {
+        } else if (value && checkPasswordStrength(value) === "weak") {
           callback(new Error("密码强度太低，请包含大小写字母、数字和特殊字符"))
         } else {
           callback()
@@ -146,7 +146,7 @@ watch(
     if (newPassword) {
       passwordStrength.value = checkPasswordStrength(newPassword)
     } else {
-      passwordStrength.value = 'weak'
+      passwordStrength.value = "weak"
     }
   }
 )
@@ -350,9 +350,15 @@ async function handleEdit() {
       <el-row :gutter="20" v-if="!canEditRole && formData.role">
         <el-col :span="12">
           <el-form-item label="角色">
-            <el-tag v-if="formData.role === 'admin'" type="danger">管理员</el-tag>
-            <el-tag v-else-if="formData.role === 'user'" type="primary">用户</el-tag>
-            <el-tag v-else type="info">{{ formData.role }}</el-tag>
+            <el-tag v-if="formData.role === 'admin'" type="danger">
+              管理员
+            </el-tag>
+            <el-tag v-else-if="formData.role === 'user'" type="primary">
+              用户
+            </el-tag>
+            <el-tag v-else type="info">
+              {{ formData.role }}
+            </el-tag>
           </el-form-item>
         </el-col>
       </el-row>
@@ -391,25 +397,25 @@ async function handleEdit() {
             clearable
             style="max-width: 200px;"
           />
-          <el-alert type="info" v-if="dialogType !== 'create'" title="留空则不修改"></el-alert>
+          <el-alert type="info" v-if="dialogType !== 'create'" title="留空则不修改" />
           <!-- 密码强度指示器 -->
           <div v-if="formData.password" class="password-strength-indicator">
             <div class="strength-bar">
               <div
                 class="strength-fill"
                 :class="{
-                  'weak': passwordStrength === 'weak',
-                  'medium': passwordStrength === 'medium',
-                  'strong': passwordStrength === 'strong'
+                  weak: passwordStrength === 'weak',
+                  medium: passwordStrength === 'medium',
+                  strong: passwordStrength === 'strong',
                 }"
               />
             </div>
             <span
               class="strength-text"
               :class="{
-                'weak': passwordStrength === 'weak',
-                'medium': passwordStrength === 'medium',
-                'strong': passwordStrength === 'strong'
+                weak: passwordStrength === 'weak',
+                medium: passwordStrength === 'medium',
+                strong: passwordStrength === 'strong',
               }"
             >
               {{ passwordStrength === 'weak' ? '弱' : passwordStrength === 'medium' ? '中' : '强' }}

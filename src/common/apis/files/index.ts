@@ -1,5 +1,5 @@
 import type { IBaseResponse, IResponse } from "../type"
-import type { FileUploadResponse, FileListRequest, FileDetail, EnhancedVisionResult } from "./type"
+import type { EnhancedVisionResult, FileDetail, FileListRequest, FileUploadResponse } from "./type"
 import { request } from "@/http/axios"
 
 /** 文件上传 */
@@ -61,7 +61,7 @@ export function visionAnalyzeApi(file: File, options?: {
 }) {
   const formData = new FormData()
   formData.append("image", file)
-  
+
   if (options?.latitude) {
     formData.append("latitude", options.latitude.toString())
   }
