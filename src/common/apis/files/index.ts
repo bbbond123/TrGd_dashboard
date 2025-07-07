@@ -1,5 +1,5 @@
 import type { IBaseResponse, IResponse } from "../type"
-import type { FileUploadResponse, FileListRequest, FileDetail } from "./type"
+import type { FileUploadResponse, FileListRequest, FileDetail, EnhancedVisionResult } from "./type"
 import { request } from "@/http/axios"
 
 /** 文件上传 */
@@ -52,14 +52,33 @@ export function deleteFileApi(fileId: number) {
 }
 
 /** 图片视觉分析 */
-export function visionAnalyzeApi(file: File, userId?: number) {
+export function visionAnalyzeApi(file: File, options?: {
+  latitude?: number
+  longitude?: number
+  enablePlaces?: boolean
+  enableWikipedia?: boolean
+  enableCache?: boolean
+}) {
   const formData = new FormData()
   formData.append("image", file)
-  if (userId) {
-    formData.append("user_id", userId.toString())
+  
+  if (options?.latitude) {
+    formData.append("latitude", options.latitude.toString())
+  }
+  if (options?.longitude) {
+    formData.append("longitude", options.longitude.toString())
+  }
+  if (options?.enablePlaces !== undefined) {
+    formData.append("enable_places", options.enablePlaces.toString())
+  }
+  if (options?.enableWikipedia !== undefined) {
+    formData.append("enable_wikipedia", options.enableWikipedia.toString())
+  }
+  if (options?.enableCache !== undefined) {
+    formData.append("enable_cache", options.enableCache.toString())
   }
 
-  return request<IBaseResponse<any>>({
+  return request<IBaseResponse<EnhancedVisionResult>>({
     url: "/files/vision-analyze-enhanced",
     method: "post",
     data: formData,
