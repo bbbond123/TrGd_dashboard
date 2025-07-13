@@ -14,6 +14,19 @@ import svgLoader from "vite-svg-loader"
 // Configuring Vite: https://cn.vite.dev/config
 export default defineConfig(({ mode }) => {
   const { VITE_PUBLIC_PATH } = loadEnv(mode, process.cwd(), "") as ImportMetaEnv
+
+  // 根据模式设置不同的代理目标
+  const getProxyTarget = () => {
+    switch (mode) {
+      case 'live':
+        return 'https://www.ifoodme.com'
+      case 'staging':
+        return 'https://staging.ifoodme.com' // 如果有staging环境
+      default:
+        return 'http://localhost:3000'
+    }
+  }
+
   return {
     // 开发或打包构建时用到的公共基础路径
     base: "/admin/",
@@ -38,7 +51,7 @@ export default defineConfig(({ mode }) => {
       // 反向代理
       proxy: {
         "/api": {
-          target: "http://localhost:3000",
+          target: getProxyTarget(),
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, "/api")
         }
