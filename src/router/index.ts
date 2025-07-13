@@ -149,6 +149,26 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: "/languages",
+    component: Layouts,
+    name: "Languages",
+    meta: {
+      title: "语言管理",
+      elIcon: "Operation"
+    },
+    children: [
+      {
+        path: "",
+        component: () => import("@/pages/languages/index.vue"),
+        name: "LanguageList",
+        meta: {
+          title: "语言列表",
+          keepAlive: true
+        }
+      }
+    ]
+  },
+  {
     path: "/link",
     meta: {
       title: "文档链接",
