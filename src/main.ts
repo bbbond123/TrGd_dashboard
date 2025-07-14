@@ -13,6 +13,10 @@ import "vxe-table/lib/style.css"
 import "@@/assets/styles/index.scss"
 import "virtual:uno.css"
 
+
+// 引入 mock 数据（仅在开发环境）
+import './mock'
+
 // 创建应用实例
 const app = createApp(App)
 
