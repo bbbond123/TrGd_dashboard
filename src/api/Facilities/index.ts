@@ -37,9 +37,34 @@ const dataKey_0_0_0_7 = undefined as any
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostFacilitiesRequest {}
+export interface ApiPostFacilitiesRequest {
+  /**
+   * 描述
+   */
+  description?: string
+  /**
+   * 设施名
+   */
+  facility_name: string
+  /**
+   * 纬度
+   */
+  latitude: number
+  /**
+   * 所在地
+   */
+  location: string
+  /**
+   * 经度
+   */
+  longitude: number
+  /**
+   * 相关人物ID（可选）
+   */
+  person_id?: number
+}
 
 /**
  * 接口 [新建设施↗](https://yapi.ifoodme.com/project/11/interface/api/164) 的 **返回类型**
@@ -47,9 +72,61 @@ export interface ApiPostFacilitiesRequest {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostFacilitiesResponse {}
+export interface ApiPostFacilitiesResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    /**
+     * 设施描述
+     */
+    description?: string
+    /**
+     * 设施ID
+     */
+    facility_id?: number
+    /**
+     * 设施名
+     */
+    facility_name?: string
+    /**
+     * 纬度
+     */
+    latitude?: number
+    /**
+     * 所在地
+     */
+    location?: string
+    /**
+     * 经度
+     */
+    longitude?: number
+    /**
+     * 相关人物ID（可选）
+     */
+    person_id?: number
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建设施↗](https://yapi.ifoodme.com/project/11/interface/api/164) 的 **请求配置的类型**
@@ -57,7 +134,7 @@ export interface ApiPostFacilitiesResponse {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostFacilitiesRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +145,7 @@ type ApiPostFacilitiesRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +155,7 @@ type ApiPostFacilitiesRequestConfig = Readonly<
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostFacilitiesRequestConfig: ApiPostFacilitiesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_7,
@@ -92,7 +169,7 @@ const apiPostFacilitiesRequestConfig: ApiPostFacilitiesRequestConfig = /*#__PURE
   dataKey: dataKey_0_0_0_7,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostFacilities',
@@ -106,10 +183,10 @@ const apiPostFacilitiesRequestConfig: ApiPostFacilitiesRequestConfig = /*#__PURE
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostFacilities = /*#__PURE__*/ (
-  requestData?: ApiPostFacilitiesRequest,
+  requestData: ApiPostFacilitiesRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostFacilitiesResponse>(prepare(apiPostFacilitiesRequestConfig, requestData), ...args)
@@ -123,9 +200,22 @@ apiPostFacilities.requestConfig = apiPostFacilitiesRequestConfig
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostFacilitiesListRequest {}
+export interface ApiPostFacilitiesListRequest {
+  /**
+   * 关键字（设施名模糊搜索）
+   */
+  keyword?: string
+  /**
+   * 页码
+   */
+  page: number
+  /**
+   * 每页数量
+   */
+  pageSize: number
+}
 
 /**
  * 接口 [获取设施列表↗](https://yapi.ifoodme.com/project/11/interface/api/170) 的 **返回类型**
@@ -133,9 +223,73 @@ export interface ApiPostFacilitiesListRequest {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostFacilitiesListResponse {}
+export interface ApiPostFacilitiesListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    created_at?: string
+    /**
+     * 设施描述
+     */
+    description?: string
+    /**
+     * 设施ID
+     */
+    facility_id?: number
+    /**
+     * 设施名
+     */
+    facility_name?: string
+    /**
+     * 纬度
+     */
+    latitude?: number
+    /**
+     * 所在地
+     */
+    location?: string
+    /**
+     * 经度
+     */
+    longitude?: number
+    /**
+     * 相关人物ID（可选）
+     */
+    person_id?: number
+    updated_at?: string
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取设施列表↗](https://yapi.ifoodme.com/project/11/interface/api/170) 的 **请求配置的类型**
@@ -143,7 +297,7 @@ export interface ApiPostFacilitiesListResponse {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostFacilitiesListRequestConfig = Readonly<
   RequestConfig<
@@ -154,7 +308,7 @@ type ApiPostFacilitiesListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -164,7 +318,7 @@ type ApiPostFacilitiesListRequestConfig = Readonly<
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostFacilitiesListRequestConfig: ApiPostFacilitiesListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_7,
@@ -178,7 +332,7 @@ const apiPostFacilitiesListRequestConfig: ApiPostFacilitiesListRequestConfig = /
   dataKey: dataKey_0_0_0_7,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostFacilitiesList',
@@ -192,10 +346,10 @@ const apiPostFacilitiesListRequestConfig: ApiPostFacilitiesListRequestConfig = /
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostFacilitiesList = /*#__PURE__*/ (
-  requestData?: ApiPostFacilitiesListRequest,
+  requestData: ApiPostFacilitiesListRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostFacilitiesListResponse>(prepare(apiPostFacilitiesListRequestConfig, requestData), ...args)
@@ -209,9 +363,30 @@ apiPostFacilitiesList.requestConfig = apiPostFacilitiesListRequestConfig
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostFacilitiesNearbyRequest {}
+export interface ApiPostFacilitiesNearbyRequest {
+  /**
+   * 搜索中心纬度
+   */
+  latitude: number
+  /**
+   * 搜索中心经度
+   */
+  longitude: number
+  /**
+   * 页码
+   */
+  page: number
+  /**
+   * 每页数量
+   */
+  pageSize: number
+  /**
+   * 搜索半径(米)
+   */
+  radius: number
+}
 
 /**
  * 接口 [搜索附近设施↗](https://yapi.ifoodme.com/project/11/interface/api/176) 的 **返回类型**
@@ -219,9 +394,73 @@ export interface ApiPostFacilitiesNearbyRequest {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostFacilitiesNearbyResponse {}
+export interface ApiPostFacilitiesNearbyResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    created_at?: string
+    /**
+     * 设施描述
+     */
+    description?: string
+    /**
+     * 设施ID
+     */
+    facility_id?: number
+    /**
+     * 设施名
+     */
+    facility_name?: string
+    /**
+     * 纬度
+     */
+    latitude?: number
+    /**
+     * 所在地
+     */
+    location?: string
+    /**
+     * 经度
+     */
+    longitude?: number
+    /**
+     * 相关人物ID（可选）
+     */
+    person_id?: number
+    updated_at?: string
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [搜索附近设施↗](https://yapi.ifoodme.com/project/11/interface/api/176) 的 **请求配置的类型**
@@ -229,7 +468,7 @@ export interface ApiPostFacilitiesNearbyResponse {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostFacilitiesNearbyRequestConfig = Readonly<
   RequestConfig<
@@ -240,7 +479,7 @@ type ApiPostFacilitiesNearbyRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -250,7 +489,7 @@ type ApiPostFacilitiesNearbyRequestConfig = Readonly<
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostFacilitiesNearbyRequestConfig: ApiPostFacilitiesNearbyRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_7,
@@ -264,7 +503,7 @@ const apiPostFacilitiesNearbyRequestConfig: ApiPostFacilitiesNearbyRequestConfig
   dataKey: dataKey_0_0_0_7,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostFacilitiesNearby',
@@ -278,10 +517,10 @@ const apiPostFacilitiesNearbyRequestConfig: ApiPostFacilitiesNearbyRequestConfig
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `POST /api/facilities/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostFacilitiesNearby = /*#__PURE__*/ (
-  requestData?: ApiPostFacilitiesNearbyRequest,
+  requestData: ApiPostFacilitiesNearbyRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostFacilitiesNearbyResponse>(prepare(apiPostFacilitiesNearbyRequestConfig, requestData), ...args)
@@ -295,7 +534,7 @@ apiPostFacilitiesNearby.requestConfig = apiPostFacilitiesNearbyRequestConfig
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `GET /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetFacilitiesIdRequest {
   /**
@@ -310,9 +549,61 @@ export interface ApiGetFacilitiesIdRequest {
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `GET /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetFacilitiesIdResponse {}
+export interface ApiGetFacilitiesIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    /**
+     * 设施描述
+     */
+    description?: string
+    /**
+     * 设施ID
+     */
+    facility_id?: number
+    /**
+     * 设施名
+     */
+    facility_name?: string
+    /**
+     * 纬度
+     */
+    latitude?: number
+    /**
+     * 所在地
+     */
+    location?: string
+    /**
+     * 经度
+     */
+    longitude?: number
+    /**
+     * 相关人物ID（可选）
+     */
+    person_id?: number
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取单个设施↗](https://yapi.ifoodme.com/project/11/interface/api/182) 的 **请求配置的类型**
@@ -320,7 +611,7 @@ export interface ApiGetFacilitiesIdResponse {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `GET /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetFacilitiesIdRequestConfig = Readonly<
   RequestConfig<
@@ -341,7 +632,7 @@ type ApiGetFacilitiesIdRequestConfig = Readonly<
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `GET /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetFacilitiesIdRequestConfig: ApiGetFacilitiesIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_7,
@@ -369,7 +660,7 @@ const apiGetFacilitiesIdRequestConfig: ApiGetFacilitiesIdRequestConfig = /*#__PU
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `GET /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetFacilitiesId = /*#__PURE__*/ (
   requestData: ApiGetFacilitiesIdRequest,
@@ -386,14 +677,41 @@ apiGetFacilitiesId.requestConfig = apiGetFacilitiesIdRequestConfig
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `PUT /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiPutFacilitiesIdRequest {
+  /**
+   * 描述
+   */
+  description?: string
+  /**
+   * 设施ID
+   */
+  facility_id: number
+  /**
+   * 设施名
+   */
+  facility_name: string
+  /**
+   * 纬度
+   */
+  latitude: number
+  /**
+   * 所在地
+   */
+  location: string
+  /**
+   * 经度
+   */
+  longitude: number
+  /**
+   * 相关人物ID（可选）
+   */
+  person_id?: number
   /**
    * 设施ID
    */
   id: string
-  [k: string]: unknown
 }
 
 /**
@@ -402,9 +720,61 @@ export interface ApiPutFacilitiesIdRequest {
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `PUT /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutFacilitiesIdResponse {}
+export interface ApiPutFacilitiesIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    /**
+     * 设施描述
+     */
+    description?: string
+    /**
+     * 设施ID
+     */
+    facility_id?: number
+    /**
+     * 设施名
+     */
+    facility_name?: string
+    /**
+     * 纬度
+     */
+    latitude?: number
+    /**
+     * 所在地
+     */
+    location?: string
+    /**
+     * 经度
+     */
+    longitude?: number
+    /**
+     * 相关人物ID（可选）
+     */
+    person_id?: number
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新设施↗](https://yapi.ifoodme.com/project/11/interface/api/188) 的 **请求配置的类型**
@@ -412,7 +782,7 @@ export interface ApiPutFacilitiesIdResponse {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `PUT /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutFacilitiesIdRequestConfig = Readonly<
   RequestConfig<
@@ -433,7 +803,7 @@ type ApiPutFacilitiesIdRequestConfig = Readonly<
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `PUT /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutFacilitiesIdRequestConfig: ApiPutFacilitiesIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_7,
@@ -461,7 +831,7 @@ const apiPutFacilitiesIdRequestConfig: ApiPutFacilitiesIdRequestConfig = /*#__PU
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `PUT /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPutFacilitiesId = /*#__PURE__*/ (
   requestData: ApiPutFacilitiesIdRequest,
@@ -478,7 +848,7 @@ apiPutFacilitiesId.requestConfig = apiPutFacilitiesIdRequestConfig
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `DELETE /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteFacilitiesIdRequest {
   /**
@@ -493,9 +863,26 @@ export interface ApiDeleteFacilitiesIdRequest {
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `DELETE /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteFacilitiesIdResponse {}
+export interface ApiDeleteFacilitiesIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除设施↗](https://yapi.ifoodme.com/project/11/interface/api/194) 的 **请求配置的类型**
@@ -503,7 +890,7 @@ export interface ApiDeleteFacilitiesIdResponse {}
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `DELETE /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteFacilitiesIdRequestConfig = Readonly<
   RequestConfig<
@@ -524,7 +911,7 @@ type ApiDeleteFacilitiesIdRequestConfig = Readonly<
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `DELETE /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteFacilitiesIdRequestConfig: ApiDeleteFacilitiesIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_7,
@@ -552,7 +939,7 @@ const apiDeleteFacilitiesIdRequestConfig: ApiDeleteFacilitiesIdRequestConfig = /
  * @分类 [Facilities↗](https://yapi.ifoodme.com/project/11/interface/api/cat_41)
  * @标签 `Facilities`
  * @请求头 `DELETE /api/facilities/{id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteFacilitiesId = /*#__PURE__*/ (
   requestData: ApiDeleteFacilitiesIdRequest,

@@ -37,9 +37,18 @@ const dataKey_0_0_0_12 = undefined as any
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `PUT /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutNoticesRequest {}
+export interface ApiPutNoticesRequest {
+  content?: string
+  is_active?: boolean
+  is_read?: boolean
+  notice_id: number
+  notice_type?: boolean
+  published_at?: string
+  title?: string
+  user_id?: number
+}
 
 /**
  * 接口 [更新通知↗](https://yapi.ifoodme.com/project/11/interface/api/338) 的 **返回类型**
@@ -47,9 +56,26 @@ export interface ApiPutNoticesRequest {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `PUT /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutNoticesResponse {}
+export interface ApiPutNoticesResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新通知↗](https://yapi.ifoodme.com/project/11/interface/api/338) 的 **请求配置的类型**
@@ -57,7 +83,7 @@ export interface ApiPutNoticesResponse {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `PUT /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutNoticesRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +94,7 @@ type ApiPutNoticesRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +104,7 @@ type ApiPutNoticesRequestConfig = Readonly<
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `PUT /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutNoticesRequestConfig: ApiPutNoticesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_12,
@@ -92,7 +118,7 @@ const apiPutNoticesRequestConfig: ApiPutNoticesRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_12,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutNotices',
@@ -106,9 +132,9 @@ const apiPutNoticesRequestConfig: ApiPutNoticesRequestConfig = /*#__PURE__*/ {
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `PUT /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPutNotices = /*#__PURE__*/ (requestData?: ApiPutNoticesRequest, ...args: UserRequestRestArgs) => {
+export const apiPutNotices = /*#__PURE__*/ (requestData: ApiPutNoticesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutNoticesResponse>(prepare(apiPutNoticesRequestConfig, requestData), ...args)
 }
 
@@ -120,9 +146,17 @@ apiPutNotices.requestConfig = apiPutNoticesRequestConfig
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostNoticesRequest {}
+export interface ApiPostNoticesRequest {
+  content: string
+  is_active: boolean
+  is_read?: boolean
+  notice_type: boolean
+  published_at: string
+  title: string
+  user_id?: number
+}
 
 /**
  * 接口 [新建通知↗](https://yapi.ifoodme.com/project/11/interface/api/344) 的 **返回类型**
@@ -130,9 +164,41 @@ export interface ApiPostNoticesRequest {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostNoticesResponse {}
+export interface ApiPostNoticesResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    content?: string
+    created_at?: string
+    is_active?: boolean
+    is_read?: boolean
+    notice_id?: number
+    notice_type?: boolean
+    published_at?: string
+    title?: string
+    updated_at?: string
+    user_id?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建通知↗](https://yapi.ifoodme.com/project/11/interface/api/344) 的 **请求配置的类型**
@@ -140,7 +206,7 @@ export interface ApiPostNoticesResponse {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostNoticesRequestConfig = Readonly<
   RequestConfig<
@@ -151,7 +217,7 @@ type ApiPostNoticesRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -161,7 +227,7 @@ type ApiPostNoticesRequestConfig = Readonly<
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostNoticesRequestConfig: ApiPostNoticesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_12,
@@ -175,7 +241,7 @@ const apiPostNoticesRequestConfig: ApiPostNoticesRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_12,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostNotices',
@@ -189,9 +255,9 @@ const apiPostNoticesRequestConfig: ApiPostNoticesRequestConfig = /*#__PURE__*/ {
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostNotices = /*#__PURE__*/ (requestData?: ApiPostNoticesRequest, ...args: UserRequestRestArgs) => {
+export const apiPostNotices = /*#__PURE__*/ (requestData: ApiPostNoticesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostNoticesResponse>(prepare(apiPostNoticesRequestConfig, requestData), ...args)
 }
 
@@ -203,9 +269,13 @@ apiPostNotices.requestConfig = apiPostNoticesRequestConfig
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostNoticesListRequest {}
+export interface ApiPostNoticesListRequest {
+  keyword?: string
+  page: number
+  pageSize: number
+}
 
 /**
  * 接口 [获取通知列表↗](https://yapi.ifoodme.com/project/11/interface/api/350) 的 **返回类型**
@@ -213,9 +283,53 @@ export interface ApiPostNoticesListRequest {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostNoticesListResponse {}
+export interface ApiPostNoticesListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    content?: string
+    created_at?: string
+    is_active?: boolean
+    is_read?: boolean
+    notice_id?: number
+    notice_type?: boolean
+    published_at?: string
+    title?: string
+    updated_at?: string
+    user_id?: number
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取通知列表↗](https://yapi.ifoodme.com/project/11/interface/api/350) 的 **请求配置的类型**
@@ -223,7 +337,7 @@ export interface ApiPostNoticesListResponse {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostNoticesListRequestConfig = Readonly<
   RequestConfig<
@@ -234,7 +348,7 @@ type ApiPostNoticesListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -244,7 +358,7 @@ type ApiPostNoticesListRequestConfig = Readonly<
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostNoticesListRequestConfig: ApiPostNoticesListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_12,
@@ -258,7 +372,7 @@ const apiPostNoticesListRequestConfig: ApiPostNoticesListRequestConfig = /*#__PU
   dataKey: dataKey_0_0_0_12,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostNoticesList',
@@ -272,10 +386,10 @@ const apiPostNoticesListRequestConfig: ApiPostNoticesListRequestConfig = /*#__PU
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `POST /api/notices/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostNoticesList = /*#__PURE__*/ (
-  requestData?: ApiPostNoticesListRequest,
+  requestData: ApiPostNoticesListRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostNoticesListResponse>(prepare(apiPostNoticesListRequestConfig, requestData), ...args)
@@ -289,7 +403,7 @@ apiPostNoticesList.requestConfig = apiPostNoticesListRequestConfig
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `GET /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetNoticesNoticeIdRequest {
   /**
@@ -304,9 +418,41 @@ export interface ApiGetNoticesNoticeIdRequest {
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `GET /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetNoticesNoticeIdResponse {}
+export interface ApiGetNoticesNoticeIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    content?: string
+    created_at?: string
+    is_active?: boolean
+    is_read?: boolean
+    notice_id?: number
+    notice_type?: boolean
+    published_at?: string
+    title?: string
+    updated_at?: string
+    user_id?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取通知↗](https://yapi.ifoodme.com/project/11/interface/api/356) 的 **请求配置的类型**
@@ -314,7 +460,7 @@ export interface ApiGetNoticesNoticeIdResponse {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `GET /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetNoticesNoticeIdRequestConfig = Readonly<
   RequestConfig<
@@ -335,7 +481,7 @@ type ApiGetNoticesNoticeIdRequestConfig = Readonly<
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `GET /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetNoticesNoticeIdRequestConfig: ApiGetNoticesNoticeIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_12,
@@ -363,7 +509,7 @@ const apiGetNoticesNoticeIdRequestConfig: ApiGetNoticesNoticeIdRequestConfig = /
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `GET /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetNoticesNotice_id = /*#__PURE__*/ (
   requestData: ApiGetNoticesNoticeIdRequest,
@@ -380,7 +526,7 @@ apiGetNoticesNotice_id.requestConfig = apiGetNoticesNoticeIdRequestConfig
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `DELETE /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteNoticesNoticeIdRequest {
   /**
@@ -395,9 +541,26 @@ export interface ApiDeleteNoticesNoticeIdRequest {
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `DELETE /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteNoticesNoticeIdResponse {}
+export interface ApiDeleteNoticesNoticeIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除通知↗](https://yapi.ifoodme.com/project/11/interface/api/362) 的 **请求配置的类型**
@@ -405,7 +568,7 @@ export interface ApiDeleteNoticesNoticeIdResponse {}
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `DELETE /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteNoticesNoticeIdRequestConfig = Readonly<
   RequestConfig<
@@ -426,7 +589,7 @@ type ApiDeleteNoticesNoticeIdRequestConfig = Readonly<
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `DELETE /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteNoticesNoticeIdRequestConfig: ApiDeleteNoticesNoticeIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_12,
@@ -454,7 +617,7 @@ const apiDeleteNoticesNoticeIdRequestConfig: ApiDeleteNoticesNoticeIdRequestConf
  * @分类 [Notices↗](https://yapi.ifoodme.com/project/11/interface/api/cat_71)
  * @标签 `Notices`
  * @请求头 `DELETE /api/notices/{notice_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteNoticesNotice_id = /*#__PURE__*/ (
   requestData: ApiDeleteNoticesNoticeIdRequest,

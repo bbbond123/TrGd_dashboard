@@ -37,7 +37,7 @@ const dataKey_0_0_0_4 = undefined as any
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 export interface ApiGetAuthGoogleRequest {
   /**
@@ -52,7 +52,7 @@ export interface ApiGetAuthGoogleRequest {
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 export type ApiGetAuthGoogleResponse = string
 
@@ -62,7 +62,7 @@ export type ApiGetAuthGoogleResponse = string
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 type ApiGetAuthGoogleRequestConfig = Readonly<
   RequestConfig<
@@ -83,7 +83,7 @@ type ApiGetAuthGoogleRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 const apiGetAuthGoogleRequestConfig: ApiGetAuthGoogleRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -111,7 +111,7 @@ const apiGetAuthGoogleRequestConfig: ApiGetAuthGoogleRequestConfig = /*#__PURE__
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 export const apiGetAuthGoogle = /*#__PURE__*/ (requestData: ApiGetAuthGoogleRequest, ...args: UserRequestRestArgs) => {
   return request<ApiGetAuthGoogleResponse>(prepare(apiGetAuthGoogleRequestConfig, requestData), ...args)
@@ -125,9 +125,11 @@ apiGetAuthGoogle.requestConfig = apiGetAuthGoogleRequestConfig
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
-export interface ApiPostAuthGoogleRequest {}
+export interface ApiPostAuthGoogleRequest {
+  id_token: string
+}
 
 /**
  * 接口 [Google社交登录\/注册↗](https://yapi.ifoodme.com/project/11/interface/api/80) 的 **返回类型**
@@ -135,9 +137,63 @@ export interface ApiPostAuthGoogleRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
-export interface ApiPostAuthGoogleResponse {}
+export interface ApiPostAuthGoogleResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    access_token?: string
+    refresh_token?: string
+    user?: {
+      address?: string
+      appleId?: string
+      avatar?: string
+      birth?: string
+      createdAt?: string
+      email?: string
+      gender?: string
+      googleId?: string
+      name?: string
+      nameKana?: string
+      password?: string
+      phoneNumber?: string
+      /**
+       * 提供商: email, google, apple
+       */
+      provider?: string
+      /**
+       * 角色: admin, user
+       */
+      role?: string
+      /**
+       * 状态: active, pending, inactive
+       */
+      status?: string
+      updatedAt?: string
+      userId?: number
+      verifyCode?: string
+      verifyCodeExpire?: string
+    }
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [Google社交登录\/注册↗](https://yapi.ifoodme.com/project/11/interface/api/80) 的 **请求配置的类型**
@@ -145,7 +201,7 @@ export interface ApiPostAuthGoogleResponse {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 type ApiPostAuthGoogleRequestConfig = Readonly<
   RequestConfig<
@@ -156,7 +212,7 @@ type ApiPostAuthGoogleRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -166,7 +222,7 @@ type ApiPostAuthGoogleRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 const apiPostAuthGoogleRequestConfig: ApiPostAuthGoogleRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -180,7 +236,7 @@ const apiPostAuthGoogleRequestConfig: ApiPostAuthGoogleRequestConfig = /*#__PURE
   dataKey: dataKey_0_0_0_4,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostAuthGoogle',
@@ -194,10 +250,10 @@ const apiPostAuthGoogleRequestConfig: ApiPostAuthGoogleRequestConfig = /*#__PURE
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/google`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:57`
  */
 export const apiPostAuthGoogle = /*#__PURE__*/ (
-  requestData?: ApiPostAuthGoogleRequest,
+  requestData: ApiPostAuthGoogleRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostAuthGoogleResponse>(prepare(apiPostAuthGoogleRequestConfig, requestData), ...args)
@@ -211,7 +267,7 @@ apiPostAuthGoogle.requestConfig = apiPostAuthGoogleRequestConfig
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google/callback`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetAuthGoogleCallbackRequest {}
 
@@ -221,7 +277,7 @@ export interface ApiGetAuthGoogleCallbackRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google/callback`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export type ApiGetAuthGoogleCallbackResponse = string
 
@@ -231,7 +287,7 @@ export type ApiGetAuthGoogleCallbackResponse = string
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google/callback`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetAuthGoogleCallbackRequestConfig = Readonly<
   RequestConfig<
@@ -252,7 +308,7 @@ type ApiGetAuthGoogleCallbackRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google/callback`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetAuthGoogleCallbackRequestConfig: ApiGetAuthGoogleCallbackRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -280,7 +336,7 @@ const apiGetAuthGoogleCallbackRequestConfig: ApiGetAuthGoogleCallbackRequestConf
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `GET /api/auth/google/callback`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetAuthGoogleCallback = /*#__PURE__*/ (
   requestData?: ApiGetAuthGoogleCallbackRequest,
@@ -297,9 +353,12 @@ apiGetAuthGoogleCallback.requestConfig = apiGetAuthGoogleCallbackRequestConfig
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/login`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 22:25:04`
  */
-export interface ApiPostAuthLoginRequest {}
+export interface ApiPostAuthLoginRequest {
+  email: string
+  password: string
+}
 
 /**
  * 接口 [登录↗](https://yapi.ifoodme.com/project/11/interface/api/92) 的 **返回类型**
@@ -307,9 +366,69 @@ export interface ApiPostAuthLoginRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/login`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 22:25:04`
  */
-export interface ApiPostAuthLoginResponse {}
+export interface ApiPostAuthLoginResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    /**
+     * access_token 信息111
+     */
+    access_token?: string
+    /**
+     * refresh token 信息222
+     */
+    refresh_token?: string
+    user?: {
+      address?: string
+      appleId?: string
+      avatar?: string
+      birth?: string
+      createdAt?: string
+      email?: string
+      gender?: string
+      googleId?: string
+      name?: string
+      nameKana?: string
+      password?: string
+      phoneNumber?: string
+      /**
+       * 提供商: email, google, apple
+       */
+      provider?: string
+      /**
+       * 角色: admin, user
+       */
+      role?: string
+      /**
+       * 状态: active, pending, inactive
+       */
+      status?: string
+      updatedAt?: string
+      userId?: number
+      verifyCode?: string
+      verifyCodeExpire?: string
+    }
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [登录↗](https://yapi.ifoodme.com/project/11/interface/api/92) 的 **请求配置的类型**
@@ -317,7 +436,7 @@ export interface ApiPostAuthLoginResponse {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/login`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 22:25:04`
  */
 type ApiPostAuthLoginRequestConfig = Readonly<
   RequestConfig<
@@ -328,7 +447,7 @@ type ApiPostAuthLoginRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -338,7 +457,7 @@ type ApiPostAuthLoginRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/login`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 22:25:04`
  */
 const apiPostAuthLoginRequestConfig: ApiPostAuthLoginRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -352,7 +471,7 @@ const apiPostAuthLoginRequestConfig: ApiPostAuthLoginRequestConfig = /*#__PURE__
   dataKey: dataKey_0_0_0_4,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostAuthLogin',
@@ -366,9 +485,9 @@ const apiPostAuthLoginRequestConfig: ApiPostAuthLoginRequestConfig = /*#__PURE__
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/login`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 22:25:04`
  */
-export const apiPostAuthLogin = /*#__PURE__*/ (requestData?: ApiPostAuthLoginRequest, ...args: UserRequestRestArgs) => {
+export const apiPostAuthLogin = /*#__PURE__*/ (requestData: ApiPostAuthLoginRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostAuthLoginResponse>(prepare(apiPostAuthLoginRequestConfig, requestData), ...args)
 }
 
@@ -380,9 +499,11 @@ apiPostAuthLogin.requestConfig = apiPostAuthLoginRequestConfig
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/logout`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthLogoutRequest {}
+export interface ApiPostAuthLogoutRequest {
+  refresh_token: string
+}
 
 /**
  * 接口 [登出↗](https://yapi.ifoodme.com/project/11/interface/api/98) 的 **返回类型**
@@ -390,9 +511,26 @@ export interface ApiPostAuthLogoutRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/logout`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthLogoutResponse {}
+export interface ApiPostAuthLogoutResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [登出↗](https://yapi.ifoodme.com/project/11/interface/api/98) 的 **请求配置的类型**
@@ -400,7 +538,7 @@ export interface ApiPostAuthLogoutResponse {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/logout`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostAuthLogoutRequestConfig = Readonly<
   RequestConfig<
@@ -411,7 +549,7 @@ type ApiPostAuthLogoutRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -421,7 +559,7 @@ type ApiPostAuthLogoutRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/logout`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostAuthLogoutRequestConfig: ApiPostAuthLogoutRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -435,7 +573,7 @@ const apiPostAuthLogoutRequestConfig: ApiPostAuthLogoutRequestConfig = /*#__PURE
   dataKey: dataKey_0_0_0_4,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostAuthLogout',
@@ -449,10 +587,10 @@ const apiPostAuthLogoutRequestConfig: ApiPostAuthLogoutRequestConfig = /*#__PURE
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/logout`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostAuthLogout = /*#__PURE__*/ (
-  requestData?: ApiPostAuthLogoutRequest,
+  requestData: ApiPostAuthLogoutRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostAuthLogoutResponse>(prepare(apiPostAuthLogoutRequestConfig, requestData), ...args)
@@ -466,9 +604,11 @@ apiPostAuthLogout.requestConfig = apiPostAuthLogoutRequestConfig
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/refresh`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthRefreshRequest {}
+export interface ApiPostAuthRefreshRequest {
+  refresh_token: string
+}
 
 /**
  * 接口 [刷新Access Token↗](https://yapi.ifoodme.com/project/11/interface/api/104) 的 **返回类型**
@@ -476,9 +616,33 @@ export interface ApiPostAuthRefreshRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/refresh`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthRefreshResponse {}
+export interface ApiPostAuthRefreshResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    access_token?: string
+    refresh_token?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [刷新Access Token↗](https://yapi.ifoodme.com/project/11/interface/api/104) 的 **请求配置的类型**
@@ -486,7 +650,7 @@ export interface ApiPostAuthRefreshResponse {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/refresh`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostAuthRefreshRequestConfig = Readonly<
   RequestConfig<
@@ -497,7 +661,7 @@ type ApiPostAuthRefreshRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -507,7 +671,7 @@ type ApiPostAuthRefreshRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/refresh`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostAuthRefreshRequestConfig: ApiPostAuthRefreshRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -521,7 +685,7 @@ const apiPostAuthRefreshRequestConfig: ApiPostAuthRefreshRequestConfig = /*#__PU
   dataKey: dataKey_0_0_0_4,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostAuthRefresh',
@@ -535,10 +699,10 @@ const apiPostAuthRefreshRequestConfig: ApiPostAuthRefreshRequestConfig = /*#__PU
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/refresh`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostAuthRefresh = /*#__PURE__*/ (
-  requestData?: ApiPostAuthRefreshRequest,
+  requestData: ApiPostAuthRefreshRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostAuthRefreshResponse>(prepare(apiPostAuthRefreshRequestConfig, requestData), ...args)
@@ -552,9 +716,12 @@ apiPostAuthRefresh.requestConfig = apiPostAuthRefreshRequestConfig
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/register`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthRegisterRequest {}
+export interface ApiPostAuthRegisterRequest {
+  email: string
+  password: string
+}
 
 /**
  * 接口 [用户注册↗](https://yapi.ifoodme.com/project/11/interface/api/110) 的 **返回类型**
@@ -562,9 +729,26 @@ export interface ApiPostAuthRegisterRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/register`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthRegisterResponse {}
+export interface ApiPostAuthRegisterResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [用户注册↗](https://yapi.ifoodme.com/project/11/interface/api/110) 的 **请求配置的类型**
@@ -572,7 +756,7 @@ export interface ApiPostAuthRegisterResponse {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/register`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostAuthRegisterRequestConfig = Readonly<
   RequestConfig<
@@ -583,7 +767,7 @@ type ApiPostAuthRegisterRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -593,7 +777,7 @@ type ApiPostAuthRegisterRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/register`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostAuthRegisterRequestConfig: ApiPostAuthRegisterRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -607,7 +791,7 @@ const apiPostAuthRegisterRequestConfig: ApiPostAuthRegisterRequestConfig = /*#__
   dataKey: dataKey_0_0_0_4,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostAuthRegister',
@@ -621,10 +805,10 @@ const apiPostAuthRegisterRequestConfig: ApiPostAuthRegisterRequestConfig = /*#__
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/register`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostAuthRegister = /*#__PURE__*/ (
-  requestData?: ApiPostAuthRegisterRequest,
+  requestData: ApiPostAuthRegisterRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostAuthRegisterResponse>(prepare(apiPostAuthRegisterRequestConfig, requestData), ...args)
@@ -638,9 +822,11 @@ apiPostAuthRegister.requestConfig = apiPostAuthRegisterRequestConfig
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/resend-verify-code`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthResendVerifyCodeRequest {}
+export interface ApiPostAuthResendVerifyCodeRequest {
+  email: string
+}
 
 /**
  * 接口 [重新发送验证码↗](https://yapi.ifoodme.com/project/11/interface/api/116) 的 **返回类型**
@@ -648,9 +834,26 @@ export interface ApiPostAuthResendVerifyCodeRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/resend-verify-code`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthResendVerifyCodeResponse {}
+export interface ApiPostAuthResendVerifyCodeResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [重新发送验证码↗](https://yapi.ifoodme.com/project/11/interface/api/116) 的 **请求配置的类型**
@@ -658,7 +861,7 @@ export interface ApiPostAuthResendVerifyCodeResponse {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/resend-verify-code`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostAuthResendVerifyCodeRequestConfig = Readonly<
   RequestConfig<
@@ -669,7 +872,7 @@ type ApiPostAuthResendVerifyCodeRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -679,7 +882,7 @@ type ApiPostAuthResendVerifyCodeRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/resend-verify-code`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostAuthResendVerifyCodeRequestConfig: ApiPostAuthResendVerifyCodeRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -693,7 +896,7 @@ const apiPostAuthResendVerifyCodeRequestConfig: ApiPostAuthResendVerifyCodeReque
   dataKey: dataKey_0_0_0_4,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostAuthResendVerifyCode',
@@ -707,10 +910,10 @@ const apiPostAuthResendVerifyCodeRequestConfig: ApiPostAuthResendVerifyCodeReque
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/resend-verify-code`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostAuthResendVerifyCode = /*#__PURE__*/ (
-  requestData?: ApiPostAuthResendVerifyCodeRequest,
+  requestData: ApiPostAuthResendVerifyCodeRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostAuthResendVerifyCodeResponse>(
@@ -727,9 +930,12 @@ apiPostAuthResendVerifyCode.requestConfig = apiPostAuthResendVerifyCodeRequestCo
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/verify-email`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthVerifyEmailRequest {}
+export interface ApiPostAuthVerifyEmailRequest {
+  email: string
+  verify_code: string
+}
 
 /**
  * 接口 [验证邮箱↗](https://yapi.ifoodme.com/project/11/interface/api/128) 的 **返回类型**
@@ -737,9 +943,63 @@ export interface ApiPostAuthVerifyEmailRequest {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/verify-email`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostAuthVerifyEmailResponse {}
+export interface ApiPostAuthVerifyEmailResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    access_token?: string
+    refresh_token?: string
+    user?: {
+      address?: string
+      appleId?: string
+      avatar?: string
+      birth?: string
+      createdAt?: string
+      email?: string
+      gender?: string
+      googleId?: string
+      name?: string
+      nameKana?: string
+      password?: string
+      phoneNumber?: string
+      /**
+       * 提供商: email, google, apple
+       */
+      provider?: string
+      /**
+       * 角色: admin, user
+       */
+      role?: string
+      /**
+       * 状态: active, pending, inactive
+       */
+      status?: string
+      updatedAt?: string
+      userId?: number
+      verifyCode?: string
+      verifyCodeExpire?: string
+    }
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [验证邮箱↗](https://yapi.ifoodme.com/project/11/interface/api/128) 的 **请求配置的类型**
@@ -747,7 +1007,7 @@ export interface ApiPostAuthVerifyEmailResponse {}
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/verify-email`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostAuthVerifyEmailRequestConfig = Readonly<
   RequestConfig<
@@ -758,7 +1018,7 @@ type ApiPostAuthVerifyEmailRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -768,7 +1028,7 @@ type ApiPostAuthVerifyEmailRequestConfig = Readonly<
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/verify-email`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostAuthVerifyEmailRequestConfig: ApiPostAuthVerifyEmailRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_4,
@@ -782,7 +1042,7 @@ const apiPostAuthVerifyEmailRequestConfig: ApiPostAuthVerifyEmailRequestConfig =
   dataKey: dataKey_0_0_0_4,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostAuthVerifyEmail',
@@ -796,10 +1056,10 @@ const apiPostAuthVerifyEmailRequestConfig: ApiPostAuthVerifyEmailRequestConfig =
  * @分类 [Auth↗](https://yapi.ifoodme.com/project/11/interface/api/cat_23)
  * @标签 `Auth`
  * @请求头 `POST /api/auth/verify-email`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostAuthVerifyEmail = /*#__PURE__*/ (
-  requestData?: ApiPostAuthVerifyEmailRequest,
+  requestData: ApiPostAuthVerifyEmailRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostAuthVerifyEmailResponse>(prepare(apiPostAuthVerifyEmailRequestConfig, requestData), ...args)

@@ -37,9 +37,14 @@ const dataKey_0_0_0_6 = undefined as any
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `PUT /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutCommentsRequest {}
+export interface ApiPutCommentsRequest {
+  comment_id: number
+  comment_text?: string
+  is_published?: boolean
+  reply_to_comment_id?: number
+}
 
 /**
  * 接口 [更新评论↗](https://yapi.ifoodme.com/project/11/interface/api/134) 的 **返回类型**
@@ -47,9 +52,26 @@ export interface ApiPutCommentsRequest {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `PUT /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutCommentsResponse {}
+export interface ApiPutCommentsResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新评论↗](https://yapi.ifoodme.com/project/11/interface/api/134) 的 **请求配置的类型**
@@ -57,7 +79,7 @@ export interface ApiPutCommentsResponse {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `PUT /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutCommentsRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +90,7 @@ type ApiPutCommentsRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +100,7 @@ type ApiPutCommentsRequestConfig = Readonly<
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `PUT /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutCommentsRequestConfig: ApiPutCommentsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_6,
@@ -92,7 +114,7 @@ const apiPutCommentsRequestConfig: ApiPutCommentsRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_6,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutComments',
@@ -106,9 +128,9 @@ const apiPutCommentsRequestConfig: ApiPutCommentsRequestConfig = /*#__PURE__*/ {
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `PUT /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPutComments = /*#__PURE__*/ (requestData?: ApiPutCommentsRequest, ...args: UserRequestRestArgs) => {
+export const apiPutComments = /*#__PURE__*/ (requestData: ApiPutCommentsRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutCommentsResponse>(prepare(apiPutCommentsRequestConfig, requestData), ...args)
 }
 
@@ -120,9 +142,15 @@ apiPutComments.requestConfig = apiPutCommentsRequestConfig
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostCommentsRequest {}
+export interface ApiPostCommentsRequest {
+  article_id: number
+  comment_text: string
+  is_published: boolean
+  reply_to_comment_id?: number
+  user_id: number
+}
 
 /**
  * 接口 [新建评论↗](https://yapi.ifoodme.com/project/11/interface/api/140) 的 **返回类型**
@@ -130,9 +158,39 @@ export interface ApiPostCommentsRequest {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostCommentsResponse {}
+export interface ApiPostCommentsResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    article_id?: number
+    comment_id?: number
+    comment_text?: string
+    created_at?: string
+    is_published?: boolean
+    reply_to_comment_id?: number
+    updated_at?: string
+    user_id?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建评论↗](https://yapi.ifoodme.com/project/11/interface/api/140) 的 **请求配置的类型**
@@ -140,7 +198,7 @@ export interface ApiPostCommentsResponse {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostCommentsRequestConfig = Readonly<
   RequestConfig<
@@ -151,7 +209,7 @@ type ApiPostCommentsRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -161,7 +219,7 @@ type ApiPostCommentsRequestConfig = Readonly<
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostCommentsRequestConfig: ApiPostCommentsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_6,
@@ -175,7 +233,7 @@ const apiPostCommentsRequestConfig: ApiPostCommentsRequestConfig = /*#__PURE__*/
   dataKey: dataKey_0_0_0_6,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostComments',
@@ -189,9 +247,9 @@ const apiPostCommentsRequestConfig: ApiPostCommentsRequestConfig = /*#__PURE__*/
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostComments = /*#__PURE__*/ (requestData?: ApiPostCommentsRequest, ...args: UserRequestRestArgs) => {
+export const apiPostComments = /*#__PURE__*/ (requestData: ApiPostCommentsRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostCommentsResponse>(prepare(apiPostCommentsRequestConfig, requestData), ...args)
 }
 
@@ -203,9 +261,13 @@ apiPostComments.requestConfig = apiPostCommentsRequestConfig
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostCommentsListRequest {}
+export interface ApiPostCommentsListRequest {
+  keyword?: string
+  page: number
+  pageSize: number
+}
 
 /**
  * 接口 [获取评论列表↗](https://yapi.ifoodme.com/project/11/interface/api/146) 的 **返回类型**
@@ -213,9 +275,51 @@ export interface ApiPostCommentsListRequest {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostCommentsListResponse {}
+export interface ApiPostCommentsListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    article_id?: number
+    comment_id?: number
+    comment_text?: string
+    created_at?: string
+    is_published?: boolean
+    reply_to_comment_id?: number
+    updated_at?: string
+    user_id?: number
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取评论列表↗](https://yapi.ifoodme.com/project/11/interface/api/146) 的 **请求配置的类型**
@@ -223,7 +327,7 @@ export interface ApiPostCommentsListResponse {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostCommentsListRequestConfig = Readonly<
   RequestConfig<
@@ -234,7 +338,7 @@ type ApiPostCommentsListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -244,7 +348,7 @@ type ApiPostCommentsListRequestConfig = Readonly<
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostCommentsListRequestConfig: ApiPostCommentsListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_6,
@@ -258,7 +362,7 @@ const apiPostCommentsListRequestConfig: ApiPostCommentsListRequestConfig = /*#__
   dataKey: dataKey_0_0_0_6,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostCommentsList',
@@ -272,10 +376,10 @@ const apiPostCommentsListRequestConfig: ApiPostCommentsListRequestConfig = /*#__
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `POST /api/comments/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostCommentsList = /*#__PURE__*/ (
-  requestData?: ApiPostCommentsListRequest,
+  requestData: ApiPostCommentsListRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostCommentsListResponse>(prepare(apiPostCommentsListRequestConfig, requestData), ...args)
@@ -289,7 +393,7 @@ apiPostCommentsList.requestConfig = apiPostCommentsListRequestConfig
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `GET /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetCommentsCommentIdRequest {
   /**
@@ -304,9 +408,39 @@ export interface ApiGetCommentsCommentIdRequest {
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `GET /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetCommentsCommentIdResponse {}
+export interface ApiGetCommentsCommentIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    article_id?: number
+    comment_id?: number
+    comment_text?: string
+    created_at?: string
+    is_published?: boolean
+    reply_to_comment_id?: number
+    updated_at?: string
+    user_id?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取单个评论↗](https://yapi.ifoodme.com/project/11/interface/api/152) 的 **请求配置的类型**
@@ -314,7 +448,7 @@ export interface ApiGetCommentsCommentIdResponse {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `GET /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetCommentsCommentIdRequestConfig = Readonly<
   RequestConfig<
@@ -335,7 +469,7 @@ type ApiGetCommentsCommentIdRequestConfig = Readonly<
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `GET /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetCommentsCommentIdRequestConfig: ApiGetCommentsCommentIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_6,
@@ -363,7 +497,7 @@ const apiGetCommentsCommentIdRequestConfig: ApiGetCommentsCommentIdRequestConfig
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `GET /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetCommentsComment_id = /*#__PURE__*/ (
   requestData: ApiGetCommentsCommentIdRequest,
@@ -380,7 +514,7 @@ apiGetCommentsComment_id.requestConfig = apiGetCommentsCommentIdRequestConfig
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `DELETE /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteCommentsCommentIdRequest {
   /**
@@ -395,9 +529,26 @@ export interface ApiDeleteCommentsCommentIdRequest {
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `DELETE /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteCommentsCommentIdResponse {}
+export interface ApiDeleteCommentsCommentIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除评论↗](https://yapi.ifoodme.com/project/11/interface/api/158) 的 **请求配置的类型**
@@ -405,7 +556,7 @@ export interface ApiDeleteCommentsCommentIdResponse {}
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `DELETE /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteCommentsCommentIdRequestConfig = Readonly<
   RequestConfig<
@@ -426,7 +577,7 @@ type ApiDeleteCommentsCommentIdRequestConfig = Readonly<
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `DELETE /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteCommentsCommentIdRequestConfig: ApiDeleteCommentsCommentIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_6,
@@ -454,7 +605,7 @@ const apiDeleteCommentsCommentIdRequestConfig: ApiDeleteCommentsCommentIdRequest
  * @分类 [Comments↗](https://yapi.ifoodme.com/project/11/interface/api/cat_35)
  * @标签 `Comments`
  * @请求头 `DELETE /api/comments/{comment_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteCommentsComment_id = /*#__PURE__*/ (
   requestData: ApiDeleteCommentsCommentIdRequest,

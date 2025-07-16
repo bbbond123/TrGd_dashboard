@@ -37,7 +37,7 @@ const dataKey_0_0_0_9 = undefined as any
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetLanguagesRequest {}
 
@@ -47,9 +47,30 @@ export interface ApiGetLanguagesRequest {}
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetLanguagesResponse {}
+export interface ApiGetLanguagesResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {}
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取支持的语言列表↗](https://yapi.ifoodme.com/project/11/interface/api/266) 的 **请求配置的类型**
@@ -57,7 +78,7 @@ export interface ApiGetLanguagesResponse {}
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetLanguagesRequestConfig = Readonly<
   RequestConfig<
@@ -78,7 +99,7 @@ type ApiGetLanguagesRequestConfig = Readonly<
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetLanguagesRequestConfig: ApiGetLanguagesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_9,
@@ -106,7 +127,7 @@ const apiGetLanguagesRequestConfig: ApiGetLanguagesRequestConfig = /*#__PURE__*/
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetLanguages = /*#__PURE__*/ (requestData?: ApiGetLanguagesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiGetLanguagesResponse>(prepare(apiGetLanguagesRequestConfig, requestData), ...args)
@@ -120,7 +141,7 @@ apiGetLanguages.requestConfig = apiGetLanguagesRequestConfig
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages/current`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetLanguagesCurrentRequest {}
 
@@ -130,9 +151,30 @@ export interface ApiGetLanguagesCurrentRequest {}
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages/current`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetLanguagesCurrentResponse {}
+export interface ApiGetLanguagesCurrentResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {}
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取当前用户的语言设置↗](https://yapi.ifoodme.com/project/11/interface/api/284) 的 **请求配置的类型**
@@ -140,7 +182,7 @@ export interface ApiGetLanguagesCurrentResponse {}
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages/current`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetLanguagesCurrentRequestConfig = Readonly<
   RequestConfig<
@@ -161,7 +203,7 @@ type ApiGetLanguagesCurrentRequestConfig = Readonly<
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages/current`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetLanguagesCurrentRequestConfig: ApiGetLanguagesCurrentRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_9,
@@ -189,7 +231,7 @@ const apiGetLanguagesCurrentRequestConfig: ApiGetLanguagesCurrentRequestConfig =
  * @分类 [语言管理↗](https://yapi.ifoodme.com/project/11/interface/api/cat_53)
  * @标签 `语言管理`
  * @请求头 `GET /api/languages/current`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetLanguagesCurrent = /*#__PURE__*/ (
   requestData?: ApiGetLanguagesCurrentRequest,

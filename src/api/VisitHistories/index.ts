@@ -37,9 +37,22 @@ const dataKey_0_0_0_1 = undefined as any
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `PUT /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutVisitHistoriesRequest {}
+export interface ApiPutVisitHistoriesRequest {
+  apiSource?: string
+  confidenceScore?: number
+  country?: string
+  imageFileId?: number
+  isInJapan?: boolean
+  locationLatitude?: number
+  locationLongitude?: number
+  recognizedLabels?: string
+  recognizedLandmarks?: string
+  textContent?: string
+  userId?: number
+  visionId?: number
+}
 
 /**
  * 接口 [更新访问历史记录↗](https://yapi.ifoodme.com/project/11/interface/api/590) 的 **返回类型**
@@ -47,9 +60,26 @@ export interface ApiPutVisitHistoriesRequest {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `PUT /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutVisitHistoriesResponse {}
+export interface ApiPutVisitHistoriesResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新访问历史记录↗](https://yapi.ifoodme.com/project/11/interface/api/590) 的 **请求配置的类型**
@@ -57,7 +87,7 @@ export interface ApiPutVisitHistoriesResponse {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `PUT /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutVisitHistoriesRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +98,7 @@ type ApiPutVisitHistoriesRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +108,7 @@ type ApiPutVisitHistoriesRequestConfig = Readonly<
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `PUT /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutVisitHistoriesRequestConfig: ApiPutVisitHistoriesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_1,
@@ -92,7 +122,7 @@ const apiPutVisitHistoriesRequestConfig: ApiPutVisitHistoriesRequestConfig = /*#
   dataKey: dataKey_0_0_0_1,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutVisit_histories',
@@ -106,10 +136,10 @@ const apiPutVisitHistoriesRequestConfig: ApiPutVisitHistoriesRequestConfig = /*#
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `PUT /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPutVisit_histories = /*#__PURE__*/ (
-  requestData?: ApiPutVisitHistoriesRequest,
+  requestData: ApiPutVisitHistoriesRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPutVisitHistoriesResponse>(prepare(apiPutVisitHistoriesRequestConfig, requestData), ...args)
@@ -123,9 +153,21 @@ apiPutVisit_histories.requestConfig = apiPutVisitHistoriesRequestConfig
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostVisitHistoriesRequest {}
+export interface ApiPostVisitHistoriesRequest {
+  apiSource?: string
+  confidenceScore?: number
+  country?: string
+  imageFileId?: number
+  isInJapan?: boolean
+  locationLatitude?: number
+  locationLongitude?: number
+  recognizedLabels?: string
+  recognizedLandmarks?: string
+  textContent?: string
+  userId?: number
+}
 
 /**
  * 接口 [新建访问历史记录↗](https://yapi.ifoodme.com/project/11/interface/api/596) 的 **返回类型**
@@ -133,9 +175,46 @@ export interface ApiPostVisitHistoriesRequest {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostVisitHistoriesResponse {}
+export interface ApiPostVisitHistoriesResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    apiSource?: string
+    confidenceScore?: number
+    country?: string
+    createdAt?: string
+    imageFileId?: number
+    isInJapan?: boolean
+    locationLatitude?: number
+    locationLongitude?: number
+    processedAt?: string
+    recognizedLabels?: string
+    recognizedLandmarks?: string
+    textContent?: string
+    updatedAt?: string
+    userId?: number
+    visionId?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建访问历史记录↗](https://yapi.ifoodme.com/project/11/interface/api/596) 的 **请求配置的类型**
@@ -143,7 +222,7 @@ export interface ApiPostVisitHistoriesResponse {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostVisitHistoriesRequestConfig = Readonly<
   RequestConfig<
@@ -154,7 +233,7 @@ type ApiPostVisitHistoriesRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -164,7 +243,7 @@ type ApiPostVisitHistoriesRequestConfig = Readonly<
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostVisitHistoriesRequestConfig: ApiPostVisitHistoriesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_1,
@@ -178,7 +257,7 @@ const apiPostVisitHistoriesRequestConfig: ApiPostVisitHistoriesRequestConfig = /
   dataKey: dataKey_0_0_0_1,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostVisit_histories',
@@ -192,10 +271,10 @@ const apiPostVisitHistoriesRequestConfig: ApiPostVisitHistoriesRequestConfig = /
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostVisit_histories = /*#__PURE__*/ (
-  requestData?: ApiPostVisitHistoriesRequest,
+  requestData: ApiPostVisitHistoriesRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostVisitHistoriesResponse>(prepare(apiPostVisitHistoriesRequestConfig, requestData), ...args)
@@ -209,9 +288,30 @@ apiPostVisit_histories.requestConfig = apiPostVisitHistoriesRequestConfig
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories/list`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostVisitHistoriesListRequest {}
+export interface ApiPostVisitHistoriesListRequest {
+  /**
+   * 国家过滤
+   */
+  country?: string
+  /**
+   * 日本地区过滤
+   */
+  isInJapan?: boolean
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页数量
+   */
+  pageSize?: number
+  /**
+   * 用户ID过滤
+   */
+  userId?: number
+}
 
 /**
  * 接口 [获取访问历史记录列表↗](https://yapi.ifoodme.com/project/11/interface/api/602) 的 **返回类型**
@@ -219,9 +319,58 @@ export interface ApiPostVisitHistoriesListRequest {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories/list`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostVisitHistoriesListResponse {}
+export interface ApiPostVisitHistoriesListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    apiSource?: string
+    confidenceScore?: number
+    country?: string
+    createdAt?: string
+    imageFileId?: number
+    isInJapan?: boolean
+    locationLatitude?: number
+    locationLongitude?: number
+    processedAt?: string
+    recognizedLabels?: string
+    recognizedLandmarks?: string
+    textContent?: string
+    updatedAt?: string
+    userId?: number
+    visionId?: number
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取访问历史记录列表↗](https://yapi.ifoodme.com/project/11/interface/api/602) 的 **请求配置的类型**
@@ -229,7 +378,7 @@ export interface ApiPostVisitHistoriesListResponse {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories/list`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostVisitHistoriesListRequestConfig = Readonly<
   RequestConfig<
@@ -240,7 +389,7 @@ type ApiPostVisitHistoriesListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -250,7 +399,7 @@ type ApiPostVisitHistoriesListRequestConfig = Readonly<
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories/list`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostVisitHistoriesListRequestConfig: ApiPostVisitHistoriesListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_1,
@@ -264,7 +413,7 @@ const apiPostVisitHistoriesListRequestConfig: ApiPostVisitHistoriesListRequestCo
   dataKey: dataKey_0_0_0_1,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostVisit_historiesList',
@@ -278,10 +427,10 @@ const apiPostVisitHistoriesListRequestConfig: ApiPostVisitHistoriesListRequestCo
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `POST /api/visit_histories/list`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostVisit_historiesList = /*#__PURE__*/ (
-  requestData?: ApiPostVisitHistoriesListRequest,
+  requestData: ApiPostVisitHistoriesListRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostVisitHistoriesListResponse>(
@@ -298,7 +447,7 @@ apiPostVisit_historiesList.requestConfig = apiPostVisitHistoriesListRequestConfi
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `GET /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetVisitHistoriesHistoryIdRequest {
   /**
@@ -313,9 +462,46 @@ export interface ApiGetVisitHistoriesHistoryIdRequest {
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `GET /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetVisitHistoriesHistoryIdResponse {}
+export interface ApiGetVisitHistoriesHistoryIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    apiSource?: string
+    confidenceScore?: number
+    country?: string
+    createdAt?: string
+    imageFileId?: number
+    isInJapan?: boolean
+    locationLatitude?: number
+    locationLongitude?: number
+    processedAt?: string
+    recognizedLabels?: string
+    recognizedLandmarks?: string
+    textContent?: string
+    updatedAt?: string
+    userId?: number
+    visionId?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取访问历史记录↗](https://yapi.ifoodme.com/project/11/interface/api/608) 的 **请求配置的类型**
@@ -323,7 +509,7 @@ export interface ApiGetVisitHistoriesHistoryIdResponse {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `GET /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetVisitHistoriesHistoryIdRequestConfig = Readonly<
   RequestConfig<
@@ -344,7 +530,7 @@ type ApiGetVisitHistoriesHistoryIdRequestConfig = Readonly<
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `GET /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetVisitHistoriesHistoryIdRequestConfig: ApiGetVisitHistoriesHistoryIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_1,
@@ -372,7 +558,7 @@ const apiGetVisitHistoriesHistoryIdRequestConfig: ApiGetVisitHistoriesHistoryIdR
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `GET /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetVisit_historiesHistory_id = /*#__PURE__*/ (
   requestData: ApiGetVisitHistoriesHistoryIdRequest,
@@ -392,7 +578,7 @@ apiGetVisit_historiesHistory_id.requestConfig = apiGetVisitHistoriesHistoryIdReq
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `DELETE /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteVisitHistoriesHistoryIdRequest {
   /**
@@ -407,9 +593,26 @@ export interface ApiDeleteVisitHistoriesHistoryIdRequest {
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `DELETE /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteVisitHistoriesHistoryIdResponse {}
+export interface ApiDeleteVisitHistoriesHistoryIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除访问历史记录↗](https://yapi.ifoodme.com/project/11/interface/api/614) 的 **请求配置的类型**
@@ -417,7 +620,7 @@ export interface ApiDeleteVisitHistoriesHistoryIdResponse {}
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `DELETE /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteVisitHistoriesHistoryIdRequestConfig = Readonly<
   RequestConfig<
@@ -438,7 +641,7 @@ type ApiDeleteVisitHistoriesHistoryIdRequestConfig = Readonly<
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `DELETE /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteVisitHistoriesHistoryIdRequestConfig: ApiDeleteVisitHistoriesHistoryIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_1,
@@ -466,7 +669,7 @@ const apiDeleteVisitHistoriesHistoryIdRequestConfig: ApiDeleteVisitHistoriesHist
  * @分类 [VisitHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_107)
  * @标签 `VisitHistories`
  * @请求头 `DELETE /api/visit_histories/{history_id}`
- * @更新时间 `2025-07-08 23:44:20`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteVisit_historiesHistory_id = /*#__PURE__*/ (
   requestData: ApiDeleteVisitHistoriesHistoryIdRequest,

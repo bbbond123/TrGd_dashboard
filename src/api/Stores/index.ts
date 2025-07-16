@@ -37,9 +37,21 @@ const dataKey_0_0_0_15 = undefined as any
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `PUT /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutStoresRequest {}
+export interface ApiPutStoresRequest {
+  address?: string
+  business_hours?: string
+  description?: string
+  latitude?: number
+  location?: string
+  longitude?: number
+  phone_number?: string
+  rating_score?: number
+  store_category?: string
+  store_id: number
+  store_name?: string
+}
 
 /**
  * 接口 [更新商铺↗](https://yapi.ifoodme.com/project/11/interface/api/422) 的 **返回类型**
@@ -47,9 +59,26 @@ export interface ApiPutStoresRequest {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `PUT /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutStoresResponse {}
+export interface ApiPutStoresResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新商铺↗](https://yapi.ifoodme.com/project/11/interface/api/422) 的 **请求配置的类型**
@@ -57,7 +86,7 @@ export interface ApiPutStoresResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `PUT /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutStoresRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +97,7 @@ type ApiPutStoresRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +107,7 @@ type ApiPutStoresRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `PUT /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutStoresRequestConfig: ApiPutStoresRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -92,7 +121,7 @@ const apiPutStoresRequestConfig: ApiPutStoresRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_15,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutStores',
@@ -106,9 +135,9 @@ const apiPutStoresRequestConfig: ApiPutStoresRequestConfig = /*#__PURE__*/ {
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `PUT /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPutStores = /*#__PURE__*/ (requestData?: ApiPutStoresRequest, ...args: UserRequestRestArgs) => {
+export const apiPutStores = /*#__PURE__*/ (requestData: ApiPutStoresRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutStoresResponse>(prepare(apiPutStoresRequestConfig, requestData), ...args)
 }
 
@@ -120,9 +149,20 @@ apiPutStores.requestConfig = apiPutStoresRequestConfig
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostStoresRequest {}
+export interface ApiPostStoresRequest {
+  address: string
+  business_hours: string
+  description?: string
+  latitude: number
+  location: string
+  longitude: number
+  phone_number: string
+  rating_score: number
+  store_category: string
+  store_name: string
+}
 
 /**
  * 接口 [新建商铺↗](https://yapi.ifoodme.com/project/11/interface/api/428) 的 **返回类型**
@@ -130,9 +170,44 @@ export interface ApiPostStoresRequest {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostStoresResponse {}
+export interface ApiPostStoresResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    address?: string
+    business_hours?: string
+    created_at?: string
+    description?: string
+    latitude?: number
+    location?: string
+    longitude?: number
+    phone_number?: string
+    rating_score?: number
+    store_category?: string
+    store_id?: number
+    store_name?: string
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建商铺↗](https://yapi.ifoodme.com/project/11/interface/api/428) 的 **请求配置的类型**
@@ -140,7 +215,7 @@ export interface ApiPostStoresResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostStoresRequestConfig = Readonly<
   RequestConfig<
@@ -151,7 +226,7 @@ type ApiPostStoresRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -161,7 +236,7 @@ type ApiPostStoresRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostStoresRequestConfig: ApiPostStoresRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -175,7 +250,7 @@ const apiPostStoresRequestConfig: ApiPostStoresRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_15,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostStores',
@@ -189,9 +264,9 @@ const apiPostStoresRequestConfig: ApiPostStoresRequestConfig = /*#__PURE__*/ {
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostStores = /*#__PURE__*/ (requestData?: ApiPostStoresRequest, ...args: UserRequestRestArgs) => {
+export const apiPostStores = /*#__PURE__*/ (requestData: ApiPostStoresRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostStoresResponse>(prepare(apiPostStoresRequestConfig, requestData), ...args)
 }
 
@@ -203,9 +278,13 @@ apiPostStores.requestConfig = apiPostStoresRequestConfig
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostStoresListRequest {}
+export interface ApiPostStoresListRequest {
+  keyword?: string
+  page: number
+  pageSize: number
+}
 
 /**
  * 接口 [获取商铺列表↗](https://yapi.ifoodme.com/project/11/interface/api/434) 的 **返回类型**
@@ -213,9 +292,56 @@ export interface ApiPostStoresListRequest {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostStoresListResponse {}
+export interface ApiPostStoresListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    address?: string
+    business_hours?: string
+    created_at?: string
+    description?: string
+    latitude?: number
+    location?: string
+    longitude?: number
+    phone_number?: string
+    rating_score?: number
+    store_category?: string
+    store_id?: number
+    store_name?: string
+    updated_at?: string
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取商铺列表↗](https://yapi.ifoodme.com/project/11/interface/api/434) 的 **请求配置的类型**
@@ -223,7 +349,7 @@ export interface ApiPostStoresListResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostStoresListRequestConfig = Readonly<
   RequestConfig<
@@ -234,7 +360,7 @@ type ApiPostStoresListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -244,7 +370,7 @@ type ApiPostStoresListRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostStoresListRequestConfig: ApiPostStoresListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -258,7 +384,7 @@ const apiPostStoresListRequestConfig: ApiPostStoresListRequestConfig = /*#__PURE
   dataKey: dataKey_0_0_0_15,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostStoresList',
@@ -272,10 +398,10 @@ const apiPostStoresListRequestConfig: ApiPostStoresListRequestConfig = /*#__PURE
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostStoresList = /*#__PURE__*/ (
-  requestData?: ApiPostStoresListRequest,
+  requestData: ApiPostStoresListRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostStoresListResponse>(prepare(apiPostStoresListRequestConfig, requestData), ...args)
@@ -289,7 +415,7 @@ apiPostStoresList.requestConfig = apiPostStoresListRequestConfig
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetStoresStoreIdTagsRequest {
   /**
@@ -304,9 +430,48 @@ export interface ApiGetStoresStoreIdTagsRequest {
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetStoresStoreIdTagsResponse {}
+export interface ApiGetStoresStoreIdTagsResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    created_at?: string
+    is_active?: boolean
+    tag_id?: number
+    tag_name?: string
+    updated_at?: string
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取商铺的标签↗](https://yapi.ifoodme.com/project/11/interface/api/440) 的 **请求配置的类型**
@@ -314,7 +479,7 @@ export interface ApiGetStoresStoreIdTagsResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetStoresStoreIdTagsRequestConfig = Readonly<
   RequestConfig<
@@ -335,7 +500,7 @@ type ApiGetStoresStoreIdTagsRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetStoresStoreIdTagsRequestConfig: ApiGetStoresStoreIdTagsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -363,7 +528,7 @@ const apiGetStoresStoreIdTagsRequestConfig: ApiGetStoresStoreIdTagsRequestConfig
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetStoresStoreIDTags = /*#__PURE__*/ (
   requestData: ApiGetStoresStoreIdTagsRequest,
@@ -380,14 +545,14 @@ apiGetStoresStoreIDTags.requestConfig = apiGetStoresStoreIdTagsRequestConfig
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiPostStoresStoreIdTagsRequest {
+  tag_id: number
   /**
    * 商铺ID
    */
   storeID: string
-  [k: string]: unknown
 }
 
 /**
@@ -396,9 +561,44 @@ export interface ApiPostStoresStoreIdTagsRequest {
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostStoresStoreIdTagsResponse {}
+export interface ApiPostStoresStoreIdTagsResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    address?: string
+    business_hours?: string
+    created_at?: string
+    description?: string
+    latitude?: number
+    location?: string
+    longitude?: number
+    phone_number?: string
+    rating_score?: number
+    store_category?: string
+    store_id?: number
+    store_name?: string
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [为商铺添加标签↗](https://yapi.ifoodme.com/project/11/interface/api/446) 的 **请求配置的类型**
@@ -406,7 +606,7 @@ export interface ApiPostStoresStoreIdTagsResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostStoresStoreIdTagsRequestConfig = Readonly<
   RequestConfig<
@@ -427,7 +627,7 @@ type ApiPostStoresStoreIdTagsRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostStoresStoreIdTagsRequestConfig: ApiPostStoresStoreIdTagsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -455,7 +655,7 @@ const apiPostStoresStoreIdTagsRequestConfig: ApiPostStoresStoreIdTagsRequestConf
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `POST /api/stores/{storeID}/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostStoresStoreIDTags = /*#__PURE__*/ (
   requestData: ApiPostStoresStoreIdTagsRequest,
@@ -472,7 +672,7 @@ apiPostStoresStoreIDTags.requestConfig = apiPostStoresStoreIdTagsRequestConfig
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{storeID}/tags/{tagID}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteStoresStoreIdTagsTagIdRequest {
   /**
@@ -491,9 +691,26 @@ export interface ApiDeleteStoresStoreIdTagsTagIdRequest {
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{storeID}/tags/{tagID}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteStoresStoreIdTagsTagIdResponse {}
+export interface ApiDeleteStoresStoreIdTagsTagIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [从商铺移除标签↗](https://yapi.ifoodme.com/project/11/interface/api/452) 的 **请求配置的类型**
@@ -501,7 +718,7 @@ export interface ApiDeleteStoresStoreIdTagsTagIdResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{storeID}/tags/{tagID}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteStoresStoreIdTagsTagIdRequestConfig = Readonly<
   RequestConfig<
@@ -522,7 +739,7 @@ type ApiDeleteStoresStoreIdTagsTagIdRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{storeID}/tags/{tagID}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteStoresStoreIdTagsTagIdRequestConfig: ApiDeleteStoresStoreIdTagsTagIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -550,7 +767,7 @@ const apiDeleteStoresStoreIdTagsTagIdRequestConfig: ApiDeleteStoresStoreIdTagsTa
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{storeID}/tags/{tagID}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteStoresStoreIDTagsTagID = /*#__PURE__*/ (
   requestData: ApiDeleteStoresStoreIdTagsTagIdRequest,
@@ -570,7 +787,7 @@ apiDeleteStoresStoreIDTagsTagID.requestConfig = apiDeleteStoresStoreIdTagsTagIdR
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetStoresStoreIdRequest {
   /**
@@ -585,9 +802,44 @@ export interface ApiGetStoresStoreIdRequest {
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetStoresStoreIdResponse {}
+export interface ApiGetStoresStoreIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    address?: string
+    business_hours?: string
+    created_at?: string
+    description?: string
+    latitude?: number
+    location?: string
+    longitude?: number
+    phone_number?: string
+    rating_score?: number
+    store_category?: string
+    store_id?: number
+    store_name?: string
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取商铺信息↗](https://yapi.ifoodme.com/project/11/interface/api/458) 的 **请求配置的类型**
@@ -595,7 +847,7 @@ export interface ApiGetStoresStoreIdResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetStoresStoreIdRequestConfig = Readonly<
   RequestConfig<
@@ -616,7 +868,7 @@ type ApiGetStoresStoreIdRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetStoresStoreIdRequestConfig: ApiGetStoresStoreIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -644,7 +896,7 @@ const apiGetStoresStoreIdRequestConfig: ApiGetStoresStoreIdRequestConfig = /*#__
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `GET /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetStoresStore_id = /*#__PURE__*/ (
   requestData: ApiGetStoresStoreIdRequest,
@@ -661,7 +913,7 @@ apiGetStoresStore_id.requestConfig = apiGetStoresStoreIdRequestConfig
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteStoresStoreIdRequest {
   /**
@@ -676,9 +928,26 @@ export interface ApiDeleteStoresStoreIdRequest {
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteStoresStoreIdResponse {}
+export interface ApiDeleteStoresStoreIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除商铺↗](https://yapi.ifoodme.com/project/11/interface/api/464) 的 **请求配置的类型**
@@ -686,7 +955,7 @@ export interface ApiDeleteStoresStoreIdResponse {}
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteStoresStoreIdRequestConfig = Readonly<
   RequestConfig<
@@ -707,7 +976,7 @@ type ApiDeleteStoresStoreIdRequestConfig = Readonly<
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteStoresStoreIdRequestConfig: ApiDeleteStoresStoreIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_15,
@@ -735,7 +1004,7 @@ const apiDeleteStoresStoreIdRequestConfig: ApiDeleteStoresStoreIdRequestConfig =
  * @分类 [Stores↗](https://yapi.ifoodme.com/project/11/interface/api/cat_89)
  * @标签 `Stores`
  * @请求头 `DELETE /api/stores/{store_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteStoresStore_id = /*#__PURE__*/ (
   requestData: ApiDeleteStoresStoreIdRequest,

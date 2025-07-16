@@ -37,9 +37,15 @@ const dataKey_0_0_0_14 = undefined as any
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `PUT /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutRefreshTokensRequest {}
+export interface ApiPutRefreshTokensRequest {
+  expires_at?: string
+  refresh_token?: string
+  revoked?: boolean
+  token_id: number
+  user_id?: number
+}
 
 /**
  * 接口 [更新Refresh Token↗](https://yapi.ifoodme.com/project/11/interface/api/392) 的 **返回类型**
@@ -47,9 +53,26 @@ export interface ApiPutRefreshTokensRequest {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `PUT /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutRefreshTokensResponse {}
+export interface ApiPutRefreshTokensResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新Refresh Token↗](https://yapi.ifoodme.com/project/11/interface/api/392) 的 **请求配置的类型**
@@ -57,7 +80,7 @@ export interface ApiPutRefreshTokensResponse {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `PUT /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutRefreshTokensRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +91,7 @@ type ApiPutRefreshTokensRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +101,7 @@ type ApiPutRefreshTokensRequestConfig = Readonly<
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `PUT /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutRefreshTokensRequestConfig: ApiPutRefreshTokensRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_14,
@@ -92,7 +115,7 @@ const apiPutRefreshTokensRequestConfig: ApiPutRefreshTokensRequestConfig = /*#__
   dataKey: dataKey_0_0_0_14,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutRefresh_tokens',
@@ -106,10 +129,10 @@ const apiPutRefreshTokensRequestConfig: ApiPutRefreshTokensRequestConfig = /*#__
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `PUT /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPutRefresh_tokens = /*#__PURE__*/ (
-  requestData?: ApiPutRefreshTokensRequest,
+  requestData: ApiPutRefreshTokensRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPutRefreshTokensResponse>(prepare(apiPutRefreshTokensRequestConfig, requestData), ...args)
@@ -123,9 +146,14 @@ apiPutRefresh_tokens.requestConfig = apiPutRefreshTokensRequestConfig
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostRefreshTokensRequest {}
+export interface ApiPostRefreshTokensRequest {
+  expires_at: string
+  refresh_token: string
+  revoked?: boolean
+  user_id: number
+}
 
 /**
  * 接口 [新建Refresh Token↗](https://yapi.ifoodme.com/project/11/interface/api/398) 的 **返回类型**
@@ -133,9 +161,37 @@ export interface ApiPostRefreshTokensRequest {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostRefreshTokensResponse {}
+export interface ApiPostRefreshTokensResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    expires_at?: string
+    refresh_token?: string
+    revoked?: boolean
+    token_id?: number
+    user_id?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建Refresh Token↗](https://yapi.ifoodme.com/project/11/interface/api/398) 的 **请求配置的类型**
@@ -143,7 +199,7 @@ export interface ApiPostRefreshTokensResponse {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostRefreshTokensRequestConfig = Readonly<
   RequestConfig<
@@ -154,7 +210,7 @@ type ApiPostRefreshTokensRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -164,7 +220,7 @@ type ApiPostRefreshTokensRequestConfig = Readonly<
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostRefreshTokensRequestConfig: ApiPostRefreshTokensRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_14,
@@ -178,7 +234,7 @@ const apiPostRefreshTokensRequestConfig: ApiPostRefreshTokensRequestConfig = /*#
   dataKey: dataKey_0_0_0_14,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostRefresh_tokens',
@@ -192,10 +248,10 @@ const apiPostRefreshTokensRequestConfig: ApiPostRefreshTokensRequestConfig = /*#
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostRefresh_tokens = /*#__PURE__*/ (
-  requestData?: ApiPostRefreshTokensRequest,
+  requestData: ApiPostRefreshTokensRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostRefreshTokensResponse>(prepare(apiPostRefreshTokensRequestConfig, requestData), ...args)
@@ -209,9 +265,12 @@ apiPostRefresh_tokens.requestConfig = apiPostRefreshTokensRequestConfig
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostRefreshTokensListRequest {}
+export interface ApiPostRefreshTokensListRequest {
+  page: number
+  pageSize: number
+}
 
 /**
  * 接口 [获取Refresh Token列表↗](https://yapi.ifoodme.com/project/11/interface/api/404) 的 **返回类型**
@@ -219,9 +278,49 @@ export interface ApiPostRefreshTokensListRequest {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostRefreshTokensListResponse {}
+export interface ApiPostRefreshTokensListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    created_at?: string
+    expires_at?: string
+    refresh_token?: string
+    revoked?: boolean
+    token_id?: number
+    user_id?: number
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取Refresh Token列表↗](https://yapi.ifoodme.com/project/11/interface/api/404) 的 **请求配置的类型**
@@ -229,7 +328,7 @@ export interface ApiPostRefreshTokensListResponse {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostRefreshTokensListRequestConfig = Readonly<
   RequestConfig<
@@ -240,7 +339,7 @@ type ApiPostRefreshTokensListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -250,7 +349,7 @@ type ApiPostRefreshTokensListRequestConfig = Readonly<
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostRefreshTokensListRequestConfig: ApiPostRefreshTokensListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_14,
@@ -264,7 +363,7 @@ const apiPostRefreshTokensListRequestConfig: ApiPostRefreshTokensListRequestConf
   dataKey: dataKey_0_0_0_14,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostRefresh_tokensList',
@@ -278,10 +377,10 @@ const apiPostRefreshTokensListRequestConfig: ApiPostRefreshTokensListRequestConf
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `POST /api/refresh_tokens/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostRefresh_tokensList = /*#__PURE__*/ (
-  requestData?: ApiPostRefreshTokensListRequest,
+  requestData: ApiPostRefreshTokensListRequest,
   ...args: UserRequestRestArgs
 ) => {
   return request<ApiPostRefreshTokensListResponse>(prepare(apiPostRefreshTokensListRequestConfig, requestData), ...args)
@@ -295,7 +394,7 @@ apiPostRefresh_tokensList.requestConfig = apiPostRefreshTokensListRequestConfig
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `GET /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetRefreshTokensTokenIdRequest {
   /**
@@ -310,9 +409,37 @@ export interface ApiGetRefreshTokensTokenIdRequest {
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `GET /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetRefreshTokensTokenIdResponse {}
+export interface ApiGetRefreshTokensTokenIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    expires_at?: string
+    refresh_token?: string
+    revoked?: boolean
+    token_id?: number
+    user_id?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取Refresh Token↗](https://yapi.ifoodme.com/project/11/interface/api/410) 的 **请求配置的类型**
@@ -320,7 +447,7 @@ export interface ApiGetRefreshTokensTokenIdResponse {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `GET /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetRefreshTokensTokenIdRequestConfig = Readonly<
   RequestConfig<
@@ -341,7 +468,7 @@ type ApiGetRefreshTokensTokenIdRequestConfig = Readonly<
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `GET /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetRefreshTokensTokenIdRequestConfig: ApiGetRefreshTokensTokenIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_14,
@@ -369,7 +496,7 @@ const apiGetRefreshTokensTokenIdRequestConfig: ApiGetRefreshTokensTokenIdRequest
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `GET /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetRefresh_tokensToken_id = /*#__PURE__*/ (
   requestData: ApiGetRefreshTokensTokenIdRequest,
@@ -389,7 +516,7 @@ apiGetRefresh_tokensToken_id.requestConfig = apiGetRefreshTokensTokenIdRequestCo
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `DELETE /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteRefreshTokensTokenIdRequest {
   /**
@@ -404,9 +531,26 @@ export interface ApiDeleteRefreshTokensTokenIdRequest {
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `DELETE /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteRefreshTokensTokenIdResponse {}
+export interface ApiDeleteRefreshTokensTokenIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除Refresh Token↗](https://yapi.ifoodme.com/project/11/interface/api/416) 的 **请求配置的类型**
@@ -414,7 +558,7 @@ export interface ApiDeleteRefreshTokensTokenIdResponse {}
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `DELETE /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteRefreshTokensTokenIdRequestConfig = Readonly<
   RequestConfig<
@@ -435,7 +579,7 @@ type ApiDeleteRefreshTokensTokenIdRequestConfig = Readonly<
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `DELETE /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteRefreshTokensTokenIdRequestConfig: ApiDeleteRefreshTokensTokenIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_14,
@@ -463,7 +607,7 @@ const apiDeleteRefreshTokensTokenIdRequestConfig: ApiDeleteRefreshTokensTokenIdR
  * @分类 [RefreshTokens↗](https://yapi.ifoodme.com/project/11/interface/api/cat_83)
  * @标签 `RefreshTokens`
  * @请求头 `DELETE /api/refresh_tokens/{token_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteRefresh_tokensToken_id = /*#__PURE__*/ (
   requestData: ApiDeleteRefreshTokensTokenIdRequest,

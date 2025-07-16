@@ -37,9 +37,15 @@ const dataKey_0_0_0_11 = undefined as any
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `PUT /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutMenusRequest {}
+export interface ApiPutMenusRequest {
+  display_order?: number
+  is_active?: boolean
+  menu_code?: string
+  menu_id: number
+  menu_name?: string
+}
 
 /**
  * 接口 [更新菜单↗](https://yapi.ifoodme.com/project/11/interface/api/308) 的 **返回类型**
@@ -47,9 +53,26 @@ export interface ApiPutMenusRequest {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `PUT /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutMenusResponse {}
+export interface ApiPutMenusResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新菜单↗](https://yapi.ifoodme.com/project/11/interface/api/308) 的 **请求配置的类型**
@@ -57,7 +80,7 @@ export interface ApiPutMenusResponse {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `PUT /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutMenusRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +91,7 @@ type ApiPutMenusRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +101,7 @@ type ApiPutMenusRequestConfig = Readonly<
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `PUT /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutMenusRequestConfig: ApiPutMenusRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_11,
@@ -92,7 +115,7 @@ const apiPutMenusRequestConfig: ApiPutMenusRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_11,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutMenus',
@@ -106,9 +129,9 @@ const apiPutMenusRequestConfig: ApiPutMenusRequestConfig = /*#__PURE__*/ {
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `PUT /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPutMenus = /*#__PURE__*/ (requestData?: ApiPutMenusRequest, ...args: UserRequestRestArgs) => {
+export const apiPutMenus = /*#__PURE__*/ (requestData: ApiPutMenusRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutMenusResponse>(prepare(apiPutMenusRequestConfig, requestData), ...args)
 }
 
@@ -120,9 +143,14 @@ apiPutMenus.requestConfig = apiPutMenusRequestConfig
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostMenusRequest {}
+export interface ApiPostMenusRequest {
+  display_order?: number
+  is_active: boolean
+  menu_code: string
+  menu_name: string
+}
 
 /**
  * 接口 [新建菜单↗](https://yapi.ifoodme.com/project/11/interface/api/314) 的 **返回类型**
@@ -130,9 +158,38 @@ export interface ApiPostMenusRequest {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostMenusResponse {}
+export interface ApiPostMenusResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    display_order?: number
+    is_active?: boolean
+    menu_code?: string
+    menu_id?: number
+    menu_name?: string
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建菜单↗](https://yapi.ifoodme.com/project/11/interface/api/314) 的 **请求配置的类型**
@@ -140,7 +197,7 @@ export interface ApiPostMenusResponse {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostMenusRequestConfig = Readonly<
   RequestConfig<
@@ -151,7 +208,7 @@ type ApiPostMenusRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -161,7 +218,7 @@ type ApiPostMenusRequestConfig = Readonly<
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostMenusRequestConfig: ApiPostMenusRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_11,
@@ -175,7 +232,7 @@ const apiPostMenusRequestConfig: ApiPostMenusRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_11,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostMenus',
@@ -189,9 +246,9 @@ const apiPostMenusRequestConfig: ApiPostMenusRequestConfig = /*#__PURE__*/ {
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostMenus = /*#__PURE__*/ (requestData?: ApiPostMenusRequest, ...args: UserRequestRestArgs) => {
+export const apiPostMenus = /*#__PURE__*/ (requestData: ApiPostMenusRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostMenusResponse>(prepare(apiPostMenusRequestConfig, requestData), ...args)
 }
 
@@ -203,9 +260,13 @@ apiPostMenus.requestConfig = apiPostMenusRequestConfig
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostMenusListRequest {}
+export interface ApiPostMenusListRequest {
+  keyword?: string
+  page: number
+  pageSize: number
+}
 
 /**
  * 接口 [获取菜单列表↗](https://yapi.ifoodme.com/project/11/interface/api/320) 的 **返回类型**
@@ -213,9 +274,50 @@ export interface ApiPostMenusListRequest {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostMenusListResponse {}
+export interface ApiPostMenusListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    created_at?: string
+    display_order?: number
+    is_active?: boolean
+    menu_code?: string
+    menu_id?: number
+    menu_name?: string
+    updated_at?: string
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取菜单列表↗](https://yapi.ifoodme.com/project/11/interface/api/320) 的 **请求配置的类型**
@@ -223,7 +325,7 @@ export interface ApiPostMenusListResponse {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostMenusListRequestConfig = Readonly<
   RequestConfig<
@@ -234,7 +336,7 @@ type ApiPostMenusListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -244,7 +346,7 @@ type ApiPostMenusListRequestConfig = Readonly<
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostMenusListRequestConfig: ApiPostMenusListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_11,
@@ -258,7 +360,7 @@ const apiPostMenusListRequestConfig: ApiPostMenusListRequestConfig = /*#__PURE__
   dataKey: dataKey_0_0_0_11,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostMenusList',
@@ -272,9 +374,9 @@ const apiPostMenusListRequestConfig: ApiPostMenusListRequestConfig = /*#__PURE__
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `POST /api/menus/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostMenusList = /*#__PURE__*/ (requestData?: ApiPostMenusListRequest, ...args: UserRequestRestArgs) => {
+export const apiPostMenusList = /*#__PURE__*/ (requestData: ApiPostMenusListRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostMenusListResponse>(prepare(apiPostMenusListRequestConfig, requestData), ...args)
 }
 
@@ -286,7 +388,7 @@ apiPostMenusList.requestConfig = apiPostMenusListRequestConfig
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `GET /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetMenusMenuIdRequest {
   /**
@@ -301,9 +403,38 @@ export interface ApiGetMenusMenuIdRequest {
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `GET /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetMenusMenuIdResponse {}
+export interface ApiGetMenusMenuIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    display_order?: number
+    is_active?: boolean
+    menu_code?: string
+    menu_id?: number
+    menu_name?: string
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取菜单↗](https://yapi.ifoodme.com/project/11/interface/api/326) 的 **请求配置的类型**
@@ -311,7 +442,7 @@ export interface ApiGetMenusMenuIdResponse {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `GET /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetMenusMenuIdRequestConfig = Readonly<
   RequestConfig<
@@ -332,7 +463,7 @@ type ApiGetMenusMenuIdRequestConfig = Readonly<
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `GET /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetMenusMenuIdRequestConfig: ApiGetMenusMenuIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_11,
@@ -360,7 +491,7 @@ const apiGetMenusMenuIdRequestConfig: ApiGetMenusMenuIdRequestConfig = /*#__PURE
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `GET /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetMenusMenu_id = /*#__PURE__*/ (
   requestData: ApiGetMenusMenuIdRequest,
@@ -377,7 +508,7 @@ apiGetMenusMenu_id.requestConfig = apiGetMenusMenuIdRequestConfig
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `DELETE /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteMenusMenuIdRequest {
   /**
@@ -392,9 +523,26 @@ export interface ApiDeleteMenusMenuIdRequest {
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `DELETE /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteMenusMenuIdResponse {}
+export interface ApiDeleteMenusMenuIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除菜单↗](https://yapi.ifoodme.com/project/11/interface/api/332) 的 **请求配置的类型**
@@ -402,7 +550,7 @@ export interface ApiDeleteMenusMenuIdResponse {}
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `DELETE /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteMenusMenuIdRequestConfig = Readonly<
   RequestConfig<
@@ -423,7 +571,7 @@ type ApiDeleteMenusMenuIdRequestConfig = Readonly<
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `DELETE /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteMenusMenuIdRequestConfig: ApiDeleteMenusMenuIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_11,
@@ -451,7 +599,7 @@ const apiDeleteMenusMenuIdRequestConfig: ApiDeleteMenusMenuIdRequestConfig = /*#
  * @分类 [Menus↗](https://yapi.ifoodme.com/project/11/interface/api/cat_65)
  * @标签 `Menus`
  * @请求头 `DELETE /api/menus/{menu_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteMenusMenu_id = /*#__PURE__*/ (
   requestData: ApiDeleteMenusMenuIdRequest,

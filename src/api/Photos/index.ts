@@ -37,7 +37,7 @@ const dataKey_0_0_0_13 = undefined as any
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export type ApiPostPhotosBatchEnhanceRequest = {
   /**
@@ -45,7 +45,11 @@ export type ApiPostPhotosBatchEnhanceRequest = {
    */
   max_photos_per_place?: string
   [k: string]: unknown
-} & unknown[]
+} & {
+  latitude?: number
+  longitude?: number
+  name?: string
+}[]
 
 /**
  * 接口 [批量增强多个地点的照片↗](https://yapi.ifoodme.com/project/11/interface/api/368) 的 **返回类型**
@@ -53,9 +57,76 @@ export type ApiPostPhotosBatchEnhanceRequest = {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostPhotosBatchEnhanceResponse {}
+export interface ApiPostPhotosBatchEnhanceResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    enhancedPhotos?: {
+      /**
+       * 版权声明
+       */
+      attributions?: string[]
+      /**
+       * 照片类型: exterior, interior, food, view
+       */
+      category?: string
+      /**
+       * 高度
+       */
+      height?: number
+      /**
+       * 是否官方照片
+       */
+      isOfficial?: boolean
+      /**
+       * Places API照片引用
+       */
+      photoReference?: string
+      /**
+       * 质量: high, medium, low
+       */
+      quality?: string
+      /**
+       * 来源: places, wikipedia, local
+       */
+      source?: string
+      /**
+       * 完整的照片URL
+       */
+      url?: string
+      /**
+       * 宽度
+       */
+      width?: number
+    }[]
+    placeId?: string
+    placeName?: string
+    /**
+     * 处理时间(毫秒)
+     */
+    processTime?: number
+    totalPhotos?: number
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [批量增强多个地点的照片↗](https://yapi.ifoodme.com/project/11/interface/api/368) 的 **请求配置的类型**
@@ -63,7 +134,7 @@ export interface ApiPostPhotosBatchEnhanceResponse {}
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostPhotosBatchEnhanceRequestConfig = Readonly<
   RequestConfig<
@@ -84,7 +155,7 @@ type ApiPostPhotosBatchEnhanceRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostPhotosBatchEnhanceRequestConfig: ApiPostPhotosBatchEnhanceRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -112,7 +183,7 @@ const apiPostPhotosBatchEnhanceRequestConfig: ApiPostPhotosBatchEnhanceRequestCo
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostPhotosBatchEnhance = /*#__PURE__*/ (
   requestData: ApiPostPhotosBatchEnhanceRequest,
@@ -132,7 +203,7 @@ apiPostPhotosBatchEnhance.requestConfig = apiPostPhotosBatchEnhanceRequestConfig
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetPhotosEnhanceRequest {
   /**
@@ -167,9 +238,76 @@ export interface ApiGetPhotosEnhanceRequest {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetPhotosEnhanceResponse {}
+export interface ApiGetPhotosEnhanceResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    enhancedPhotos?: {
+      /**
+       * 版权声明
+       */
+      attributions?: string[]
+      /**
+       * 照片类型: exterior, interior, food, view
+       */
+      category?: string
+      /**
+       * 高度
+       */
+      height?: number
+      /**
+       * 是否官方照片
+       */
+      isOfficial?: boolean
+      /**
+       * Places API照片引用
+       */
+      photoReference?: string
+      /**
+       * 质量: high, medium, low
+       */
+      quality?: string
+      /**
+       * 来源: places, wikipedia, local
+       */
+      source?: string
+      /**
+       * 完整的照片URL
+       */
+      url?: string
+      /**
+       * 宽度
+       */
+      width?: number
+    }[]
+    placeId?: string
+    placeName?: string
+    /**
+     * 处理时间(毫秒)
+     */
+    processTime?: number
+    totalPhotos?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [通过Google Places API增强地点照片↗](https://yapi.ifoodme.com/project/11/interface/api/374) 的 **请求配置的类型**
@@ -177,7 +315,7 @@ export interface ApiGetPhotosEnhanceResponse {}
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetPhotosEnhanceRequestConfig = Readonly<
   RequestConfig<
@@ -198,7 +336,7 @@ type ApiGetPhotosEnhanceRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetPhotosEnhanceRequestConfig: ApiGetPhotosEnhanceRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -226,7 +364,7 @@ const apiGetPhotosEnhanceRequestConfig: ApiGetPhotosEnhanceRequestConfig = /*#__
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetPhotosEnhance = /*#__PURE__*/ (
   requestData: ApiGetPhotosEnhanceRequest,
@@ -243,7 +381,7 @@ apiGetPhotosEnhance.requestConfig = apiGetPhotosEnhanceRequestConfig
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetPhotosNearbyRequest {
   /**
@@ -274,9 +412,76 @@ export interface ApiGetPhotosNearbyRequest {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetPhotosNearbyResponse {}
+export interface ApiGetPhotosNearbyResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    enhancedPhotos?: {
+      /**
+       * 版权声明
+       */
+      attributions?: string[]
+      /**
+       * 照片类型: exterior, interior, food, view
+       */
+      category?: string
+      /**
+       * 高度
+       */
+      height?: number
+      /**
+       * 是否官方照片
+       */
+      isOfficial?: boolean
+      /**
+       * Places API照片引用
+       */
+      photoReference?: string
+      /**
+       * 质量: high, medium, low
+       */
+      quality?: string
+      /**
+       * 来源: places, wikipedia, local
+       */
+      source?: string
+      /**
+       * 完整的照片URL
+       */
+      url?: string
+      /**
+       * 宽度
+       */
+      width?: number
+    }[]
+    placeId?: string
+    placeName?: string
+    /**
+     * 处理时间(毫秒)
+     */
+    processTime?: number
+    totalPhotos?: number
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [增强附近地点的照片↗](https://yapi.ifoodme.com/project/11/interface/api/380) 的 **请求配置的类型**
@@ -284,7 +489,7 @@ export interface ApiGetPhotosNearbyResponse {}
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetPhotosNearbyRequestConfig = Readonly<
   RequestConfig<
@@ -305,7 +510,7 @@ type ApiGetPhotosNearbyRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetPhotosNearbyRequestConfig: ApiGetPhotosNearbyRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -333,7 +538,7 @@ const apiGetPhotosNearbyRequestConfig: ApiGetPhotosNearbyRequestConfig = /*#__PU
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetPhotosNearby = /*#__PURE__*/ (
   requestData: ApiGetPhotosNearbyRequest,
@@ -350,7 +555,7 @@ apiGetPhotosNearby.requestConfig = apiGetPhotosNearbyRequestConfig
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetPhotosSizesRequest {
   /**
@@ -365,9 +570,30 @@ export interface ApiGetPhotosSizesRequest {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetPhotosSizesResponse {}
+export interface ApiGetPhotosSizesResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {}
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取照片的多种尺寸URL↗](https://yapi.ifoodme.com/project/11/interface/api/386) 的 **请求配置的类型**
@@ -375,7 +601,7 @@ export interface ApiGetPhotosSizesResponse {}
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetPhotosSizesRequestConfig = Readonly<
   RequestConfig<
@@ -396,7 +622,7 @@ type ApiGetPhotosSizesRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetPhotosSizesRequestConfig: ApiGetPhotosSizesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -424,7 +650,7 @@ const apiGetPhotosSizesRequestConfig: ApiGetPhotosSizesRequestConfig = /*#__PURE
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetPhotosSizes = /*#__PURE__*/ (
   requestData: ApiGetPhotosSizesRequest,

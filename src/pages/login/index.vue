@@ -1,103 +1,110 @@
 <script lang="ts" setup>
-import type { FormInstance, FormRules } from "element-plus"
-import type { LoginRequestData } from "./apis/type"
-import ThemeSwitch from "@@/components/ThemeSwitch/index.vue"
-import { Lock, User } from "@element-plus/icons-vue"
-import { useSettingsStore } from "@/pinia/stores/settings"
-import { useUserStore } from "@/pinia/stores/user"
-import { getCaptchaApi, loginApi } from "./apis"
-import Owl from "./components/Owl.vue"
-import { useFocus } from "./composables/useFocus"
+import type { FormInstance, FormRules } from "element-plus";
+import type { LoginRequestData } from "./apis/type";
+import ThemeSwitch from "@@/components/ThemeSwitch/index.vue";
+import { Lock, User } from "@element-plus/icons-vue";
+import { useSettingsStore } from "@/pinia/stores/settings";
+import { useUserStore } from "@/pinia/stores/user";
+import { getCaptchaApi, loginApi } from "./apis";
+import Owl from "./components/Owl.vue";
+import { useFocus } from "./composables/useFocus";
+import {
+  apiPostAuthLogin,
+  type ApiPostAuthLoginRequest,
+  type ApiPostAuthLoginResponse
+} from "@/api/Auth/index";
 
-const router = useRouter()
+const router = useRouter();
 
-const userStore = useUserStore()
+const userStore = useUserStore();
 
-const settingsStore = useSettingsStore()
+const settingsStore = useSettingsStore();
 
-const { isFocus, handleBlur, handleFocus } = useFocus()
+const { isFocus, handleBlur, handleFocus } = useFocus();
 
 /** 登录表单元素的引用 */
-const loginFormRef = ref<FormInstance | null>(null)
+const loginFormRef = ref<FormInstance | null>(null);
 
 /** 登录按钮 Loading */
-const loading = ref(false)
+const loading = ref(false);
 
 /** 验证码图片 URL */
-const codeUrl = ref("")
+const codeUrl = ref("");
 
 /** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
   email: "admin@ar-backend.com",
-  password: ""
+  password: "",
   // code: ""
-})
+});
 
 /** 登录表单校验规则 */
 const loginFormRules: FormRules = {
-  email: [
-    { required: true, message: "请输入用户名", trigger: "blur" }
-  ],
+  email: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   password: [
-    { required: true, message: "请输入密码", trigger: "blur" }
+    { required: true, message: "请输入密码", trigger: "blur" },
     // { min: 8, max: 16, message: "长度在 8 到 16 个字符", trigger: "blur" }
   ],
-  code: [
-    { required: true, message: "请输入验证码", trigger: "blur" }
-  ]
-}
+  code: [{ required: true, message: "请输入验证码", trigger: "blur" }],
+};
 
 /** 登录 */
 function handleLogin() {
   loginFormRef.value?.validate((valid) => {
     if (!valid) {
-      ElMessage.error("表单校验不通过")
-      return
+      ElMessage.error("表单校验不通过");
+      return;
     }
-    loading.value = true
+    loading.value = true;
 
     // 加密密码后进行登录
     const encryptedLoginData = {
       ...loginFormData,
-      password: loginFormData.password
-    }
+      password: loginFormData.password,
+      aaa:123
+    };
 
-    loginApi(encryptedLoginData).then(async (res) => {
-      if (res.code === 200) {
-        userStore.setToken(res.data.access_token)
-        // 设置用户基本信息
-        if (res.data.user) {
-          userStore.setUsername(res.data.user.name || res.data.user.email || "")
-          userStore.setUserEmail(res.data.user.email || "")
-          userStore.setUserRole(res.data.user.role || "user")
+    apiPostAuthLogin(encryptedLoginData)
+      .then(async (res) => {
+        if (res.code === 200) {
+          userStore.setToken(res.data?.access_token || "");
+          // 设置用户基本信息
+          if (res?.data?.user) {
+            userStore.setUsername(
+              res.data.user.name || res.data.user.email || ""
+            );
+            userStore.setUserEmail(res.data.user.email || "");
+            userStore.setUserRole(res.data.user.role || "user");
+          }
+          router.push("/");
+        } else {
+          ElMessage.error(res.errMessage || "登录失败");
         }
-        router.push("/")
-      } else {
-        ElMessage.error(res.errMessage || "登录失败")
-      }
-    }).catch(() => {
-      // createCode()
-      // loginFormData.password = ""
-    }).finally(() => {
-      loading.value = false
-    })
-  })
+      })
+      .catch(() => {
+        // createCode()
+        // loginFormData.password = ""
+      })
+      .finally(() => {
+        loading.value = false;
+      });
+  });
 }
 
 /** 创建验证码 */
 function createCode() {
   // 清空已输入的验证码
-  loginFormData.code = ""
+  loginFormData.code = "";
   // 清空验证图片
-  codeUrl.value = ""
+  codeUrl.value = "";
   // 获取验证码图片
   getCaptchaApi().then((res) => {
     if (res.success) {
-      codeUrl.value = res.data
+      codeUrl.value = res.data;
     } else {
-      ElMessage.error(res.errMessage || "获取验证码失败")
+      ElMessage.error(res.errMessage || "获取验证码失败");
     }
-  })
+  });
 }
 
 // 初始化验证码
@@ -110,10 +117,15 @@ function createCode() {
     <Owl :close-eyes="isFocus" />
     <div class="login-card">
       <div class="title">
-        <img src="@@/assets/images/layouts/logo-text-2.png">
+        <img src="@@/assets/images/layouts/logo-text-2.png" />
       </div>
       <div class="content">
-        <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
+        <el-form
+          ref="loginFormRef"
+          :model="loginFormData"
+          :rules="loginFormRules"
+          @keyup.enter="handleLogin"
+        >
           <el-form-item prop="email">
             <el-input
               v-model.trim="loginFormData.email"
@@ -165,7 +177,12 @@ function createCode() {
               </template>
             </el-input>
           </el-form-item> -->
-          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">
+          <el-button
+            :loading="loading"
+            type="primary"
+            size="large"
+            @click.prevent="handleLogin"
+          >
             登 录
           </el-button>
         </el-form>

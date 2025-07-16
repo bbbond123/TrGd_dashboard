@@ -37,9 +37,13 @@ const dataKey_0_0_0_16 = undefined as any
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `PUT /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutTagsRequest {}
+export interface ApiPutTagsRequest {
+  is_active?: boolean
+  tag_id: number
+  tag_name?: string
+}
 
 /**
  * 接口 [更新标签↗](https://yapi.ifoodme.com/project/11/interface/api/470) 的 **返回类型**
@@ -47,9 +51,26 @@ export interface ApiPutTagsRequest {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `PUT /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutTagsResponse {}
+export interface ApiPutTagsResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新标签↗](https://yapi.ifoodme.com/project/11/interface/api/470) 的 **请求配置的类型**
@@ -57,7 +78,7 @@ export interface ApiPutTagsResponse {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `PUT /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutTagsRequestConfig = Readonly<
   RequestConfig<
@@ -68,7 +89,7 @@ type ApiPutTagsRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -78,7 +99,7 @@ type ApiPutTagsRequestConfig = Readonly<
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `PUT /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutTagsRequestConfig: ApiPutTagsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_16,
@@ -92,7 +113,7 @@ const apiPutTagsRequestConfig: ApiPutTagsRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_16,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutTags',
@@ -106,9 +127,9 @@ const apiPutTagsRequestConfig: ApiPutTagsRequestConfig = /*#__PURE__*/ {
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `PUT /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPutTags = /*#__PURE__*/ (requestData?: ApiPutTagsRequest, ...args: UserRequestRestArgs) => {
+export const apiPutTags = /*#__PURE__*/ (requestData: ApiPutTagsRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutTagsResponse>(prepare(apiPutTagsRequestConfig, requestData), ...args)
 }
 
@@ -120,9 +141,12 @@ apiPutTags.requestConfig = apiPutTagsRequestConfig
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostTagsRequest {}
+export interface ApiPostTagsRequest {
+  is_active?: boolean
+  tag_name: string
+}
 
 /**
  * 接口 [创建标签↗](https://yapi.ifoodme.com/project/11/interface/api/476) 的 **返回类型**
@@ -130,9 +154,36 @@ export interface ApiPostTagsRequest {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostTagsResponse {}
+export interface ApiPostTagsResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    is_active?: boolean
+    tag_id?: number
+    tag_name?: string
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [创建标签↗](https://yapi.ifoodme.com/project/11/interface/api/476) 的 **请求配置的类型**
@@ -140,7 +191,7 @@ export interface ApiPostTagsResponse {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostTagsRequestConfig = Readonly<
   RequestConfig<
@@ -151,7 +202,7 @@ type ApiPostTagsRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -161,7 +212,7 @@ type ApiPostTagsRequestConfig = Readonly<
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostTagsRequestConfig: ApiPostTagsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_16,
@@ -175,7 +226,7 @@ const apiPostTagsRequestConfig: ApiPostTagsRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_16,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostTags',
@@ -189,9 +240,9 @@ const apiPostTagsRequestConfig: ApiPostTagsRequestConfig = /*#__PURE__*/ {
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostTags = /*#__PURE__*/ (requestData?: ApiPostTagsRequest, ...args: UserRequestRestArgs) => {
+export const apiPostTags = /*#__PURE__*/ (requestData: ApiPostTagsRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostTagsResponse>(prepare(apiPostTagsRequestConfig, requestData), ...args)
 }
 
@@ -203,9 +254,13 @@ apiPostTags.requestConfig = apiPostTagsRequestConfig
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostTagsListRequest {}
+export interface ApiPostTagsListRequest {
+  keyword?: string
+  page: number
+  pageSize: number
+}
 
 /**
  * 接口 [获取标签列表↗](https://yapi.ifoodme.com/project/11/interface/api/482) 的 **返回类型**
@@ -213,9 +268,48 @@ export interface ApiPostTagsListRequest {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostTagsListResponse {}
+export interface ApiPostTagsListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    created_at?: string
+    is_active?: boolean
+    tag_id?: number
+    tag_name?: string
+    updated_at?: string
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取标签列表↗](https://yapi.ifoodme.com/project/11/interface/api/482) 的 **请求配置的类型**
@@ -223,7 +317,7 @@ export interface ApiPostTagsListResponse {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostTagsListRequestConfig = Readonly<
   RequestConfig<
@@ -234,7 +328,7 @@ type ApiPostTagsListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -244,7 +338,7 @@ type ApiPostTagsListRequestConfig = Readonly<
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostTagsListRequestConfig: ApiPostTagsListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_16,
@@ -258,7 +352,7 @@ const apiPostTagsListRequestConfig: ApiPostTagsListRequestConfig = /*#__PURE__*/
   dataKey: dataKey_0_0_0_16,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostTagsList',
@@ -272,9 +366,9 @@ const apiPostTagsListRequestConfig: ApiPostTagsListRequestConfig = /*#__PURE__*/
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `POST /api/tags/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostTagsList = /*#__PURE__*/ (requestData?: ApiPostTagsListRequest, ...args: UserRequestRestArgs) => {
+export const apiPostTagsList = /*#__PURE__*/ (requestData: ApiPostTagsListRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostTagsListResponse>(prepare(apiPostTagsListRequestConfig, requestData), ...args)
 }
 
@@ -286,7 +380,7 @@ apiPostTagsList.requestConfig = apiPostTagsListRequestConfig
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `GET /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetTagsTagIdRequest {
   /**
@@ -301,9 +395,36 @@ export interface ApiGetTagsTagIdRequest {
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `GET /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetTagsTagIdResponse {}
+export interface ApiGetTagsTagIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    created_at?: string
+    is_active?: boolean
+    tag_id?: number
+    tag_name?: string
+    updated_at?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取标签↗](https://yapi.ifoodme.com/project/11/interface/api/488) 的 **请求配置的类型**
@@ -311,7 +432,7 @@ export interface ApiGetTagsTagIdResponse {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `GET /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetTagsTagIdRequestConfig = Readonly<
   RequestConfig<
@@ -332,7 +453,7 @@ type ApiGetTagsTagIdRequestConfig = Readonly<
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `GET /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetTagsTagIdRequestConfig: ApiGetTagsTagIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_16,
@@ -360,7 +481,7 @@ const apiGetTagsTagIdRequestConfig: ApiGetTagsTagIdRequestConfig = /*#__PURE__*/
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `GET /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetTagsTag_id = /*#__PURE__*/ (requestData: ApiGetTagsTagIdRequest, ...args: UserRequestRestArgs) => {
   return request<ApiGetTagsTagIdResponse>(prepare(apiGetTagsTagIdRequestConfig, requestData), ...args)
@@ -374,7 +495,7 @@ apiGetTagsTag_id.requestConfig = apiGetTagsTagIdRequestConfig
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `DELETE /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteTagsTagIdRequest {
   /**
@@ -389,9 +510,26 @@ export interface ApiDeleteTagsTagIdRequest {
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `DELETE /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteTagsTagIdResponse {}
+export interface ApiDeleteTagsTagIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除标签↗](https://yapi.ifoodme.com/project/11/interface/api/494) 的 **请求配置的类型**
@@ -399,7 +537,7 @@ export interface ApiDeleteTagsTagIdResponse {}
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `DELETE /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteTagsTagIdRequestConfig = Readonly<
   RequestConfig<
@@ -420,7 +558,7 @@ type ApiDeleteTagsTagIdRequestConfig = Readonly<
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `DELETE /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteTagsTagIdRequestConfig: ApiDeleteTagsTagIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_16,
@@ -448,7 +586,7 @@ const apiDeleteTagsTagIdRequestConfig: ApiDeleteTagsTagIdRequestConfig = /*#__PU
  * @分类 [Tags↗](https://yapi.ifoodme.com/project/11/interface/api/cat_95)
  * @标签 `Tags`
  * @请求头 `DELETE /api/tags/{tag_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteTagsTag_id = /*#__PURE__*/ (
   requestData: ApiDeleteTagsTagIdRequest,

@@ -37,7 +37,7 @@ const dataKey_0_0_0_5 = undefined as any
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/auth/user/profile`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetAuthUserProfileRequest {}
 
@@ -47,9 +47,59 @@ export interface ApiGetAuthUserProfileRequest {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/auth/user/profile`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetAuthUserProfileResponse {}
+export interface ApiGetAuthUserProfileResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    address?: string
+    appleId?: string
+    avatar?: string
+    birth?: string
+    createdAt?: string
+    email?: string
+    gender?: string
+    googleId?: string
+    name?: string
+    nameKana?: string
+    password?: string
+    phoneNumber?: string
+    /**
+     * 提供商: email, google, apple
+     */
+    provider?: string
+    /**
+     * 角色: admin, user
+     */
+    role?: string
+    /**
+     * 状态: active, pending, inactive
+     */
+    status?: string
+    updatedAt?: string
+    userId?: number
+    verifyCode?: string
+    verifyCodeExpire?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取用户信息↗](https://yapi.ifoodme.com/project/11/interface/api/122) 的 **请求配置的类型**
@@ -57,7 +107,7 @@ export interface ApiGetAuthUserProfileResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/auth/user/profile`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetAuthUserProfileRequestConfig = Readonly<
   RequestConfig<
@@ -78,7 +128,7 @@ type ApiGetAuthUserProfileRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/auth/user/profile`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetAuthUserProfileRequestConfig: ApiGetAuthUserProfileRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -106,7 +156,7 @@ const apiGetAuthUserProfileRequestConfig: ApiGetAuthUserProfileRequestConfig = /
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/auth/user/profile`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetAuthUserProfile = /*#__PURE__*/ (
   requestData?: ApiGetAuthUserProfileRequest,
@@ -123,9 +173,24 @@ apiGetAuthUserProfile.requestConfig = apiGetAuthUserProfileRequestConfig
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `PUT /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutUsersRequest {}
+export interface ApiPutUsersRequest {
+  address?: string
+  appleId?: string
+  birth?: string
+  email?: string
+  gender?: string
+  googleId?: string
+  name?: string
+  nameKana?: string
+  password?: string
+  phoneNumber?: string
+  provider?: string
+  role?: string
+  status?: string
+  userId: number
+}
 
 /**
  * 接口 [更新用户↗](https://yapi.ifoodme.com/project/11/interface/api/500) 的 **返回类型**
@@ -133,9 +198,59 @@ export interface ApiPutUsersRequest {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `PUT /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPutUsersResponse {}
+export interface ApiPutUsersResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    address?: string
+    appleId?: string
+    avatar?: string
+    birth?: string
+    createdAt?: string
+    email?: string
+    gender?: string
+    googleId?: string
+    name?: string
+    nameKana?: string
+    password?: string
+    phoneNumber?: string
+    /**
+     * 提供商: email, google, apple
+     */
+    provider?: string
+    /**
+     * 角色: admin, user
+     */
+    role?: string
+    /**
+     * 状态: active, pending, inactive
+     */
+    status?: string
+    updatedAt?: string
+    userId?: number
+    verifyCode?: string
+    verifyCodeExpire?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [更新用户↗](https://yapi.ifoodme.com/project/11/interface/api/500) 的 **请求配置的类型**
@@ -143,7 +258,7 @@ export interface ApiPutUsersResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `PUT /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPutUsersRequestConfig = Readonly<
   RequestConfig<
@@ -154,7 +269,7 @@ type ApiPutUsersRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -164,7 +279,7 @@ type ApiPutUsersRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `PUT /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPutUsersRequestConfig: ApiPutUsersRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -178,7 +293,7 @@ const apiPutUsersRequestConfig: ApiPutUsersRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_5,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPutUsers',
@@ -192,9 +307,9 @@ const apiPutUsersRequestConfig: ApiPutUsersRequestConfig = /*#__PURE__*/ {
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `PUT /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPutUsers = /*#__PURE__*/ (requestData?: ApiPutUsersRequest, ...args: UserRequestRestArgs) => {
+export const apiPutUsers = /*#__PURE__*/ (requestData: ApiPutUsersRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutUsersResponse>(prepare(apiPutUsersRequestConfig, requestData), ...args)
 }
 
@@ -206,9 +321,23 @@ apiPutUsers.requestConfig = apiPutUsersRequestConfig
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostUsersRequest {}
+export interface ApiPostUsersRequest {
+  address?: string
+  appleId?: string
+  birth?: string
+  email: string
+  gender?: string
+  googleId?: string
+  name?: string
+  nameKana?: string
+  password?: string
+  phoneNumber?: string
+  provider: string
+  role?: string
+  status: string
+}
 
 /**
  * 接口 [新建用户↗](https://yapi.ifoodme.com/project/11/interface/api/506) 的 **返回类型**
@@ -216,9 +345,59 @@ export interface ApiPostUsersRequest {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostUsersResponse {}
+export interface ApiPostUsersResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    address?: string
+    appleId?: string
+    avatar?: string
+    birth?: string
+    createdAt?: string
+    email?: string
+    gender?: string
+    googleId?: string
+    name?: string
+    nameKana?: string
+    password?: string
+    phoneNumber?: string
+    /**
+     * 提供商: email, google, apple
+     */
+    provider?: string
+    /**
+     * 角色: admin, user
+     */
+    role?: string
+    /**
+     * 状态: active, pending, inactive
+     */
+    status?: string
+    updatedAt?: string
+    userId?: number
+    verifyCode?: string
+    verifyCodeExpire?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [新建用户↗](https://yapi.ifoodme.com/project/11/interface/api/506) 的 **请求配置的类型**
@@ -226,7 +405,7 @@ export interface ApiPostUsersResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostUsersRequestConfig = Readonly<
   RequestConfig<
@@ -237,7 +416,7 @@ type ApiPostUsersRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -247,7 +426,7 @@ type ApiPostUsersRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostUsersRequestConfig: ApiPostUsersRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -261,7 +440,7 @@ const apiPostUsersRequestConfig: ApiPostUsersRequestConfig = /*#__PURE__*/ {
   dataKey: dataKey_0_0_0_5,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostUsers',
@@ -275,9 +454,9 @@ const apiPostUsersRequestConfig: ApiPostUsersRequestConfig = /*#__PURE__*/ {
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostUsers = /*#__PURE__*/ (requestData?: ApiPostUsersRequest, ...args: UserRequestRestArgs) => {
+export const apiPostUsers = /*#__PURE__*/ (requestData: ApiPostUsersRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostUsersResponse>(prepare(apiPostUsersRequestConfig, requestData), ...args)
 }
 
@@ -289,7 +468,7 @@ apiPostUsers.requestConfig = apiPostUsersRequestConfig
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/init-sample`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiPostUsersInitSampleRequest {}
 
@@ -299,9 +478,26 @@ export interface ApiPostUsersInitSampleRequest {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/init-sample`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostUsersInitSampleResponse {}
+export interface ApiPostUsersInitSampleResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [初始化示例用户数据↗](https://yapi.ifoodme.com/project/11/interface/api/512) 的 **请求配置的类型**
@@ -309,7 +505,7 @@ export interface ApiPostUsersInitSampleResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/init-sample`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostUsersInitSampleRequestConfig = Readonly<
   RequestConfig<
@@ -330,7 +526,7 @@ type ApiPostUsersInitSampleRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/init-sample`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostUsersInitSampleRequestConfig: ApiPostUsersInitSampleRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -358,7 +554,7 @@ const apiPostUsersInitSampleRequestConfig: ApiPostUsersInitSampleRequestConfig =
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/init-sample`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiPostUsersInitSample = /*#__PURE__*/ (
   requestData?: ApiPostUsersInitSampleRequest,
@@ -375,9 +571,38 @@ apiPostUsersInitSample.requestConfig = apiPostUsersInitSampleRequestConfig
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostUsersListRequest {}
+export interface ApiPostUsersListRequest {
+  /**
+   * 邮箱
+   */
+  email?: string
+  /**
+   * male, female
+   */
+  gender?: string
+  /**
+   * name, name_kana
+   */
+  name?: string
+  page: number
+  pageSize: number
+  phoneNumber?: string
+  /**
+   * google, apple, email
+   */
+  provider?: string
+  /**
+   * admin, user
+   */
+  role?: string
+  /**
+   * active, pending, inactive
+   */
+  status?: string
+  userId?: number
+}
 
 /**
  * 接口 [获取用户列表↗](https://yapi.ifoodme.com/project/11/interface/api/518) 的 **返回类型**
@@ -385,9 +610,71 @@ export interface ApiPostUsersListRequest {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiPostUsersListResponse {}
+export interface ApiPostUsersListResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 列表
+   */
+  data?: {
+    address?: string
+    appleId?: string
+    avatar?: string
+    birth?: string
+    createdAt?: string
+    email?: string
+    gender?: string
+    googleId?: string
+    name?: string
+    nameKana?: string
+    password?: string
+    phoneNumber?: string
+    /**
+     * 提供商: email, google, apple
+     */
+    provider?: string
+    /**
+     * 角色: admin, user
+     */
+    role?: string
+    /**
+     * 状态: active, pending, inactive
+     */
+    status?: string
+    updatedAt?: string
+    userId?: number
+    verifyCode?: string
+    verifyCodeExpire?: string
+  }[]
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 页码
+   */
+  page?: number
+  /**
+   * 每页条数
+   */
+  pageSize?: number
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+  /**
+   * 总条数
+   */
+  total?: number
+}
 
 /**
  * 接口 [获取用户列表↗](https://yapi.ifoodme.com/project/11/interface/api/518) 的 **请求配置的类型**
@@ -395,7 +682,7 @@ export interface ApiPostUsersListResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiPostUsersListRequestConfig = Readonly<
   RequestConfig<
@@ -406,7 +693,7 @@ type ApiPostUsersListRequestConfig = Readonly<
     undefined,
     string,
     string,
-    true
+    false
   >
 >
 
@@ -416,7 +703,7 @@ type ApiPostUsersListRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiPostUsersListRequestConfig: ApiPostUsersListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -430,7 +717,7 @@ const apiPostUsersListRequestConfig: ApiPostUsersListRequestConfig = /*#__PURE__
   dataKey: dataKey_0_0_0_5,
   paramNames: [],
   queryNames: [],
-  requestDataOptional: true,
+  requestDataOptional: false,
   requestDataJsonSchema: {},
   responseDataJsonSchema: {},
   requestFunctionName: 'apiPostUsersList',
@@ -444,9 +731,9 @@ const apiPostUsersListRequestConfig: ApiPostUsersListRequestConfig = /*#__PURE__
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `POST /api/users/list`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export const apiPostUsersList = /*#__PURE__*/ (requestData?: ApiPostUsersListRequest, ...args: UserRequestRestArgs) => {
+export const apiPostUsersList = /*#__PURE__*/ (requestData: ApiPostUsersListRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostUsersListResponse>(prepare(apiPostUsersListRequestConfig, requestData), ...args)
 }
 
@@ -458,7 +745,7 @@ apiPostUsersList.requestConfig = apiPostUsersListRequestConfig
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/statistics`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetUsersStatisticsRequest {}
 
@@ -468,9 +755,63 @@ export interface ApiGetUsersStatisticsRequest {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/statistics`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetUsersStatisticsResponse {}
+export interface ApiGetUsersStatisticsResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    /**
+     * 活跃用户数
+     */
+    activeUsers?: number
+    /**
+     * Apple注册用户数
+     */
+    appleUsers?: number
+    /**
+     * 邮箱注册用户数
+     */
+    emailUsers?: number
+    /**
+     * Google注册用户数
+     */
+    googleUsers?: number
+    /**
+     * 非活跃用户数
+     */
+    inactiveUsers?: number
+    /**
+     * 待验证用户数
+     */
+    pendingUsers?: number
+    /**
+     * 统计时间
+     */
+    timestamp?: string
+    /**
+     * 用户总数
+     */
+    totalUsers?: number
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取用户统计信息↗](https://yapi.ifoodme.com/project/11/interface/api/524) 的 **请求配置的类型**
@@ -478,7 +819,7 @@ export interface ApiGetUsersStatisticsResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/statistics`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetUsersStatisticsRequestConfig = Readonly<
   RequestConfig<
@@ -499,7 +840,7 @@ type ApiGetUsersStatisticsRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/statistics`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetUsersStatisticsRequestConfig: ApiGetUsersStatisticsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -527,7 +868,7 @@ const apiGetUsersStatisticsRequestConfig: ApiGetUsersStatisticsRequestConfig = /
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/statistics`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetUsersStatistics = /*#__PURE__*/ (
   requestData?: ApiGetUsersStatisticsRequest,
@@ -544,7 +885,7 @@ apiGetUsersStatistics.requestConfig = apiGetUsersStatisticsRequestConfig
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiGetUsersUserIdRequest {
   /**
@@ -559,9 +900,59 @@ export interface ApiGetUsersUserIdRequest {
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiGetUsersUserIdResponse {}
+export interface ApiGetUsersUserIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    address?: string
+    appleId?: string
+    avatar?: string
+    birth?: string
+    createdAt?: string
+    email?: string
+    gender?: string
+    googleId?: string
+    name?: string
+    nameKana?: string
+    password?: string
+    phoneNumber?: string
+    /**
+     * 提供商: email, google, apple
+     */
+    provider?: string
+    /**
+     * 角色: admin, user
+     */
+    role?: string
+    /**
+     * 状态: active, pending, inactive
+     */
+    status?: string
+    updatedAt?: string
+    userId?: number
+    verifyCode?: string
+    verifyCodeExpire?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [获取用户信息↗](https://yapi.ifoodme.com/project/11/interface/api/530) 的 **请求配置的类型**
@@ -569,7 +960,7 @@ export interface ApiGetUsersUserIdResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiGetUsersUserIdRequestConfig = Readonly<
   RequestConfig<
@@ -590,7 +981,7 @@ type ApiGetUsersUserIdRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiGetUsersUserIdRequestConfig: ApiGetUsersUserIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -618,7 +1009,7 @@ const apiGetUsersUserIdRequestConfig: ApiGetUsersUserIdRequestConfig = /*#__PURE
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `GET /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiGetUsersUser_id = /*#__PURE__*/ (
   requestData: ApiGetUsersUserIdRequest,
@@ -635,7 +1026,7 @@ apiGetUsersUser_id.requestConfig = apiGetUsersUserIdRequestConfig
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `DELETE /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export interface ApiDeleteUsersUserIdRequest {
   /**
@@ -650,9 +1041,26 @@ export interface ApiDeleteUsersUserIdRequest {
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `DELETE /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
-export interface ApiDeleteUsersUserIdResponse {}
+export interface ApiDeleteUsersUserIdResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
 
 /**
  * 接口 [删除用户↗](https://yapi.ifoodme.com/project/11/interface/api/536) 的 **请求配置的类型**
@@ -660,7 +1068,7 @@ export interface ApiDeleteUsersUserIdResponse {}
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `DELETE /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 type ApiDeleteUsersUserIdRequestConfig = Readonly<
   RequestConfig<
@@ -681,7 +1089,7 @@ type ApiDeleteUsersUserIdRequestConfig = Readonly<
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `DELETE /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 const apiDeleteUsersUserIdRequestConfig: ApiDeleteUsersUserIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_5,
@@ -709,7 +1117,7 @@ const apiDeleteUsersUserIdRequestConfig: ApiDeleteUsersUserIdRequestConfig = /*#
  * @分类 [Users↗](https://yapi.ifoodme.com/project/11/interface/api/cat_29)
  * @标签 `Users`
  * @请求头 `DELETE /api/users/{user_id}`
- * @更新时间 `2025-07-08 23:44:19`
+ * @更新时间 `2025-07-16 21:47:58`
  */
 export const apiDeleteUsersUser_id = /*#__PURE__*/ (
   requestData: ApiDeleteUsersUserIdRequest,
