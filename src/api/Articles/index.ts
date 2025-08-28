@@ -37,7 +37,7 @@ const dataKey_0_0_0_3 = undefined as any
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `PUT /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPutArticlesRequest {
   /**
@@ -63,6 +63,10 @@ export interface ApiPutArticlesRequest {
    * 经度
    */
   longitude?: number
+  /**
+   * 关联标签ID数组
+   */
+  tagIds?: number[]
   title?: string
 }
 
@@ -72,7 +76,7 @@ export interface ApiPutArticlesRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `PUT /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPutArticlesResponse {
   /**
@@ -95,6 +99,10 @@ export interface ApiPutArticlesResponse {
     likeCount?: number
     locationName?: string
     longitude?: number
+    /**
+     * 关联标签ID数组
+     */
+    tagIds?: number[]
     title?: string
     updatedAt?: string
     userAvatar?: string
@@ -124,7 +132,7 @@ export interface ApiPutArticlesResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `PUT /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPutArticlesRequestConfig = Readonly<
   RequestConfig<
@@ -145,7 +153,7 @@ type ApiPutArticlesRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `PUT /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPutArticlesRequestConfig: ApiPutArticlesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -173,7 +181,7 @@ const apiPutArticlesRequestConfig: ApiPutArticlesRequestConfig = /*#__PURE__*/ {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `PUT /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPutArticles = /*#__PURE__*/ (requestData: ApiPutArticlesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutArticlesResponse>(prepare(apiPutArticlesRequestConfig, requestData), ...args)
@@ -187,7 +195,7 @@ apiPutArticles.requestConfig = apiPutArticlesRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesRequest {
   /**
@@ -238,7 +246,7 @@ export interface ApiPostArticlesRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesResponse {
   /**
@@ -274,6 +282,10 @@ export interface ApiPostArticlesResponse {
      * 经度
      */
     longitude?: number
+    /**
+     * 关联标签ID数组
+     */
+    tagIds?: number[]
     title?: string
     updatedAt?: string
     /**
@@ -301,7 +313,7 @@ export interface ApiPostArticlesResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostArticlesRequestConfig = Readonly<
   RequestConfig<
@@ -322,7 +334,7 @@ type ApiPostArticlesRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostArticlesRequestConfig: ApiPostArticlesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -350,7 +362,7 @@ const apiPostArticlesRequestConfig: ApiPostArticlesRequestConfig = /*#__PURE__*/
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostArticles = /*#__PURE__*/ (requestData: ApiPostArticlesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostArticlesResponse>(prepare(apiPostArticlesRequestConfig, requestData), ...args)
@@ -364,7 +376,7 @@ apiPostArticles.requestConfig = apiPostArticlesRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/list`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesListRequest {
   address?: string
@@ -377,6 +389,10 @@ export interface ApiPostArticlesListRequest {
   longitude?: number
   page: number
   pageSize: number
+  /**
+   * 标签ID数组过滤
+   */
+  tagIds?: number[]
   title?: string
 }
 
@@ -386,7 +402,7 @@ export interface ApiPostArticlesListRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/list`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesListResponse {
   /**
@@ -422,6 +438,10 @@ export interface ApiPostArticlesListResponse {
      * 经度
      */
     longitude?: number
+    /**
+     * 关联标签ID数组
+     */
+    tagIds?: number[]
     title?: string
     updatedAt?: string
     /**
@@ -461,7 +481,7 @@ export interface ApiPostArticlesListResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/list`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostArticlesListRequestConfig = Readonly<
   RequestConfig<
@@ -482,7 +502,7 @@ type ApiPostArticlesListRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/list`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostArticlesListRequestConfig: ApiPostArticlesListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -510,7 +530,7 @@ const apiPostArticlesListRequestConfig: ApiPostArticlesListRequestConfig = /*#__
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/list`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostArticlesList = /*#__PURE__*/ (
   requestData: ApiPostArticlesListRequest,
@@ -527,7 +547,7 @@ apiPostArticlesList.requestConfig = apiPostArticlesListRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/nearby`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesNearbyRequest {
   /**
@@ -558,7 +578,7 @@ export interface ApiPostArticlesNearbyRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/nearby`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesNearbyResponse {
   /**
@@ -594,6 +614,10 @@ export interface ApiPostArticlesNearbyResponse {
      * 经度
      */
     longitude?: number
+    /**
+     * 关联标签ID数组
+     */
+    tagIds?: number[]
     title?: string
     updatedAt?: string
     /**
@@ -633,7 +657,7 @@ export interface ApiPostArticlesNearbyResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/nearby`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostArticlesNearbyRequestConfig = Readonly<
   RequestConfig<
@@ -654,7 +678,7 @@ type ApiPostArticlesNearbyRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/nearby`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostArticlesNearbyRequestConfig: ApiPostArticlesNearbyRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -682,7 +706,7 @@ const apiPostArticlesNearbyRequestConfig: ApiPostArticlesNearbyRequestConfig = /
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/nearby`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostArticlesNearby = /*#__PURE__*/ (
   requestData: ApiPostArticlesNearbyRequest,
@@ -699,7 +723,7 @@ apiPostArticlesNearby.requestConfig = apiPostArticlesNearbyRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/stats`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesStatsRequest {
   category?: string
@@ -714,7 +738,7 @@ export interface ApiPostArticlesStatsRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/stats`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesStatsResponse {
   /**
@@ -782,7 +806,7 @@ export interface ApiPostArticlesStatsResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/stats`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostArticlesStatsRequestConfig = Readonly<
   RequestConfig<
@@ -803,7 +827,7 @@ type ApiPostArticlesStatsRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/stats`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostArticlesStatsRequestConfig: ApiPostArticlesStatsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -831,7 +855,7 @@ const apiPostArticlesStatsRequestConfig: ApiPostArticlesStatsRequestConfig = /*#
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/stats`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostArticlesStats = /*#__PURE__*/ (
   requestData: ApiPostArticlesStatsRequest,
@@ -848,7 +872,7 @@ apiPostArticlesStats.requestConfig = apiPostArticlesStatsRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/with-image`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesWithImageRequest {
   /**
@@ -883,7 +907,7 @@ export interface ApiPostArticlesWithImageRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/with-image`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesWithImageResponse {
   /**
@@ -919,6 +943,10 @@ export interface ApiPostArticlesWithImageResponse {
      * 经度
      */
     longitude?: number
+    /**
+     * 关联标签ID数组
+     */
+    tagIds?: number[]
     title?: string
     updatedAt?: string
     /**
@@ -946,7 +974,7 @@ export interface ApiPostArticlesWithImageResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/with-image`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostArticlesWithImageRequestConfig = Readonly<
   RequestConfig<
@@ -967,7 +995,7 @@ type ApiPostArticlesWithImageRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/with-image`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostArticlesWithImageRequestConfig: ApiPostArticlesWithImageRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -995,7 +1023,7 @@ const apiPostArticlesWithImageRequestConfig: ApiPostArticlesWithImageRequestConf
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/with-image`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostArticlesWithImage = /*#__PURE__*/ (
   requestData: ApiPostArticlesWithImageRequest,
@@ -1012,7 +1040,7 @@ apiPostArticlesWithImage.requestConfig = apiPostArticlesWithImageRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetArticlesArticleIdRequest {
   /**
@@ -1027,7 +1055,7 @@ export interface ApiGetArticlesArticleIdRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetArticlesArticleIdResponse {
   /**
@@ -1063,6 +1091,10 @@ export interface ApiGetArticlesArticleIdResponse {
      * 经度
      */
     longitude?: number
+    /**
+     * 关联标签ID数组
+     */
+    tagIds?: number[]
     title?: string
     updatedAt?: string
     /**
@@ -1090,7 +1122,7 @@ export interface ApiGetArticlesArticleIdResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiGetArticlesArticleIdRequestConfig = Readonly<
   RequestConfig<
@@ -1111,7 +1143,7 @@ type ApiGetArticlesArticleIdRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiGetArticlesArticleIdRequestConfig: ApiGetArticlesArticleIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -1139,7 +1171,7 @@ const apiGetArticlesArticleIdRequestConfig: ApiGetArticlesArticleIdRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiGetArticlesArticle_id = /*#__PURE__*/ (
   requestData: ApiGetArticlesArticleIdRequest,
@@ -1156,7 +1188,7 @@ apiGetArticlesArticle_id.requestConfig = apiGetArticlesArticleIdRequestConfig
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `DELETE /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiDeleteArticlesArticleIdRequest {
   /**
@@ -1171,7 +1203,7 @@ export interface ApiDeleteArticlesArticleIdRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `DELETE /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiDeleteArticlesArticleIdResponse {
   /**
@@ -1198,7 +1230,7 @@ export interface ApiDeleteArticlesArticleIdResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `DELETE /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiDeleteArticlesArticleIdRequestConfig = Readonly<
   RequestConfig<
@@ -1219,7 +1251,7 @@ type ApiDeleteArticlesArticleIdRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `DELETE /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiDeleteArticlesArticleIdRequestConfig: ApiDeleteArticlesArticleIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -1247,7 +1279,7 @@ const apiDeleteArticlesArticleIdRequestConfig: ApiDeleteArticlesArticleIdRequest
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `DELETE /api/articles/{article_id}`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiDeleteArticlesArticle_id = /*#__PURE__*/ (
   requestData: ApiDeleteArticlesArticleIdRequest,
@@ -1267,7 +1299,7 @@ apiDeleteArticlesArticle_id.requestConfig = apiDeleteArticlesArticleIdRequestCon
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}/comments`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetArticlesArticleIdCommentsRequest {
   /**
@@ -1290,7 +1322,7 @@ export interface ApiGetArticlesArticleIdCommentsRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}/comments`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetArticlesArticleIdCommentsResponse {
   /**
@@ -1344,7 +1376,7 @@ export interface ApiGetArticlesArticleIdCommentsResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}/comments`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiGetArticlesArticleIdCommentsRequestConfig = Readonly<
   RequestConfig<
@@ -1365,7 +1397,7 @@ type ApiGetArticlesArticleIdCommentsRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}/comments`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiGetArticlesArticleIdCommentsRequestConfig: ApiGetArticlesArticleIdCommentsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -1393,7 +1425,7 @@ const apiGetArticlesArticleIdCommentsRequestConfig: ApiGetArticlesArticleIdComme
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `GET /api/articles/{article_id}/comments`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiGetArticlesArticle_idComments = /*#__PURE__*/ (
   requestData: ApiGetArticlesArticleIdCommentsRequest,
@@ -1413,7 +1445,7 @@ apiGetArticlesArticle_idComments.requestConfig = apiGetArticlesArticleIdComments
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/{article_id}/like`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesArticleIdLikeRequest {
   /**
@@ -1428,7 +1460,7 @@ export interface ApiPostArticlesArticleIdLikeRequest {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/{article_id}/like`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostArticlesArticleIdLikeResponse {
   /**
@@ -1468,7 +1500,7 @@ export interface ApiPostArticlesArticleIdLikeResponse {
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/{article_id}/like`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostArticlesArticleIdLikeRequestConfig = Readonly<
   RequestConfig<
@@ -1489,7 +1521,7 @@ type ApiPostArticlesArticleIdLikeRequestConfig = Readonly<
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/{article_id}/like`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostArticlesArticleIdLikeRequestConfig: ApiPostArticlesArticleIdLikeRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_3,
@@ -1517,7 +1549,7 @@ const apiPostArticlesArticleIdLikeRequestConfig: ApiPostArticlesArticleIdLikeReq
  * @分类 [Articles↗](https://yapi.ifoodme.com/project/11/interface/api/cat_17)
  * @标签 `Articles`
  * @请求头 `POST /api/articles/{article_id}/like`
- * @更新时间 `2025-07-16 21:47:57`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostArticlesArticle_idLike = /*#__PURE__*/ (
   requestData: ApiPostArticlesArticleIdLikeRequest,

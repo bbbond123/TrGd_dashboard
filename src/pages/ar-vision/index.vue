@@ -54,6 +54,8 @@ async function handleImageUpload(file: UploadFile) {
   // 开始分析
   await analyzeImage(file.raw);
 
+
+
   return false; // 阻止自动上传
 }
 

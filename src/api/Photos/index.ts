@@ -37,7 +37,7 @@ const dataKey_0_0_0_13 = undefined as any
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export type ApiPostPhotosBatchEnhanceRequest = {
   /**
@@ -57,7 +57,7 @@ export type ApiPostPhotosBatchEnhanceRequest = {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostPhotosBatchEnhanceResponse {
   /**
@@ -134,7 +134,7 @@ export interface ApiPostPhotosBatchEnhanceResponse {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostPhotosBatchEnhanceRequestConfig = Readonly<
   RequestConfig<
@@ -155,7 +155,7 @@ type ApiPostPhotosBatchEnhanceRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostPhotosBatchEnhanceRequestConfig: ApiPostPhotosBatchEnhanceRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -183,7 +183,7 @@ const apiPostPhotosBatchEnhanceRequestConfig: ApiPostPhotosBatchEnhanceRequestCo
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `POST /api/photos/batch-enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostPhotosBatchEnhance = /*#__PURE__*/ (
   requestData: ApiPostPhotosBatchEnhanceRequest,
@@ -203,7 +203,7 @@ apiPostPhotosBatchEnhance.requestConfig = apiPostPhotosBatchEnhanceRequestConfig
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetPhotosEnhanceRequest {
   /**
@@ -238,7 +238,7 @@ export interface ApiGetPhotosEnhanceRequest {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetPhotosEnhanceResponse {
   /**
@@ -315,7 +315,7 @@ export interface ApiGetPhotosEnhanceResponse {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiGetPhotosEnhanceRequestConfig = Readonly<
   RequestConfig<
@@ -336,7 +336,7 @@ type ApiGetPhotosEnhanceRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiGetPhotosEnhanceRequestConfig: ApiGetPhotosEnhanceRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -364,7 +364,7 @@ const apiGetPhotosEnhanceRequestConfig: ApiGetPhotosEnhanceRequestConfig = /*#__
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/enhance`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiGetPhotosEnhance = /*#__PURE__*/ (
   requestData: ApiGetPhotosEnhanceRequest,
@@ -381,7 +381,7 @@ apiGetPhotosEnhance.requestConfig = apiGetPhotosEnhanceRequestConfig
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetPhotosNearbyRequest {
   /**
@@ -412,7 +412,7 @@ export interface ApiGetPhotosNearbyRequest {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetPhotosNearbyResponse {
   /**
@@ -489,7 +489,7 @@ export interface ApiGetPhotosNearbyResponse {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiGetPhotosNearbyRequestConfig = Readonly<
   RequestConfig<
@@ -510,7 +510,7 @@ type ApiGetPhotosNearbyRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiGetPhotosNearbyRequestConfig: ApiGetPhotosNearbyRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -538,7 +538,7 @@ const apiGetPhotosNearbyRequestConfig: ApiGetPhotosNearbyRequestConfig = /*#__PU
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/nearby`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiGetPhotosNearby = /*#__PURE__*/ (
   requestData: ApiGetPhotosNearbyRequest,
@@ -555,7 +555,7 @@ apiGetPhotosNearby.requestConfig = apiGetPhotosNearbyRequestConfig
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetPhotosSizesRequest {
   /**
@@ -570,7 +570,7 @@ export interface ApiGetPhotosSizesRequest {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetPhotosSizesResponse {
   /**
@@ -601,7 +601,7 @@ export interface ApiGetPhotosSizesResponse {
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiGetPhotosSizesRequestConfig = Readonly<
   RequestConfig<
@@ -622,7 +622,7 @@ type ApiGetPhotosSizesRequestConfig = Readonly<
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiGetPhotosSizesRequestConfig: ApiGetPhotosSizesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_13,
@@ -650,7 +650,7 @@ const apiGetPhotosSizesRequestConfig: ApiGetPhotosSizesRequestConfig = /*#__PURE
  * @分类 [Photos↗](https://yapi.ifoodme.com/project/11/interface/api/cat_77)
  * @标签 `Photos`
  * @请求头 `GET /api/photos/sizes`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiGetPhotosSizes = /*#__PURE__*/ (
   requestData: ApiGetPhotosSizesRequest,

@@ -19,13 +19,16 @@ export default function request<TResponseData>(
     server: 'prod',
   },
 ): Promise<TResponseData> {
+  console.log("🚀 ~ request ~ import.meta.env.VITE_NODE_ENV:", import.meta.env.VITE_NODE_ENV)
   return new Promise<TResponseData>((resolve, reject) => {
     // 基本地址
-    const baseUrl = options.server === 'mock'
-    ? payload.mockUrl
-    : options.server === 'dev'
-    ? payload.devUrl
-    : payload.prodUrl
+    // const baseUrl = options.server === 'mock'
+    // ? payload.mockUrl
+    // : options.server === 'dev'
+    // ? payload.devUrl
+    // : payload.prodUrl
+
+    const baseUrl = import.meta.env.MODE === 'dev' ? '' : payload.prodUrl
 
     // 请求地址
     const url = `${baseUrl}${payload.path}`

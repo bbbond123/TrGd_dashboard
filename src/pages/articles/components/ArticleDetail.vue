@@ -201,7 +201,7 @@ function formatDateTime(dateTime: string) {
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="handleClose">关闭</el-button>
-        <el-button type="primary" @click="handleEdit">编辑文章</el-button>
+        <!-- <el-button type="primary" @click="handleEdit">编辑文章</el-button> -->
         <el-button type="success" @click="handleLike" :loading="liking">
           点赞 ({{ articleData?.likeCount || 0 }})
         </el-button>

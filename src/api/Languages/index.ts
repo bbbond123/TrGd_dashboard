@@ -37,7 +37,7 @@ const dataKey_0_0_0_10 = undefined as any
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `PUT /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPutLanguagesRequest {
   display_order?: number
@@ -52,7 +52,7 @@ export interface ApiPutLanguagesRequest {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `PUT /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPutLanguagesResponse {
   /**
@@ -79,7 +79,7 @@ export interface ApiPutLanguagesResponse {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `PUT /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPutLanguagesRequestConfig = Readonly<
   RequestConfig<
@@ -100,7 +100,7 @@ type ApiPutLanguagesRequestConfig = Readonly<
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `PUT /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPutLanguagesRequestConfig: ApiPutLanguagesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_10,
@@ -128,7 +128,7 @@ const apiPutLanguagesRequestConfig: ApiPutLanguagesRequestConfig = /*#__PURE__*/
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `PUT /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPutLanguages = /*#__PURE__*/ (requestData: ApiPutLanguagesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutLanguagesResponse>(prepare(apiPutLanguagesRequestConfig, requestData), ...args)
@@ -142,7 +142,7 @@ apiPutLanguages.requestConfig = apiPutLanguagesRequestConfig
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostLanguagesRequest {
   display_order?: number
@@ -156,7 +156,7 @@ export interface ApiPostLanguagesRequest {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostLanguagesResponse {
   /**
@@ -194,7 +194,7 @@ export interface ApiPostLanguagesResponse {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostLanguagesRequestConfig = Readonly<
   RequestConfig<
@@ -215,7 +215,7 @@ type ApiPostLanguagesRequestConfig = Readonly<
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostLanguagesRequestConfig: ApiPostLanguagesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_10,
@@ -243,7 +243,7 @@ const apiPostLanguagesRequestConfig: ApiPostLanguagesRequestConfig = /*#__PURE__
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostLanguages = /*#__PURE__*/ (requestData: ApiPostLanguagesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostLanguagesResponse>(prepare(apiPostLanguagesRequestConfig, requestData), ...args)
@@ -257,7 +257,7 @@ apiPostLanguages.requestConfig = apiPostLanguagesRequestConfig
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostLanguagesListRequest {
   keyword?: string
@@ -271,7 +271,7 @@ export interface ApiPostLanguagesListRequest {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiPostLanguagesListResponse {
   /**
@@ -321,7 +321,7 @@ export interface ApiPostLanguagesListResponse {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiPostLanguagesListRequestConfig = Readonly<
   RequestConfig<
@@ -342,7 +342,7 @@ type ApiPostLanguagesListRequestConfig = Readonly<
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiPostLanguagesListRequestConfig: ApiPostLanguagesListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_10,
@@ -370,7 +370,7 @@ const apiPostLanguagesListRequestConfig: ApiPostLanguagesListRequestConfig = /*#
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `POST /api/languages/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiPostLanguagesList = /*#__PURE__*/ (
   requestData: ApiPostLanguagesListRequest,
@@ -387,7 +387,7 @@ apiPostLanguagesList.requestConfig = apiPostLanguagesListRequestConfig
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `GET /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetLanguagesLanguageIdRequest {
   /**
@@ -402,7 +402,7 @@ export interface ApiGetLanguagesLanguageIdRequest {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `GET /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiGetLanguagesLanguageIdResponse {
   /**
@@ -440,7 +440,7 @@ export interface ApiGetLanguagesLanguageIdResponse {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `GET /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiGetLanguagesLanguageIdRequestConfig = Readonly<
   RequestConfig<
@@ -461,7 +461,7 @@ type ApiGetLanguagesLanguageIdRequestConfig = Readonly<
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `GET /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiGetLanguagesLanguageIdRequestConfig: ApiGetLanguagesLanguageIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_10,
@@ -489,7 +489,7 @@ const apiGetLanguagesLanguageIdRequestConfig: ApiGetLanguagesLanguageIdRequestCo
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `GET /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiGetLanguagesLanguage_id = /*#__PURE__*/ (
   requestData: ApiGetLanguagesLanguageIdRequest,
@@ -509,7 +509,7 @@ apiGetLanguagesLanguage_id.requestConfig = apiGetLanguagesLanguageIdRequestConfi
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `DELETE /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiDeleteLanguagesLanguageIdRequest {
   /**
@@ -524,7 +524,7 @@ export interface ApiDeleteLanguagesLanguageIdRequest {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `DELETE /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export interface ApiDeleteLanguagesLanguageIdResponse {
   /**
@@ -551,7 +551,7 @@ export interface ApiDeleteLanguagesLanguageIdResponse {
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `DELETE /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 type ApiDeleteLanguagesLanguageIdRequestConfig = Readonly<
   RequestConfig<
@@ -572,7 +572,7 @@ type ApiDeleteLanguagesLanguageIdRequestConfig = Readonly<
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `DELETE /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 const apiDeleteLanguagesLanguageIdRequestConfig: ApiDeleteLanguagesLanguageIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_10,
@@ -600,7 +600,7 @@ const apiDeleteLanguagesLanguageIdRequestConfig: ApiDeleteLanguagesLanguageIdReq
  * @分类 [Languages↗](https://yapi.ifoodme.com/project/11/interface/api/cat_59)
  * @标签 `Languages`
  * @请求头 `DELETE /api/languages/{language_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:00`
  */
 export const apiDeleteLanguagesLanguage_id = /*#__PURE__*/ (
   requestData: ApiDeleteLanguagesLanguageIdRequest,

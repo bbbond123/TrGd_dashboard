@@ -37,7 +37,7 @@ const dataKey_0_0_0_0 = undefined as any
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `PUT /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPutVisionHistoriesRequest {
   apiSource?: string
@@ -60,7 +60,7 @@ export interface ApiPutVisionHistoriesRequest {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `PUT /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPutVisionHistoriesResponse {
   /**
@@ -87,7 +87,7 @@ export interface ApiPutVisionHistoriesResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `PUT /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiPutVisionHistoriesRequestConfig = Readonly<
   RequestConfig<
@@ -108,7 +108,7 @@ type ApiPutVisionHistoriesRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `PUT /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiPutVisionHistoriesRequestConfig: ApiPutVisionHistoriesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_0,
@@ -136,7 +136,7 @@ const apiPutVisionHistoriesRequestConfig: ApiPutVisionHistoriesRequestConfig = /
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `PUT /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiPutVisionHistories = /*#__PURE__*/ (
   requestData: ApiPutVisionHistoriesRequest,
@@ -153,7 +153,7 @@ apiPutVisionHistories.requestConfig = apiPutVisionHistoriesRequestConfig
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPostVisionHistoriesRequest {
   apiSource: string
@@ -175,7 +175,7 @@ export interface ApiPostVisionHistoriesRequest {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPostVisionHistoriesResponse {
   /**
@@ -222,7 +222,7 @@ export interface ApiPostVisionHistoriesResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiPostVisionHistoriesRequestConfig = Readonly<
   RequestConfig<
@@ -243,7 +243,7 @@ type ApiPostVisionHistoriesRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiPostVisionHistoriesRequestConfig: ApiPostVisionHistoriesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_0,
@@ -271,7 +271,7 @@ const apiPostVisionHistoriesRequestConfig: ApiPostVisionHistoriesRequestConfig =
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiPostVisionHistories = /*#__PURE__*/ (
   requestData: ApiPostVisionHistoriesRequest,
@@ -288,7 +288,7 @@ apiPostVisionHistories.requestConfig = apiPostVisionHistoriesRequestConfig
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/generate-test-data`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPostVisionHistoriesGenerateTestDataRequest {}
 
@@ -298,7 +298,7 @@ export interface ApiPostVisionHistoriesGenerateTestDataRequest {}
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/generate-test-data`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPostVisionHistoriesGenerateTestDataResponse {
   /**
@@ -325,7 +325,7 @@ export interface ApiPostVisionHistoriesGenerateTestDataResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/generate-test-data`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiPostVisionHistoriesGenerateTestDataRequestConfig = Readonly<
   RequestConfig<
@@ -346,7 +346,7 @@ type ApiPostVisionHistoriesGenerateTestDataRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/generate-test-data`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiPostVisionHistoriesGenerateTestDataRequestConfig: ApiPostVisionHistoriesGenerateTestDataRequestConfig =
   /*#__PURE__*/ {
@@ -375,7 +375,7 @@ const apiPostVisionHistoriesGenerateTestDataRequestConfig: ApiPostVisionHistorie
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/generate-test-data`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiPostVisionHistoriesGenerateTestData = /*#__PURE__*/ (
   requestData?: ApiPostVisionHistoriesGenerateTestDataRequest,
@@ -395,7 +395,7 @@ apiPostVisionHistoriesGenerateTestData.requestConfig = apiPostVisionHistoriesGen
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPostVisionHistoriesListRequest {
   apiSource?: string
@@ -416,7 +416,7 @@ export interface ApiPostVisionHistoriesListRequest {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiPostVisionHistoriesListResponse {
   /**
@@ -475,7 +475,7 @@ export interface ApiPostVisionHistoriesListResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiPostVisionHistoriesListRequestConfig = Readonly<
   RequestConfig<
@@ -496,7 +496,7 @@ type ApiPostVisionHistoriesListRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiPostVisionHistoriesListRequestConfig: ApiPostVisionHistoriesListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_0,
@@ -524,7 +524,7 @@ const apiPostVisionHistoriesListRequestConfig: ApiPostVisionHistoriesListRequest
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `POST /api/vision-histories/list`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiPostVisionHistoriesList = /*#__PURE__*/ (
   requestData: ApiPostVisionHistoriesListRequest,
@@ -544,7 +544,7 @@ apiPostVisionHistoriesList.requestConfig = apiPostVisionHistoriesListRequestConf
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/my`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiGetVisionHistoriesMyRequest {
   /**
@@ -563,7 +563,7 @@ export interface ApiGetVisionHistoriesMyRequest {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/my`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiGetVisionHistoriesMyResponse {
   /**
@@ -622,7 +622,7 @@ export interface ApiGetVisionHistoriesMyResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/my`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiGetVisionHistoriesMyRequestConfig = Readonly<
   RequestConfig<
@@ -643,7 +643,7 @@ type ApiGetVisionHistoriesMyRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/my`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiGetVisionHistoriesMyRequestConfig: ApiGetVisionHistoriesMyRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_0,
@@ -671,7 +671,7 @@ const apiGetVisionHistoriesMyRequestConfig: ApiGetVisionHistoriesMyRequestConfig
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/my`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiGetVisionHistoriesMy = /*#__PURE__*/ (
   requestData: ApiGetVisionHistoriesMyRequest,
@@ -688,7 +688,7 @@ apiGetVisionHistoriesMy.requestConfig = apiGetVisionHistoriesMyRequestConfig
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/statistics`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiGetVisionHistoriesStatisticsRequest {}
 
@@ -698,7 +698,7 @@ export interface ApiGetVisionHistoriesStatisticsRequest {}
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/statistics`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiGetVisionHistoriesStatisticsResponse {
   /**
@@ -776,7 +776,7 @@ export interface ApiGetVisionHistoriesStatisticsResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/statistics`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiGetVisionHistoriesStatisticsRequestConfig = Readonly<
   RequestConfig<
@@ -797,7 +797,7 @@ type ApiGetVisionHistoriesStatisticsRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/statistics`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiGetVisionHistoriesStatisticsRequestConfig: ApiGetVisionHistoriesStatisticsRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_0,
@@ -825,7 +825,7 @@ const apiGetVisionHistoriesStatisticsRequestConfig: ApiGetVisionHistoriesStatist
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/statistics`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiGetVisionHistoriesStatistics = /*#__PURE__*/ (
   requestData?: ApiGetVisionHistoriesStatisticsRequest,
@@ -845,7 +845,7 @@ apiGetVisionHistoriesStatistics.requestConfig = apiGetVisionHistoriesStatisticsR
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiGetVisionHistoriesVisionIdRequest {
   /**
@@ -860,7 +860,7 @@ export interface ApiGetVisionHistoriesVisionIdRequest {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiGetVisionHistoriesVisionIdResponse {
   /**
@@ -907,7 +907,7 @@ export interface ApiGetVisionHistoriesVisionIdResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiGetVisionHistoriesVisionIdRequestConfig = Readonly<
   RequestConfig<
@@ -928,7 +928,7 @@ type ApiGetVisionHistoriesVisionIdRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiGetVisionHistoriesVisionIdRequestConfig: ApiGetVisionHistoriesVisionIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_0,
@@ -956,7 +956,7 @@ const apiGetVisionHistoriesVisionIdRequestConfig: ApiGetVisionHistoriesVisionIdR
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `GET /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiGetVisionHistoriesVision_id = /*#__PURE__*/ (
   requestData: ApiGetVisionHistoriesVisionIdRequest,
@@ -976,7 +976,7 @@ apiGetVisionHistoriesVision_id.requestConfig = apiGetVisionHistoriesVisionIdRequ
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `DELETE /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiDeleteVisionHistoriesVisionIdRequest {
   /**
@@ -991,7 +991,7 @@ export interface ApiDeleteVisionHistoriesVisionIdRequest {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `DELETE /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export interface ApiDeleteVisionHistoriesVisionIdResponse {
   /**
@@ -1018,7 +1018,7 @@ export interface ApiDeleteVisionHistoriesVisionIdResponse {
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `DELETE /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 type ApiDeleteVisionHistoriesVisionIdRequestConfig = Readonly<
   RequestConfig<
@@ -1039,7 +1039,7 @@ type ApiDeleteVisionHistoriesVisionIdRequestConfig = Readonly<
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `DELETE /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 const apiDeleteVisionHistoriesVisionIdRequestConfig: ApiDeleteVisionHistoriesVisionIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_0,
@@ -1067,7 +1067,7 @@ const apiDeleteVisionHistoriesVisionIdRequestConfig: ApiDeleteVisionHistoriesVis
  * @分类 [VisionHistories↗](https://yapi.ifoodme.com/project/11/interface/api/cat_101)
  * @标签 `VisionHistories`
  * @请求头 `DELETE /api/vision-histories/{vision_id}`
- * @更新时间 `2025-07-16 21:47:58`
+ * @更新时间 `2025-08-28 18:12:01`
  */
 export const apiDeleteVisionHistoriesVision_id = /*#__PURE__*/ (
   requestData: ApiDeleteVisionHistoriesVisionIdRequest,
