@@ -18,18 +18,18 @@ export default defineConfig(({ mode }) => {
   // 根据模式设置不同的代理目标
   const getProxyTarget = () => {
     switch (mode) {
-      case 'live':
-        return 'https://www.ifoodme.com'
-      case 'staging':
-        return 'https://staging.ifoodme.com' // 如果有staging环境
+      case "live":
+        return "https://www.ifoodme.com"
+      case "staging":
+        return "https://staging.ifoodme.com" // 如果有staging环境
       default:
-        return 'http://localhost:3000'
+        return "http://localhost:3000"
     }
   }
 
   return {
     // 开发或打包构建时用到的公共基础路径
-    base: "/admin/",
+    base: "/",
     resolve: {
       alias: {
         // @ 符号指向 src 目录
