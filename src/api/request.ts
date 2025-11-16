@@ -28,7 +28,9 @@ export default function request<TResponseData>(
     // ? payload.devUrl
     // : payload.prodUrl
 
-    const baseUrl = import.meta.env.MODE === 'dev' ? '' : payload.prodUrl
+    // 使用空字符串作为 baseUrl，让请求发送到当前域名
+    // Cloudflare Worker 会将 /api/** 请求代理到 api.ifoodme.com
+    const baseUrl = ''
 
     // 请求地址
     const url = `${baseUrl}${payload.path}`
