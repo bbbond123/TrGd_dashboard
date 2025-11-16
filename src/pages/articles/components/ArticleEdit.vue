@@ -5,6 +5,7 @@ import type {
   UpdateArticleRequest
 } from "@@/apis/articles/type"
 import type { CheckboxValueType, FormInstance, UploadProps } from "element-plus"
+import type { ApiPostTagsListResponse, ApiPostTagsRequest } from "@/api/Tags"
 import {
   createArticleApi,
   createArticleWithImageApi,
@@ -17,7 +18,8 @@ import {
   ElMessage
 
 } from "element-plus"
-import { computed, nextTick, reactive, ref, watch } from "vue"
+import { computed, nextTick, onMounted, reactive, ref, watch } from "vue"
+import { apiPostTags, apiPostTagsList } from "@/api/Tags"
 
 interface Props {
   modelValue: boolean
@@ -41,13 +43,13 @@ const formRef = ref<FormInstance>()
 const isEdit = computed(() => Boolean(props.articleId))
 
 // 表单数据
-const formData = reactive<CreateArticleRequest & { imageUrl?: string }>({
+const formData = reactive<CreateArticleRequest & { imageUrl?: string, tagIds?: number[] }>({
   title: "",
   bodyText: "",
   summary: "",
   category: "",
   status: "draft",
-  tags: [],
+  tagIds: [],
   address: "",
   locationName: "",
   latitude: undefined,
@@ -63,17 +65,18 @@ const enableLocation = ref(false)
 const imageFileList = ref<any[]>([])
 const uploadImages = ref<File[]>([])
 
-// 常用标签
-const commonTags = ref([
-  "旅游",
-  "美食",
-  "文化",
-  "历史",
-  "自然",
-  "建筑",
-  "人文",
-  "摄影"
-])
+// 标签相关
+// interface Tag {
+//   created_at?: string
+//   is_active?: boolean
+//   tag_id?: number | string
+//   tag_name?: string
+//   updated_at?: string
+// }
+
+const allTags = ref<ApiPostTagsListResponse["data"]>([])
+const loadingTags = ref(false)
+const creatingTag = ref(false)
 
 // 表单验证规则
 const rules = {
@@ -101,6 +104,73 @@ watch(dialogVisible, (val) => {
   emit("update:modelValue", val)
 })
 
+// 组件挂载时获取标签列表
+onMounted(async () => {
+  await fetchTags()
+})
+
+// 获取标签列表
+async function fetchTags() {
+  loadingTags.value = true
+  try {
+    const res = await apiPostTagsList({
+      page: 1,
+      pageSize: 100
+    })
+    if (res.success && res.data) {
+      allTags.value = res.data.filter(tag => tag.is_active !== false)
+    }
+  } catch (error) {
+    console.error("获取标签列表失败:", error)
+  } finally {
+    loadingTags.value = false
+  }
+}
+
+// 处理标签变化（创建新标签）
+async function handleTagChange(values: any[]) {
+  // 检查是否有新创建的标签（字符串类型）
+  const newTagNames = values.filter(v => typeof v === "string")
+
+  if (newTagNames.length > 0) {
+    creatingTag.value = true
+    try {
+      // 创建新标签
+      for (const tagName of newTagNames) {
+        const res = await apiPostTags({
+          tag_name: tagName,
+          is_active: true
+        })
+
+        if (res.success && res.data) {
+          // 添加到标签列表
+          allTags.value?.push({
+            created_at: res.data.created_at,
+            is_active: res.data.is_active,
+            tag_id: res.data.tag_id,
+            tag_name: res.data.tag_name,
+            updated_at: res.data.updated_at
+          })
+
+          // 替换formData中的字符串为新创建的标签ID
+          const index = formData.tagIds!.indexOf(tagName as any)
+          if (index > -1) {
+            formData.tagIds![index] = res.data.tag_id!
+          }
+        }
+      }
+
+      // 刷新标签列表
+      await fetchTags()
+    } catch (error) {
+      console.error("创建标签失败:", error)
+      ElMessage.error("创建标签失败")
+    } finally {
+      creatingTag.value = false
+    }
+  }
+}
+
 // 获取文章详情
 async function getArticleDetail() {
   if (!props.articleId) return
@@ -116,7 +186,7 @@ async function getArticleDetail() {
         summary: article.summary || "",
         category: article.category || "",
         status: article.status || "draft",
-        tags: article.tags || [],
+        tagIds: article.tagIds || [],
         address: article.address || "",
         locationName: article.locationName || "",
         latitude: article.latitude,
@@ -146,7 +216,7 @@ function resetForm() {
     summary: "",
     category: "",
     status: "draft",
-    tags: [],
+    tagIds: [],
     address: "",
     locationName: "",
     latitude: undefined,
@@ -304,29 +374,15 @@ function handleClose() {
 
 <template>
   <el-dialog
-    v-model="dialogVisible"
-    :title="isEdit ? '编辑文章' : '新增文章'"
-    width="90%"
-    :close-on-click-modal="false"
+    v-model="dialogVisible" :title="isEdit ? '编辑文章' : '新增文章'" width="90%" :close-on-click-modal="false"
     :close-on-press-escape="false"
   >
     <div v-loading="loading">
-      <el-form
-        ref="formRef"
-        :model="formData"
-        :rules="rules"
-        label-width="100px"
-        class="article-form"
-      >
+      <el-form ref="formRef" :model="formData" :rules="rules" label-width="100px" class="article-form">
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="文章标题" prop="title">
-              <el-input
-                v-model="formData.title"
-                placeholder="请输入文章标题"
-                maxlength="100"
-                show-word-limit
-              />
+              <el-input v-model="formData.title" placeholder="请输入文章标题" maxlength="100" show-word-limit />
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -343,30 +399,17 @@ function handleClose() {
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="文章分类" prop="category">
-              <el-input
-                v-model="formData.category"
-                placeholder="请输入文章分类"
-                clearable
-              />
+              <el-input v-model="formData.category" placeholder="请输入文章分类" clearable />
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="文章标签" prop="tags">
+            <el-form-item label="文章标签" prop="tagIds">
               <el-select
-                v-model="formData.tags"
-                multiple
-                filterable
-                allow-create
-                default-first-option
-                placeholder="请输入标签，支持多个"
-                style="width: 100%"
+                v-model="formData.tagIds" multiple filterable allow-create default-first-option
+                placeholder="请选择或输入标签" style="width: 100%" :loading="loadingTags || creatingTag"
+                @change="handleTagChange"
               >
-                <el-option
-                  v-for="tag in commonTags"
-                  :key="tag"
-                  :label="tag"
-                  :value="tag"
-                />
+                <el-option v-for="tag in allTags" :key="tag.tag_id" :label="tag.tag_name" :value="tag.tag_id!" />
               </el-select>
             </el-form-item>
           </el-col>
@@ -374,11 +417,7 @@ function handleClose() {
 
         <el-form-item label="文章摘要" prop="summary">
           <el-input
-            v-model="formData.summary"
-            type="textarea"
-            :rows="3"
-            placeholder="请输入文章摘要"
-            maxlength="300"
+            v-model="formData.summary" type="textarea" :rows="3" placeholder="请输入文章摘要" maxlength="300"
             show-word-limit
           />
         </el-form-item>
@@ -386,17 +425,10 @@ function handleClose() {
         <el-form-item label="封面图片" prop="cover_image">
           <div class="cover-upload">
             <el-upload
-              class="cover-uploader"
-              action="#"
-              :show-file-list="false"
-              :before-upload="handleCoverUpload"
+              class="cover-uploader" action="#" :show-file-list="false" :before-upload="handleCoverUpload"
               accept="image/*"
             >
-              <img
-                v-if="formData.imageUrl"
-                :src="formData.imageUrl"
-                class="cover"
-              >
+              <img v-if="formData.imageUrl" :src="formData.imageUrl" class="cover">
               <el-icon v-else class="cover-uploader-icon">
                 <Plus />
               </el-icon>
@@ -411,10 +443,7 @@ function handleClose() {
 
         <el-form-item label="文章内容" prop="bodyText">
           <el-input
-            v-model="formData.bodyText"
-            type="textarea"
-            :rows="15"
-            placeholder="请输入文章内容"
+            v-model="formData.bodyText" type="textarea" :rows="15" placeholder="请输入文章内容"
             class="content-textarea"
           />
         </el-form-item>
@@ -422,33 +451,19 @@ function handleClose() {
         <!-- 位置信息 -->
         <el-form-item label="位置信息">
           <div class="location-section">
-            <el-checkbox
-              v-model="enableLocation"
-              @change="handleLocationToggle"
-            >
+            <el-checkbox v-model="enableLocation" @change="handleLocationToggle">
               启用位置信息
             </el-checkbox>
             <template v-if="enableLocation">
               <el-row :gutter="20" style="margin-top: 12px">
                 <el-col :span="8">
-                  <el-input
-                    v-model="formData.latitude"
-                    placeholder="纬度"
-                    type="number"
-                  />
+                  <el-input v-model="formData.latitude" placeholder="纬度" type="number" />
                 </el-col>
                 <el-col :span="8">
-                  <el-input
-                    v-model="formData.longitude"
-                    placeholder="经度"
-                    type="number"
-                  />
+                  <el-input v-model="formData.longitude" placeholder="经度" type="number" />
                 </el-col>
                 <el-col :span="8">
-                  <el-input
-                    v-model="formData.address"
-                    placeholder="地址描述（可选）"
-                  />
+                  <el-input v-model="formData.address" placeholder="地址描述（可选）" />
                 </el-col>
               </el-row>
             </template>
@@ -458,16 +473,12 @@ function handleClose() {
         <!-- 图片上传 -->
         <el-form-item label="相关图片">
           <el-upload
-            class="image-uploader"
-            action="#"
-            :file-list="imageFileList"
-            :before-upload="handleImageUpload"
-            :on-remove="handleImageRemove"
-            multiple
-            accept="image/*"
-            list-type="picture-card"
+            class="image-uploader" action="#" :file-list="imageFileList" :before-upload="handleImageUpload"
+            :on-remove="handleImageRemove" multiple accept="image/*" list-type="picture-card"
           >
-            <el-icon><Plus /></el-icon>
+            <el-icon>
+              <Plus />
+            </el-icon>
           </el-upload>
         </el-form-item>
       </el-form>
@@ -479,12 +490,7 @@ function handleClose() {
         <el-button type="primary" @click="handleSave" :loading="saving">
           {{ isEdit ? "更新" : "创建" }}
         </el-button>
-        <el-button
-          v-if="!isEdit"
-          type="success"
-          @click="handleSaveWithImage"
-          :loading="saving"
-        >
+        <el-button v-if="!isEdit" type="success" @click="handleSaveWithImage" :loading="saving">
           创建（支持图片）
         </el-button>
       </span>

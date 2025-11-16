@@ -9,7 +9,7 @@ export interface Article {
   summary?: string
   category?: string
   status?: ArticleStatus
-  tags?: string[]
+  tagIds?: number[]
   address?: string
   locationName?: string
   latitude?: number
@@ -43,7 +43,7 @@ export interface CreateArticleRequest {
   summary?: string
   category?: string
   status?: ArticleStatus
-  tags?: string[]
+  tagIds?: number[]
   address?: string
   locationName?: string
   latitude?: number
@@ -62,7 +62,7 @@ export interface UpdateArticleRequest {
   summary?: string
   category?: string
   status?: ArticleStatus
-  tags?: string[]
+  tagIds?: number[]
   address?: string
   locationName?: string
   latitude?: number
@@ -82,7 +82,7 @@ export interface ArticleListRequest {
   summary?: string
   category?: string
   status?: ArticleStatus
-  tags?: string[]
+  tagIds?: number[]
   address?: string
   locationName?: string
   latitude?: number

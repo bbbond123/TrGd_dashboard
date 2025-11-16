@@ -13,7 +13,7 @@ import {
   Upload
 } from "@element-plus/icons-vue"
 import { ElMessage } from "element-plus"
-import { reactive, ref, watch } from "vue"
+import { computed, reactive, ref, watch } from "vue"
 
 defineOptions({
   name: "Files"
@@ -178,6 +178,19 @@ function formatDateTime(dateTime: string) {
   return new Date(dateTime).toLocaleString("zh-CN")
 }
 
+// 获取所有图片 URL 列表（用于预览）
+const imagePreviewList = computed(() => {
+  return tableData.value
+    .filter(item => item.imageUrl)
+    .map(item => item.imageUrl!)
+})
+
+// 获取当前图片在预览列表中的索引
+function getImageIndex(imageUrl: string | undefined): number {
+  if (!imageUrl) return 0
+  return imagePreviewList.value.indexOf(imageUrl)
+}
+
 // 监听分页变化
 watch(
   [() => paginationData.currentPage, () => paginationData.page_size],
@@ -281,7 +294,17 @@ watch(
             width="100"
           >
             <template #default="scope">
-              <el-image :src="scope.row.imageUrl" style="width: 50px; height: 50px;" />
+              <el-image
+                v-if="scope.row.imageUrl"
+                :src="scope.row.imageUrl"
+                :preview-src-list="imagePreviewList"
+                :initial-index="getImageIndex(scope.row.imageUrl)"
+                fit="cover"
+                style="width: 50px; height: 50px; cursor: pointer;"
+                preview-teleported
+                lazy
+              />
+              <span v-else class="text-gray-400">无图片</span>
             </template>
           </el-table-column>
           <el-table-column

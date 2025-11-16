@@ -4,19 +4,18 @@ import type {
   CreateLanguageRequestData,
   UpdateLanguageRequestData,
 } from "@@/apis/languages/type";
-import {
-  getLanguageListApi,
-  createLanguageApi,
-  updateLanguageApi,
-  deleteLanguageApi,
-} from "@@/apis/languages";
 import { usePagination } from "@@/composables/usePagination";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { Search, Refresh, Plus, Edit, Delete } from "@element-plus/icons-vue";
 import {
   apiPostLanguagesList,
+  apiPostLanguages,
+  apiPutLanguages,
+  apiDeleteLanguagesLanguage_id,
   type ApiPostLanguagesListRequest,
   type ApiPostLanguagesListResponse,
+  type ApiPostLanguagesRequest,
+  type ApiPutLanguagesRequest,
 } from "@/api/Languages/index";
 const loading = ref(false);
 const { paginationData, handleSizeChange, handleCurrentChange } =
@@ -30,6 +29,18 @@ const searchData = reactive({
 
 // 语言列表数据
 const languageTableData = ref<ApiPostLanguagesListResponse["data"]>([]);
+
+// 将下划线格式转换为驼峰格式（用于兼容 Language 类型）
+const convertToCamelCase = (data: any[]): Language[] => {
+  return data.map((item) => ({
+    languageId: item.language_id,
+    languageName: item.language_name,
+    displayOrder: item.display_order,
+    isActive: item.is_active,
+    createdAt: item.created_at,
+    updatedAt: item.updated_at,
+  }));
+};
 
 // 语言表单对话框
 const dialogVisible = ref(false);
@@ -62,7 +73,7 @@ const getLanguageList = async () => {
     };
     // const response = await getLanguageListApi(params)
     const response = await apiPostLanguagesList(params);
-    languageTableData.value = response.data;
+    languageTableData.value = convertToCamelCase(response.data || []) as any;
     paginationData.total = response.total || 0;
   } catch (error) {
     console.error("获取语言列表失败:", error);
@@ -126,16 +137,23 @@ const saveLanguage = async () => {
     loading.value = true;
 
     if (isEdit.value && editingLanguageId.value) {
-      // 编辑
-      const updateData: UpdateLanguageRequestData = {
-        languageId: editingLanguageId.value,
-        ...formData,
+      // 编辑 - 转换为下划线格式
+      const updateData: ApiPutLanguagesRequest = {
+        language_id: editingLanguageId.value,
+        language_name: formData.languageName,
+        display_order: formData.displayOrder,
+        is_active: formData.isActive,
       };
-      await updateLanguageApi(updateData);
+      await apiPutLanguages(updateData);
       ElMessage.success("更新成功");
     } else {
-      // 新增
-      await createLanguageApi(formData);
+      // 新增 - 转换为下划线格式
+      const createData: ApiPostLanguagesRequest = {
+        language_name: formData.languageName,
+        display_order: formData.displayOrder,
+        is_active: formData.isActive,
+      };
+      await apiPostLanguages(createData);
       ElMessage.success("创建成功");
     }
 
@@ -157,7 +175,9 @@ const deleteLanguage = (row: Language) => {
     type: "warning",
   }).then(async () => {
     try {
-      await deleteLanguageApi(row.languageId);
+      await apiDeleteLanguagesLanguage_id({
+        language_id: String(row.languageId),
+      });
       ElMessage.success("删除成功");
       getLanguageList();
     } catch (error) {
@@ -170,13 +190,13 @@ const deleteLanguage = (row: Language) => {
 // 切换语言状态
 const toggleLanguageStatus = async (row: Language) => {
   try {
-    const updateData: UpdateLanguageRequestData = {
-      languageId: row.languageId,
-      languageName: row.languageName,
-      displayOrder: row.displayOrder,
-      isActive: !row.isActive,
+    const updateData: ApiPutLanguagesRequest = {
+      language_id: row.languageId,
+      language_name: row.languageName,
+      display_order: row.displayOrder,
+      is_active: !row.isActive,
     };
-    await updateLanguageApi(updateData);
+    await apiPutLanguages(updateData);
     ElMessage.success(`${row.isActive ? "禁用" : "启用"}成功`);
     getLanguageList();
   } catch (error) {
@@ -219,14 +239,10 @@ watch(
       </div>
       <div class="table-wrapper">
         <el-table v-loading="loading" :data="languageTableData" border>
-          <el-table-column prop="languageId" label="ID" width="80" />
-          <el-table-column
-            prop="languageName"
-            label="语言名称"
-            min-width="120"
-          />
-          <el-table-column prop="displayOrder" label="显示顺序" width="100" />
-          <el-table-column prop="isActive" label="状态" width="100">
+          <el-table-column prop="languageId" label="ID" />
+          <el-table-column prop="languageName" label="语言名称" />
+          <el-table-column prop="displayOrder" label="显示顺序" />
+          <el-table-column prop="isActive" label="状态">
             <template #default="{ row }">
               <el-switch
                 v-model="row.isActive"
@@ -236,19 +252,19 @@ watch(
               />
             </template>
           </el-table-column>
-          <el-table-column prop="createdAt" label="创建时间" width="180">
+          <el-table-column prop="createdAt" label="创建时间">
             <template #default="{ row }">
               {{ new Date(row.createdAt).toLocaleString() }}
             </template>
           </el-table-column>
-          <el-table-column prop="updatedAt" label="更新时间" width="180">
+          <el-table-column prop="updatedAt" label="更新时间">
             <template #default="{ row }">
               {{
                 row.updatedAt ? new Date(row.updatedAt).toLocaleString() : "-"
               }}
             </template>
           </el-table-column>
-          <el-table-column fixed="right" label="操作" width="150">
+          <el-table-column fixed="right" label="操作">
             <template #default="{ row }">
               <el-button
                 type="primary"
