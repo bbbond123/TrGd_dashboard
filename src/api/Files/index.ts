@@ -37,7 +37,7 @@ const dataKey_0_0_0_8 = undefined as any
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `PUT /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPutFilesRequest {
   fileData?: number[]
@@ -60,7 +60,7 @@ export interface ApiPutFilesRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `PUT /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPutFilesResponse {
   /**
@@ -87,7 +87,7 @@ export interface ApiPutFilesResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `PUT /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPutFilesRequestConfig = Readonly<
   RequestConfig<
@@ -108,7 +108,7 @@ type ApiPutFilesRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `PUT /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPutFilesRequestConfig: ApiPutFilesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -136,7 +136,7 @@ const apiPutFilesRequestConfig: ApiPutFilesRequestConfig = /*#__PURE__*/ {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `PUT /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPutFiles = /*#__PURE__*/ (requestData: ApiPutFilesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPutFilesResponse>(prepare(apiPutFilesRequestConfig, requestData), ...args)
@@ -150,7 +150,7 @@ apiPutFiles.requestConfig = apiPutFilesRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesRequest {
   fileData: number[]
@@ -172,7 +172,7 @@ export interface ApiPostFilesRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesResponse {
   /**
@@ -221,7 +221,7 @@ export interface ApiPostFilesResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPostFilesRequestConfig = Readonly<
   RequestConfig<
@@ -242,7 +242,7 @@ type ApiPostFilesRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPostFilesRequestConfig: ApiPostFilesRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -270,7 +270,7 @@ const apiPostFilesRequestConfig: ApiPostFilesRequestConfig = /*#__PURE__*/ {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPostFiles = /*#__PURE__*/ (requestData: ApiPostFilesRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostFilesResponse>(prepare(apiPostFilesRequestConfig, requestData), ...args)
@@ -284,7 +284,7 @@ apiPostFiles.requestConfig = apiPostFilesRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesAnalyzeRequest {
   /**
@@ -307,7 +307,7 @@ export interface ApiPostFilesAnalyzeRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesAnalyzeResponse {
   /**
@@ -397,7 +397,7 @@ export interface ApiPostFilesAnalyzeResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPostFilesAnalyzeRequestConfig = Readonly<
   RequestConfig<
@@ -418,7 +418,7 @@ type ApiPostFilesAnalyzeRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPostFilesAnalyzeRequestConfig: ApiPostFilesAnalyzeRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -446,7 +446,7 @@ const apiPostFilesAnalyzeRequestConfig: ApiPostFilesAnalyzeRequestConfig = /*#__
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPostFilesAnalyze = /*#__PURE__*/ (
   requestData: ApiPostFilesAnalyzeRequest,
@@ -463,7 +463,7 @@ apiPostFilesAnalyze.requestConfig = apiPostFilesAnalyzeRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/list`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesListRequest {
   fileData?: number[]
@@ -490,7 +490,7 @@ export interface ApiPostFilesListRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/list`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesListResponse {
   /**
@@ -551,7 +551,7 @@ export interface ApiPostFilesListResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/list`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPostFilesListRequestConfig = Readonly<
   RequestConfig<
@@ -572,7 +572,7 @@ type ApiPostFilesListRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/list`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPostFilesListRequestConfig: ApiPostFilesListRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -600,7 +600,7 @@ const apiPostFilesListRequestConfig: ApiPostFilesListRequestConfig = /*#__PURE__
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/list`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPostFilesList = /*#__PURE__*/ (requestData: ApiPostFilesListRequest, ...args: UserRequestRestArgs) => {
   return request<ApiPostFilesListResponse>(prepare(apiPostFilesListRequestConfig, requestData), ...args)
@@ -614,7 +614,7 @@ apiPostFilesList.requestConfig = apiPostFilesListRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-s3`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesTestS3Request {}
 
@@ -624,7 +624,7 @@ export interface ApiGetFilesTestS3Request {}
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-s3`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesTestS3Response {
   /**
@@ -651,7 +651,7 @@ export interface ApiGetFilesTestS3Response {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-s3`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiGetFilesTestS3RequestConfig = Readonly<
   RequestConfig<
@@ -672,7 +672,7 @@ type ApiGetFilesTestS3RequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-s3`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiGetFilesTestS3RequestConfig: ApiGetFilesTestS3RequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -700,7 +700,7 @@ const apiGetFilesTestS3RequestConfig: ApiGetFilesTestS3RequestConfig = /*#__PURE
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-s3`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiGetFilesTestS3 = /*#__PURE__*/ (
   requestData?: ApiGetFilesTestS3Request,
@@ -717,7 +717,7 @@ apiGetFilesTestS3.requestConfig = apiGetFilesTestS3RequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/upload`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesUploadRequest {
   /**
@@ -740,7 +740,7 @@ export interface ApiPostFilesUploadRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/upload`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesUploadResponse {
   /**
@@ -789,7 +789,7 @@ export interface ApiPostFilesUploadResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/upload`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPostFilesUploadRequestConfig = Readonly<
   RequestConfig<
@@ -810,7 +810,7 @@ type ApiPostFilesUploadRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/upload`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPostFilesUploadRequestConfig: ApiPostFilesUploadRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -838,7 +838,7 @@ const apiPostFilesUploadRequestConfig: ApiPostFilesUploadRequestConfig = /*#__PU
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/upload`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPostFilesUpload = /*#__PURE__*/ (
   requestData: ApiPostFilesUploadRequest,
@@ -855,7 +855,7 @@ apiPostFilesUpload.requestConfig = apiPostFilesUploadRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesVisionAnalyzeRequest {
   /**
@@ -878,7 +878,7 @@ export interface ApiPostFilesVisionAnalyzeRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesVisionAnalyzeResponse {
   /**
@@ -1008,7 +1008,7 @@ export interface ApiPostFilesVisionAnalyzeResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPostFilesVisionAnalyzeRequestConfig = Readonly<
   RequestConfig<
@@ -1029,7 +1029,7 @@ type ApiPostFilesVisionAnalyzeRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPostFilesVisionAnalyzeRequestConfig: ApiPostFilesVisionAnalyzeRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -1057,7 +1057,7 @@ const apiPostFilesVisionAnalyzeRequestConfig: ApiPostFilesVisionAnalyzeRequestCo
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPostFilesVisionAnalyze = /*#__PURE__*/ (
   requestData: ApiPostFilesVisionAnalyzeRequest,
@@ -1077,7 +1077,7 @@ apiPostFilesVisionAnalyze.requestConfig = apiPostFilesVisionAnalyzeRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-enhanced`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesVisionAnalyzeEnhancedRequest {
   /**
@@ -1112,7 +1112,7 @@ export interface ApiPostFilesVisionAnalyzeEnhancedRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-enhanced`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesVisionAnalyzeEnhancedResponse {
   /**
@@ -1464,7 +1464,7 @@ export interface ApiPostFilesVisionAnalyzeEnhancedResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-enhanced`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPostFilesVisionAnalyzeEnhancedRequestConfig = Readonly<
   RequestConfig<
@@ -1485,7 +1485,7 @@ type ApiPostFilesVisionAnalyzeEnhancedRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-enhanced`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPostFilesVisionAnalyzeEnhancedRequestConfig: ApiPostFilesVisionAnalyzeEnhancedRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -1513,7 +1513,7 @@ const apiPostFilesVisionAnalyzeEnhancedRequestConfig: ApiPostFilesVisionAnalyzeE
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-enhanced`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPostFilesVisionAnalyzeEnhanced = /*#__PURE__*/ (
   requestData: ApiPostFilesVisionAnalyzeEnhancedRequest,
@@ -1533,7 +1533,7 @@ apiPostFilesVisionAnalyzeEnhanced.requestConfig = apiPostFilesVisionAnalyzeEnhan
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesFileIdRequest {
   /**
@@ -1548,7 +1548,7 @@ export interface ApiGetFilesFileIdRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesFileIdResponse {
   /**
@@ -1597,7 +1597,7 @@ export interface ApiGetFilesFileIdResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiGetFilesFileIdRequestConfig = Readonly<
   RequestConfig<
@@ -1618,7 +1618,7 @@ type ApiGetFilesFileIdRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiGetFilesFileIdRequestConfig: ApiGetFilesFileIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -1646,7 +1646,7 @@ const apiGetFilesFileIdRequestConfig: ApiGetFilesFileIdRequestConfig = /*#__PURE
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiGetFilesFile_id = /*#__PURE__*/ (
   requestData: ApiGetFilesFileIdRequest,
@@ -1663,7 +1663,7 @@ apiGetFilesFile_id.requestConfig = apiGetFilesFileIdRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `DELETE /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiDeleteFilesFileIdRequest {
   /**
@@ -1678,7 +1678,7 @@ export interface ApiDeleteFilesFileIdRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `DELETE /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiDeleteFilesFileIdResponse {
   /**
@@ -1705,7 +1705,7 @@ export interface ApiDeleteFilesFileIdResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `DELETE /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiDeleteFilesFileIdRequestConfig = Readonly<
   RequestConfig<
@@ -1726,7 +1726,7 @@ type ApiDeleteFilesFileIdRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `DELETE /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiDeleteFilesFileIdRequestConfig: ApiDeleteFilesFileIdRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -1754,7 +1754,7 @@ const apiDeleteFilesFileIdRequestConfig: ApiDeleteFilesFileIdRequestConfig = /*#
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `DELETE /api/files/{file_id}`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiDeleteFilesFile_id = /*#__PURE__*/ (
   requestData: ApiDeleteFilesFileIdRequest,
@@ -1771,7 +1771,7 @@ apiDeleteFilesFile_id.requestConfig = apiDeleteFilesFileIdRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}/download`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesFileIdDownloadRequest {
   /**
@@ -1786,7 +1786,7 @@ export interface ApiGetFilesFileIdDownloadRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}/download`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesFileIdDownloadResponse {
   [k: string]: unknown
@@ -1798,7 +1798,7 @@ export interface ApiGetFilesFileIdDownloadResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}/download`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiGetFilesFileIdDownloadRequestConfig = Readonly<
   RequestConfig<
@@ -1819,7 +1819,7 @@ type ApiGetFilesFileIdDownloadRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}/download`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiGetFilesFileIdDownloadRequestConfig: ApiGetFilesFileIdDownloadRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -1847,7 +1847,7 @@ const apiGetFilesFileIdDownloadRequestConfig: ApiGetFilesFileIdDownloadRequestCo
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/{file_id}/download`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiGetFilesFile_idDownload = /*#__PURE__*/ (
   requestData: ApiGetFilesFileIdDownloadRequest,
@@ -1867,7 +1867,7 @@ apiGetFilesFile_idDownload.requestConfig = apiGetFilesFileIdDownloadRequestConfi
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesTestBaiduRequest {}
 
@@ -1877,7 +1877,7 @@ export interface ApiGetFilesTestBaiduRequest {}
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiGetFilesTestBaiduResponse {
   /**
@@ -1904,7 +1904,7 @@ export interface ApiGetFilesTestBaiduResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiGetFilesTestBaiduRequestConfig = Readonly<
   RequestConfig<
@@ -1925,7 +1925,7 @@ type ApiGetFilesTestBaiduRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiGetFilesTestBaiduRequestConfig: ApiGetFilesTestBaiduRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -1953,7 +1953,7 @@ const apiGetFilesTestBaiduRequestConfig: ApiGetFilesTestBaiduRequestConfig = /*#
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `GET /api/files/test-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiGetFilesTestBaidu = /*#__PURE__*/ (
   requestData?: ApiGetFilesTestBaiduRequest,
@@ -1970,7 +1970,7 @@ apiGetFilesTestBaidu.requestConfig = apiGetFilesTestBaiduRequestConfig
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesVisionAnalyzeBaiduRequest {
   /**
@@ -1993,7 +1993,7 @@ export interface ApiPostFilesVisionAnalyzeBaiduRequest {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export interface ApiPostFilesVisionAnalyzeBaiduResponse {
   /**
@@ -2123,7 +2123,7 @@ export interface ApiPostFilesVisionAnalyzeBaiduResponse {
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 type ApiPostFilesVisionAnalyzeBaiduRequestConfig = Readonly<
   RequestConfig<
@@ -2144,7 +2144,7 @@ type ApiPostFilesVisionAnalyzeBaiduRequestConfig = Readonly<
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 const apiPostFilesVisionAnalyzeBaiduRequestConfig: ApiPostFilesVisionAnalyzeBaiduRequestConfig = /*#__PURE__*/ {
   mockUrl: mockUrl_0_0_0_8,
@@ -2172,7 +2172,7 @@ const apiPostFilesVisionAnalyzeBaiduRequestConfig: ApiPostFilesVisionAnalyzeBaid
  * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
  * @标签 `Files`
  * @请求头 `POST /api/files/vision-analyze-baidu`
- * @更新时间 `2025-08-28 18:12:00`
+ * @更新时间 `2025-08-30 13:36:00`
  */
 export const apiPostFilesVisionAnalyzeBaidu = /*#__PURE__*/ (
   requestData: ApiPostFilesVisionAnalyzeBaiduRequest,
@@ -2185,5 +2185,126 @@ export const apiPostFilesVisionAnalyzeBaidu = /*#__PURE__*/ (
 }
 
 apiPostFilesVisionAnalyzeBaidu.requestConfig = apiPostFilesVisionAnalyzeBaiduRequestConfig
+
+/**
+ * 接口 [简单文件上传到 S3↗](https://yapi.ifoodme.com/project/11/interface/api/637) 的 **请求类型**
+ *
+ * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
+ * @标签 `Files`
+ * @请求头 `POST /api/file/fileUpload`
+ * @更新时间 `2025-08-30 13:36:00`
+ */
+export interface ApiPostFileFileUploadRequest {
+  /**
+   * 文件
+   */
+  file: FileData
+}
+
+/**
+ * 接口 [简单文件上传到 S3↗](https://yapi.ifoodme.com/project/11/interface/api/637) 的 **返回类型**
+ *
+ * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
+ * @标签 `Files`
+ * @请求头 `POST /api/file/fileUpload`
+ * @更新时间 `2025-08-30 13:36:00`
+ */
+export interface ApiPostFileFileUploadResponse {
+  /**
+   * 状态码
+   */
+  code?: number
+  /**
+   * 数据
+   */
+  data?: {
+    /**
+     * S3 Key 相对路径
+     */
+    relativePath?: string
+    /**
+     * 完整的访问URL
+     */
+    url?: string
+  }
+  /**
+   * 错误码
+   */
+  errCode?: string
+  /**
+   * 错误信息
+   */
+  errMessage?: string
+  /**
+   * 请求是否成功
+   */
+  success?: boolean
+}
+
+/**
+ * 接口 [简单文件上传到 S3↗](https://yapi.ifoodme.com/project/11/interface/api/637) 的 **请求配置的类型**
+ *
+ * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
+ * @标签 `Files`
+ * @请求头 `POST /api/file/fileUpload`
+ * @更新时间 `2025-08-30 13:36:00`
+ */
+type ApiPostFileFileUploadRequestConfig = Readonly<
+  RequestConfig<
+    'https://yapi.ifoodme.com/mock/11',
+    '',
+    'https://www.ifoodme.com',
+    '/api/file/fileUpload',
+    undefined,
+    string,
+    string,
+    false
+  >
+>
+
+/**
+ * 接口 [简单文件上传到 S3↗](https://yapi.ifoodme.com/project/11/interface/api/637) 的 **请求配置**
+ *
+ * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
+ * @标签 `Files`
+ * @请求头 `POST /api/file/fileUpload`
+ * @更新时间 `2025-08-30 13:36:00`
+ */
+const apiPostFileFileUploadRequestConfig: ApiPostFileFileUploadRequestConfig = /*#__PURE__*/ {
+  mockUrl: mockUrl_0_0_0_8,
+  devUrl: devUrl_0_0_0_8,
+  prodUrl: prodUrl_0_0_0_8,
+  path: '/api/file/fileUpload',
+  method: Method.POST,
+  requestHeaders: {},
+  requestBodyType: RequestBodyType.form,
+  responseBodyType: ResponseBodyType.json,
+  dataKey: dataKey_0_0_0_8,
+  paramNames: [],
+  queryNames: [],
+  requestDataOptional: false,
+  requestDataJsonSchema: {},
+  responseDataJsonSchema: {},
+  requestFunctionName: 'apiPostFileFileUpload',
+  queryStringArrayFormat: QueryStringArrayFormat.brackets,
+  extraInfo: {},
+}
+
+/**
+ * 接口 [简单文件上传到 S3↗](https://yapi.ifoodme.com/project/11/interface/api/637) 的 **请求函数**
+ *
+ * @分类 [Files↗](https://yapi.ifoodme.com/project/11/interface/api/cat_47)
+ * @标签 `Files`
+ * @请求头 `POST /api/file/fileUpload`
+ * @更新时间 `2025-08-30 13:36:00`
+ */
+export const apiPostFileFileUpload = /*#__PURE__*/ (
+  requestData: ApiPostFileFileUploadRequest,
+  ...args: UserRequestRestArgs
+) => {
+  return request<ApiPostFileFileUploadResponse>(prepare(apiPostFileFileUploadRequestConfig, requestData), ...args)
+}
+
+apiPostFileFileUpload.requestConfig = apiPostFileFileUploadRequestConfig
 
 /* prettier-ignore-end */

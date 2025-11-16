@@ -18,10 +18,8 @@ export default defineConfig(({ mode }) => {
   // 根据模式设置不同的代理目标
   const getProxyTarget = () => {
     switch (mode) {
-      case "live":
-        return "https://www.ifoodme.com"
-      case "staging":
-        return "https://staging.ifoodme.com" // 如果有staging环境
+      case "prod":
+        return "https://admin.ifoodme.com"
       default:
         return "http://localhost:3000"
     }
