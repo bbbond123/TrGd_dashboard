@@ -102,17 +102,8 @@ function getStatusType(status?: string) {
               <span v-if="article.category" class="category">
                 分类: {{ article.category }}
               </span>
-              <span v-if="article.tags && article.tags.length" class="tags">
-                标签:
-                <el-tag
-                  v-for="tag in article.tags"
-                  :key="tag"
-                  size="small"
-                  effect="plain"
-                  style="margin-left: 4px"
-                >
-                  {{ tag }}
-                </el-tag>
+              <span v-if="article.tagIds && article.tagIds.length" class="tags">
+                标签: {{ article.tagIds.length }} 个
               </span>
             </div>
             <div class="meta-right">

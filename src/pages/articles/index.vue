@@ -203,45 +203,23 @@ watch(
     <el-card v-loading="loading" shadow="never" class="search-wrapper">
       <el-form :inline="true" :model="searchData">
         <el-form-item prop="title" label="标题">
-          <el-input
-            v-model="searchData.title"
-            placeholder="请输入文章标题"
-            clearable
-            @keyup.enter="handleSearch"
-          />
+          <el-input v-model="searchData.title" placeholder="请输入文章标题" clearable @keyup.enter="handleSearch" />
         </el-form-item>
         <el-form-item prop="category" label="分类">
-          <el-input
-            v-model="searchData.category"
-            placeholder="请输入分类"
-            clearable
-          />
+          <el-input v-model="searchData.category" placeholder="请输入分类" clearable />
         </el-form-item>
         <el-form-item prop="status" label="状态">
-          <el-select
-            v-model="searchData.status"
-            placeholder="请选择状态"
-            clearable
-            style="width: 120px"
-          >
+          <el-select v-model="searchData.status" placeholder="请选择状态" clearable style="width: 120px">
             <el-option label="草稿" value="draft" />
             <el-option label="已发布" value="published" />
             <el-option label="已归档" value="archived" />
           </el-select>
         </el-form-item>
         <el-form-item prop="locationName" label="地点">
-          <el-input
-            v-model="searchData.locationName"
-            placeholder="请输入地点名称"
-            clearable
-          />
+          <el-input v-model="searchData.locationName" placeholder="请输入地点名称" clearable />
         </el-form-item>
         <el-form-item prop="bodyText" label="内容">
-          <el-input
-            v-model="searchData.bodyText"
-            placeholder="请输入内容关键词"
-            clearable
-          />
+          <el-input v-model="searchData.bodyText" placeholder="请输入内容关键词" clearable />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :icon="Search" @click="handleSearch">
@@ -268,17 +246,11 @@ watch(
             标签管理
           </el-button>
           <el-popconfirm
-            title="确定要批量删除选中的文章吗？"
-            confirm-button-text="确定"
-            cancel-button-text="取消"
+            title="确定要批量删除选中的文章吗？" confirm-button-text="确定" cancel-button-text="取消"
             @confirm="handleBatchDelete"
           >
             <template #reference>
-              <el-button
-                type="danger"
-                :icon="Delete"
-                :disabled="!selectedArticles.length"
-              >
+              <el-button type="danger" :icon="Delete" :disabled="!selectedArticles.length">
                 批量删除 ({{ selectedArticles.length }})
               </el-button>
             </template>
@@ -286,12 +258,7 @@ watch(
         </div>
         <div>
           <el-tooltip content="刷新当前页">
-            <el-button
-              type="primary"
-              :icon="RefreshRight"
-              circle
-              @click="getTableData"
-            />
+            <el-button type="primary" :icon="RefreshRight" circle @click="getTableData" />
           </el-tooltip>
         </div>
       </div>
@@ -302,30 +269,15 @@ watch(
       <div class="table-wrapper">
         <el-table :data="tableData" @selection-change="handleSelectionChange">
           <el-table-column type="selection" width="50" align="center" />
-          <el-table-column
-            prop="title"
-            label="标题"
-            align="center"
-            min-width="200"
-          >
+          <el-table-column prop="title" label="标题" align="center" min-width="200">
             <template #default="scope">
               <el-link type="primary" @click="handleView(scope.row)">
                 {{ scope.row.title }}
               </el-link>
             </template>
           </el-table-column>
-          <el-table-column
-            prop="category"
-            label="分类"
-            align="center"
-            width="120"
-          />
-          <el-table-column
-            prop="status"
-            label="状态"
-            align="center"
-            width="100"
-          >
+          <el-table-column prop="category" label="分类" align="center" width="120" />
+          <el-table-column prop="status" label="状态" align="center" width="100">
             <template #default="scope">
               <el-tag
                 :type="scope.row.status === 'published' ? 'success' : scope.row.status === 'draft' ? 'info' : 'warning'"
@@ -335,107 +287,47 @@ watch(
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column
-            prop="locationName"
-            label="地点"
-            align="center"
-            width="150"
-          />
-          <el-table-column
-            prop="likeCount"
-            label="点赞数"
-            align="center"
-            width="100"
-          />
-          <el-table-column
-            prop="commentCount"
-            label="评论数"
-            align="center"
-            width="100"
-          />
-          <el-table-column
-            prop="imageUrl"
-            label="封面"
-            align="center"
-            width="100"
-          >
+          <el-table-column prop="locationName" label="地点" align="center" width="150" />
+          <el-table-column prop="likeCount" label="点赞数" align="center" width="100" />
+          <el-table-column prop="commentCount" label="评论数" align="center" width="100" />
+          <el-table-column prop="imageUrl" label="封面" align="center" width="100">
             <template #default="scope">
               <el-image
                 v-if="scope.row.imageUrl"
+                style="width: 60px; height: 60px; border-radius: 4px;"
                 :src="scope.row.imageUrl"
-                fit="cover"
-                style="width: 60px; height: 40px; border-radius: 4px"
                 :preview-src-list="[scope.row.imageUrl]"
+                fit="cover"
+                :preview-teleported="true"
               />
               <span v-else class="text-gray-400">无图片</span>
             </template>
           </el-table-column>
-          <el-table-column
-            prop="createdAt"
-            label="创建时间"
-            align="center"
-            width="180"
-          >
+          <el-table-column prop="createdAt" label="创建时间" align="center" width="180">
             <template #default="scope">
               {{ formatDateTime(scope.row.createdAt) }}
             </template>
           </el-table-column>
-          <el-table-column
-            fixed="right"
-            label="操作"
-            width="260"
-            align="center"
-          >
+          <el-table-column fixed="right" label="操作" width="260" align="center">
             <template #default="scope">
-              <el-button
-                type="primary"
-                text
-                bg
-                size="small"
-                @click="handleView(scope.row)"
-              >
+              <el-button type="primary" text bg size="small" @click="handleView(scope.row)">
                 查看
               </el-button>
-              <el-button
-                type="warning"
-                text
-                bg
-                size="small"
-                @click="handlePreview(scope.row)"
-              >
+              <el-button type="warning" text bg size="small" @click="handlePreview(scope.row)">
                 预览
               </el-button>
-              <el-button
-                type="success"
-                text
-                bg
-                size="small"
-                @click="handleEdit(scope.row)"
-              >
+              <el-button type="success" text bg size="small" @click="handleEdit(scope.row)">
                 编辑
               </el-button>
-              <el-button
-                type="info"
-                text
-                bg
-                size="small"
-                @click="handleComments(scope.row)"
-              >
+              <el-button type="info" text bg size="small" @click="handleComments(scope.row)">
                 评论
               </el-button>
               <el-popconfirm
-                :title="`确定要删除文章${scope.row.title}吗？`"
-                confirm-button-text="确定"
-                cancel-button-text="取消"
+                :title="`确定要删除文章${scope.row.title}吗？`" confirm-button-text="确定" cancel-button-text="取消"
                 @confirm="handleDelete(scope.row)"
               >
                 <template #reference>
-                  <el-button
-                    type="danger"
-                    text
-                    bg
-                    size="small"
-                  >
+                  <el-button type="danger" text bg size="small">
                     删除
                   </el-button>
                 </template>
@@ -447,61 +339,37 @@ watch(
 
       <div class="pager-wrapper">
         <el-pagination
-          background
-          :layout="paginationData.layout"
-          :page-sizes="paginationData.pageSizes"
-          :total="paginationData.total"
-          :page-size="paginationData.page_size"
-          :current-page="paginationData.currentPage"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
+          background :layout="paginationData.layout" :page-sizes="paginationData.pageSizes"
+          :total="paginationData.total" :page-size="paginationData.page_size" :current-page="paginationData.currentPage"
+          @size-change="handleSizeChange" @current-change="handleCurrentChange"
         />
       </div>
     </el-card>
 
     <!-- 文章详情弹窗 -->
-    <ArticleDetail
-      v-model="detailVisible"
-      :article-id="currentArticleId"
-      @refresh="getTableData"
-    />
+    <ArticleDetail v-model="detailVisible" :article-id="currentArticleId" @refresh="getTableData" />
 
     <!-- 文章编辑弹窗 -->
-    <ArticleEdit
-      v-model="editVisible"
-      :article-id="currentArticleId"
-      @refresh="getTableData"
-    />
+    <ArticleEdit v-model="editVisible" :article-id="currentArticleId" @refresh="getTableData" />
 
     <!-- 评论管理弹窗 -->
-    <ArticleComments
-      v-model="commentsVisible"
-      :article-id="currentArticleId"
-      :article-title="currentArticleTitle"
-    />
+    <ArticleComments v-model="commentsVisible" :article-id="currentArticleId" :article-title="currentArticleTitle" />
 
     <!-- 文章预览弹窗 -->
-    <ArticlePreview
-      v-model="previewVisible"
-      :article-id="currentArticleId"
-    />
+    <ArticlePreview v-model="previewVisible" :article-id="currentArticleId" />
 
     <!-- 文章统计弹窗 -->
-    <ArticleStatistics
-      v-model="statisticsVisible"
-    />
+    <ArticleStatistics v-model="statisticsVisible" />
 
     <!-- 标签管理弹窗 -->
-    <TagManager
-      v-model="tagManagerVisible"
-      @refresh="getTableData"
-    />
+    <TagManager v-model="tagManagerVisible" @refresh="getTableData" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .search-wrapper {
   margin-bottom: 20px;
+
   :deep(.el-card__body) {
     padding-bottom: 2px;
   }
