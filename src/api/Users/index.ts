@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_5 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_5 = '' as any
-const prodUrl_0_0_0_5 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_5 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_5 = undefined as any
 
 /**
@@ -117,7 +117,7 @@ type ApiGetAuthUserProfileRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/user/profile',
     undefined,
     string,
@@ -280,7 +280,7 @@ type ApiPutUsersRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/users',
     undefined,
     string,
@@ -439,7 +439,7 @@ type ApiPostUsersRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/users',
     undefined,
     string,
@@ -539,7 +539,7 @@ type ApiPostUsersInitSampleRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/users/init-sample',
     undefined,
     string,
@@ -724,7 +724,7 @@ type ApiPostUsersListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/users/list',
     undefined,
     string,
@@ -861,7 +861,7 @@ type ApiGetUsersStatisticsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/users/statistics',
     undefined,
     string,
@@ -1006,7 +1006,7 @@ type ApiGetUsersUserIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/users/{user_id}',
     undefined,
     'user_id',
@@ -1114,7 +1114,7 @@ type ApiDeleteUsersUserIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/users/{user_id}',
     undefined,
     'user_id',

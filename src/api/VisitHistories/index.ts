@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_1 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_1 = '' as any
-const prodUrl_0_0_0_1 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_1 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_1 = undefined as any
 
 /**
@@ -93,7 +93,7 @@ type ApiPutVisitHistoriesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/visit_histories',
     undefined,
     string,
@@ -228,7 +228,7 @@ type ApiPostVisitHistoriesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/visit_histories',
     undefined,
     string,
@@ -384,7 +384,7 @@ type ApiPostVisitHistoriesListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/visit_histories/list',
     undefined,
     string,
@@ -515,7 +515,7 @@ type ApiGetVisitHistoriesHistoryIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/visit_histories/{history_id}',
     undefined,
     'history_id',
@@ -626,7 +626,7 @@ type ApiDeleteVisitHistoriesHistoryIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/visit_histories/{history_id}',
     undefined,
     'history_id',

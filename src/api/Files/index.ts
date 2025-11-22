@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_8 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_8 = '' as any
-const prodUrl_0_0_0_8 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_8 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_8 = undefined as any
 
 /**
@@ -93,7 +93,7 @@ type ApiPutFilesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files',
     undefined,
     string,
@@ -227,7 +227,7 @@ type ApiPostFilesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files',
     undefined,
     string,
@@ -403,7 +403,7 @@ type ApiPostFilesAnalyzeRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/analyze',
     undefined,
     string,
@@ -557,7 +557,7 @@ type ApiPostFilesListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/list',
     undefined,
     string,
@@ -657,7 +657,7 @@ type ApiGetFilesTestS3RequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/test-s3',
     undefined,
     string,
@@ -795,7 +795,7 @@ type ApiPostFilesUploadRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/upload',
     undefined,
     string,
@@ -1014,7 +1014,7 @@ type ApiPostFilesVisionAnalyzeRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/vision-analyze',
     undefined,
     string,
@@ -1470,7 +1470,7 @@ type ApiPostFilesVisionAnalyzeEnhancedRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/vision-analyze-enhanced',
     undefined,
     string,
@@ -1603,7 +1603,7 @@ type ApiGetFilesFileIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/{file_id}',
     undefined,
     'file_id',
@@ -1711,7 +1711,7 @@ type ApiDeleteFilesFileIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/{file_id}',
     undefined,
     'file_id',
@@ -1804,7 +1804,7 @@ type ApiGetFilesFileIdDownloadRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/{file_id}/download',
     undefined,
     'file_id',
@@ -1910,7 +1910,7 @@ type ApiGetFilesTestBaiduRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/test-baidu',
     undefined,
     string,
@@ -2129,7 +2129,7 @@ type ApiPostFilesVisionAnalyzeBaiduRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/files/vision-analyze-baidu',
     undefined,
     string,
@@ -2253,7 +2253,7 @@ type ApiPostFileFileUploadRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/file/fileUpload',
     undefined,
     string,

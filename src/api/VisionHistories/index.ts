@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_0 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_0 = '' as any
-const prodUrl_0_0_0_0 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_0 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_0 = undefined as any
 
 /**
@@ -93,7 +93,7 @@ type ApiPutVisionHistoriesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories',
     undefined,
     string,
@@ -228,7 +228,7 @@ type ApiPostVisionHistoriesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories',
     undefined,
     string,
@@ -331,7 +331,7 @@ type ApiPostVisionHistoriesGenerateTestDataRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories/generate-test-data',
     undefined,
     string,
@@ -481,7 +481,7 @@ type ApiPostVisionHistoriesListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories/list',
     undefined,
     string,
@@ -628,7 +628,7 @@ type ApiGetVisionHistoriesMyRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories/my',
     undefined,
     string,
@@ -782,7 +782,7 @@ type ApiGetVisionHistoriesStatisticsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories/statistics',
     undefined,
     string,
@@ -913,7 +913,7 @@ type ApiGetVisionHistoriesVisionIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories/{vision_id}',
     undefined,
     'vision_id',
@@ -1024,7 +1024,7 @@ type ApiDeleteVisionHistoriesVisionIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/vision-histories/{vision_id}',
     undefined,
     'vision_id',

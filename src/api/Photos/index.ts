@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_13 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_13 = '' as any
-const prodUrl_0_0_0_13 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_13 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_13 = undefined as any
 
 /**
@@ -140,7 +140,7 @@ type ApiPostPhotosBatchEnhanceRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/photos/batch-enhance',
     undefined,
     string,
@@ -321,7 +321,7 @@ type ApiGetPhotosEnhanceRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/photos/enhance',
     undefined,
     string,
@@ -495,7 +495,7 @@ type ApiGetPhotosNearbyRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/photos/nearby',
     undefined,
     string,
@@ -607,7 +607,7 @@ type ApiGetPhotosSizesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/photos/sizes',
     undefined,
     string,

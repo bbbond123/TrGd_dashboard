@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_12 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_12 = '' as any
-const prodUrl_0_0_0_12 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_12 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_12 = undefined as any
 
 /**
@@ -89,7 +89,7 @@ type ApiPutNoticesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/notices',
     undefined,
     string,
@@ -212,7 +212,7 @@ type ApiPostNoticesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/notices',
     undefined,
     string,
@@ -343,7 +343,7 @@ type ApiPostNoticesListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/notices/list',
     undefined,
     string,
@@ -466,7 +466,7 @@ type ApiGetNoticesNoticeIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/notices/{notice_id}',
     undefined,
     'notice_id',
@@ -574,7 +574,7 @@ type ApiDeleteNoticesNoticeIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/notices/{notice_id}',
     undefined,
     'notice_id',

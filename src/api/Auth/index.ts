@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_4 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_4 = '' as any
-const prodUrl_0_0_0_4 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_4 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_4 = undefined as any
 
 /**
@@ -68,7 +68,7 @@ type ApiGetAuthGoogleRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/google',
     undefined,
     string,
@@ -211,7 +211,7 @@ type ApiPostAuthGoogleRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/google',
     undefined,
     string,
@@ -297,7 +297,7 @@ type ApiGetAuthGoogleCallbackRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/google/callback',
     undefined,
     string,
@@ -444,7 +444,7 @@ type ApiPostAuthLoginRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/login',
     undefined,
     string,
@@ -546,7 +546,7 @@ type ApiPostAuthLogoutRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/logout',
     undefined,
     string,
@@ -658,7 +658,7 @@ type ApiPostAuthRefreshRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/refresh',
     undefined,
     string,
@@ -764,7 +764,7 @@ type ApiPostAuthRegisterRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/register',
     undefined,
     string,
@@ -869,7 +869,7 @@ type ApiPostAuthResendVerifyCodeRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/resend-verify-code',
     undefined,
     string,
@@ -1019,7 +1019,7 @@ type ApiPostAuthVerifyEmailRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/verify-email',
     undefined,
     string,
@@ -1124,7 +1124,7 @@ type ApiPostAuthForgotPasswordRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/forgot-password',
     undefined,
     string,
@@ -1234,7 +1234,7 @@ type ApiPostAuthResetPasswordRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/auth/reset-password',
     undefined,
     string,

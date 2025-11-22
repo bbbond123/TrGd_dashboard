@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_14 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_14 = '' as any
-const prodUrl_0_0_0_14 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_14 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_14 = undefined as any
 
 /**
@@ -86,7 +86,7 @@ type ApiPutRefreshTokensRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/refresh_tokens',
     undefined,
     string,
@@ -205,7 +205,7 @@ type ApiPostRefreshTokensRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/refresh_tokens',
     undefined,
     string,
@@ -334,7 +334,7 @@ type ApiPostRefreshTokensListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/refresh_tokens/list',
     undefined,
     string,
@@ -453,7 +453,7 @@ type ApiGetRefreshTokensTokenIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/refresh_tokens/{token_id}',
     undefined,
     'token_id',
@@ -564,7 +564,7 @@ type ApiDeleteRefreshTokensTokenIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/refresh_tokens/{token_id}',
     undefined,
     'token_id',

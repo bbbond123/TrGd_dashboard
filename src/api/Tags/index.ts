@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_16 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_16 = '' as any
-const prodUrl_0_0_0_16 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_16 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_16 = undefined as any
 
 /**
@@ -84,7 +84,7 @@ type ApiPutTagsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/tags',
     undefined,
     string,
@@ -197,7 +197,7 @@ type ApiPostTagsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/tags',
     undefined,
     string,
@@ -323,7 +323,7 @@ type ApiPostTagsListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/tags/list',
     undefined,
     string,
@@ -438,7 +438,7 @@ type ApiGetTagsTagIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/tags/{tag_id}',
     undefined,
     'tag_id',
@@ -543,7 +543,7 @@ type ApiDeleteTagsTagIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/tags/{tag_id}',
     undefined,
     'tag_id',

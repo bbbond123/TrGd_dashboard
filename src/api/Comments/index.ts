@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_6 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_6 = '' as any
-const prodUrl_0_0_0_6 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_6 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_6 = undefined as any
 
 /**
@@ -85,7 +85,7 @@ type ApiPutCommentsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/comments',
     undefined,
     string,
@@ -204,7 +204,7 @@ type ApiPostCommentsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/comments',
     undefined,
     string,
@@ -333,7 +333,7 @@ type ApiPostCommentsListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/comments/list',
     undefined,
     string,
@@ -454,7 +454,7 @@ type ApiGetCommentsCommentIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/comments/{comment_id}',
     undefined,
     'comment_id',
@@ -562,7 +562,7 @@ type ApiDeleteCommentsCommentIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/comments/{comment_id}',
     undefined,
     'comment_id',

@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_15 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_15 = '' as any
-const prodUrl_0_0_0_15 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_15 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_15 = undefined as any
 
 /**
@@ -96,7 +96,7 @@ type ApiPutStoresRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores',
     undefined,
     string,
@@ -233,7 +233,7 @@ type ApiPostStoresRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores',
     undefined,
     string,
@@ -375,7 +375,7 @@ type ApiPostStoresListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores/list',
     undefined,
     string,
@@ -505,7 +505,7 @@ type ApiGetStoresStoreIdTagsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores/{storeID}/tags',
     undefined,
     'storeID',
@@ -636,7 +636,7 @@ type ApiPostStoresStoreIdTagsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores/{storeID}/tags',
     undefined,
     'storeID',
@@ -748,7 +748,7 @@ type ApiDeleteStoresStoreIdTagsTagIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores/{storeID}/tags/{tagID}',
     undefined,
     'storeID' | 'tagID',
@@ -881,7 +881,7 @@ type ApiGetStoresStoreIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores/{store_id}',
     undefined,
     'store_id',
@@ -989,7 +989,7 @@ type ApiDeleteStoresStoreIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/stores/{store_id}',
     undefined,
     'store_id',

@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_3 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_3 = '' as any
-const prodUrl_0_0_0_3 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_3 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_3 = undefined as any
 
 /**
@@ -146,7 +146,7 @@ type ApiPutArticlesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles',
     undefined,
     string,
@@ -331,7 +331,7 @@ type ApiPostArticlesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles',
     undefined,
     string,
@@ -503,7 +503,7 @@ type ApiPostArticlesListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/list',
     undefined,
     string,
@@ -683,7 +683,7 @@ type ApiPostArticlesNearbyRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/nearby',
     undefined,
     string,
@@ -832,7 +832,7 @@ type ApiPostArticlesStatsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/stats',
     undefined,
     string,
@@ -1004,7 +1004,7 @@ type ApiPostArticlesWithImageRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/with-image',
     undefined,
     string,
@@ -1156,7 +1156,7 @@ type ApiGetArticlesArticleIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}',
     undefined,
     'article_id',
@@ -1264,7 +1264,7 @@ type ApiDeleteArticlesArticleIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}',
     undefined,
     'article_id',
@@ -1410,7 +1410,7 @@ type ApiGetArticlesArticleIdCommentsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/comments',
     undefined,
     'article_id',
@@ -1534,7 +1534,7 @@ type ApiPostArticlesArticleIdLikeRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/like',
     undefined,
     'article_id',
@@ -1719,7 +1719,7 @@ type ApiPostArticlesListEnhancedRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/list-enhanced',
     undefined,
     string,
@@ -1877,7 +1877,7 @@ type ApiGetArticlesPopularRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/popular',
     undefined,
     string,
@@ -2032,7 +2032,7 @@ type ApiGetArticlesArticleIdDetailRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/detail',
     undefined,
     'article_id',
@@ -2150,7 +2150,7 @@ type ApiGetArticlesIdFavoriteRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{id}/favorite',
     undefined,
     'id',
@@ -2265,7 +2265,7 @@ type ApiPostArticlesIdFavoriteRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{id}/favorite',
     undefined,
     'id',
@@ -2389,7 +2389,7 @@ type ApiPostArticlesIdLikeRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{id}/like',
     undefined,
     'id',
@@ -2511,7 +2511,7 @@ type ApiGetArticlesIdStatsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{id}/stats',
     undefined,
     'id',
@@ -2621,7 +2621,7 @@ type ApiPostArticlesIdViewRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{id}/view',
     undefined,
     'id',
@@ -2735,7 +2735,7 @@ type ApiPutArticlesIdViewDurationRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{id}/view/duration',
     undefined,
     'id',
@@ -2853,7 +2853,7 @@ type ApiGetArticlesArticleIdFavoriteRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/favorite',
     undefined,
     'article_id',
@@ -2971,7 +2971,7 @@ type ApiPostArticlesArticleIdFavoriteRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/favorite',
     undefined,
     'article_id',
@@ -3095,7 +3095,7 @@ type ApiGetArticlesArticleIdLikeRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/like',
     undefined,
     'article_id',
@@ -3220,7 +3220,7 @@ type ApiGetArticlesArticleIdStatsRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/stats',
     undefined,
     'article_id',
@@ -3333,7 +3333,7 @@ type ApiPostArticlesArticleIdViewRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/view',
     undefined,
     'article_id',
@@ -3450,7 +3450,7 @@ type ApiPutArticlesArticleIdViewDurationRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/articles/{article_id}/view/duration',
     undefined,
     'article_id',

@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_7 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_7 = '' as any
-const prodUrl_0_0_0_7 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_7 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_7 = undefined as any
 
 /**
@@ -148,7 +148,7 @@ type ApiPostFacilitiesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/facilities',
     undefined,
     string,
@@ -319,7 +319,7 @@ type ApiPostFacilitiesListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/facilities/list',
     undefined,
     string,
@@ -494,7 +494,7 @@ type ApiPostFacilitiesNearbyRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/facilities/nearby',
     undefined,
     string,
@@ -641,7 +641,7 @@ type ApiGetFacilitiesIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/facilities/{id}',
     undefined,
     'id',
@@ -820,7 +820,7 @@ type ApiPutFacilitiesIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/facilities/{id}',
     undefined,
     'id',
@@ -928,7 +928,7 @@ type ApiDeleteFacilitiesIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/facilities/{id}',
     undefined,
     'id',

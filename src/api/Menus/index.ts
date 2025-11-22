@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_11 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_11 = '' as any
-const prodUrl_0_0_0_11 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_11 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_11 = undefined as any
 
 /**
@@ -86,7 +86,7 @@ type ApiPutMenusRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/menus',
     undefined,
     string,
@@ -203,7 +203,7 @@ type ApiPostMenusRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/menus',
     undefined,
     string,
@@ -331,7 +331,7 @@ type ApiPostMenusListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/menus/list',
     undefined,
     string,
@@ -448,7 +448,7 @@ type ApiGetMenusMenuIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/menus/{menu_id}',
     undefined,
     'menu_id',
@@ -556,7 +556,7 @@ type ApiDeleteMenusMenuIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/menus/{menu_id}',
     undefined,
     'menu_id',

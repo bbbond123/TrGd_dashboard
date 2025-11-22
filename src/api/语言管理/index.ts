@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_9 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_9 = '' as any
-const prodUrl_0_0_0_9 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_9 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_9 = undefined as any
 
 /**
@@ -84,7 +84,7 @@ type ApiGetLanguagesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/languages',
     undefined,
     string,
@@ -188,7 +188,7 @@ type ApiGetLanguagesCurrentRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/languages/current',
     undefined,
     string,

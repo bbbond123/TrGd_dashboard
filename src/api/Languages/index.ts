@@ -28,7 +28,7 @@ export type Request<
 
 const mockUrl_0_0_0_10 = 'https://yapi.ifoodme.com/mock/11' as any
 const devUrl_0_0_0_10 = '' as any
-const prodUrl_0_0_0_10 = 'https://www.ifoodme.com' as any
+const prodUrl_0_0_0_10 = 'https://api.ifoodme.com' as any
 const dataKey_0_0_0_10 = undefined as any
 
 /**
@@ -85,7 +85,7 @@ type ApiPutLanguagesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/languages',
     undefined,
     string,
@@ -200,7 +200,7 @@ type ApiPostLanguagesRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/languages',
     undefined,
     string,
@@ -327,7 +327,7 @@ type ApiPostLanguagesListRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/languages/list',
     undefined,
     string,
@@ -446,7 +446,7 @@ type ApiGetLanguagesLanguageIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/languages/{language_id}',
     undefined,
     'language_id',
@@ -557,7 +557,7 @@ type ApiDeleteLanguagesLanguageIdRequestConfig = Readonly<
   RequestConfig<
     'https://yapi.ifoodme.com/mock/11',
     '',
-    'https://www.ifoodme.com',
+    'https://api.ifoodme.com',
     '/api/languages/{language_id}',
     undefined,
     'language_id',
