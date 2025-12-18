@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => {
       // 反向代理
       proxy: {
         "/api": {
-          target: isProduction ? "https://api.ifoodme.com" : "http://localhost:3000",
+          target: "https://hono.ifoodme.com",
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, "/api")
         }
