@@ -31,13 +31,16 @@ export interface FileDetail {
 
 /** 文件上传响应 */
 export interface FileUploadResponse {
-  fileId: number
-  fileName: string
-  fileSize: number
-  fileType: FileType
-  mimeType: string
-  imageUrl?: string
-  s3Key?: string
+  file_id: number
+  file_name: string
+  original_name: string
+  file_path: string
+  file_size: number
+  mime_type: string
+  file_category: string
+  uploaded_by: number
+  created_at: string
+  url: string // R2 公开 URL
 }
 
 /** 文件列表请求 */

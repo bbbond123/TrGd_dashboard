@@ -12,7 +12,8 @@ import {
   getArticleApi,
   updateArticleApi
 } from "@@/apis/articles"
-import { Plus } from "@element-plus/icons-vue"
+import { uploadFileApi } from "@@/apis/files"
+import { CircleCheck, Plus, Upload } from "@element-plus/icons-vue"
 import {
 
   ElMessage
@@ -43,7 +44,7 @@ const formRef = ref<FormInstance>()
 const isEdit = computed(() => Boolean(props.articleId))
 
 // 表单数据
-const formData = reactive<CreateArticleRequest & { imageUrl?: string, tagIds?: number[] }>({
+const formData = reactive<CreateArticleRequest & { tagIds?: number[] }>({
   title: "",
   bodyText: "",
   summary: "",
@@ -55,8 +56,15 @@ const formData = reactive<CreateArticleRequest & { imageUrl?: string, tagIds?: n
   latitude: undefined,
   longitude: undefined,
   imageFileId: undefined,
-  imageUrl: ""
+  coverImage: "" // R2 图片 URL
 })
+
+// 封面预览 URL（用于本地预览，不会提交到服务器）
+const coverPreviewUrl = ref("")
+// 待上传的封面文件（选择后暂存，提交时才上传）
+const pendingCoverFile = ref<File | null>(null)
+// 标记封面是否已经存在于服务器（编辑模式下加载的已有封面）
+const coverExistsOnServer = ref(false)
 
 // 启用位置信息
 const enableLocation = ref(false)
@@ -180,6 +188,8 @@ async function getArticleDetail() {
     const res = await getArticleApi(props.articleId)
     if (res.success) {
       const article = res.data
+      // 优先使用 coverImage，兼容 imageUrl
+      const coverUrl = article.coverImage || article.imageUrl || ""
       Object.assign(formData, {
         title: article.title,
         bodyText: article.bodyText,
@@ -192,8 +202,14 @@ async function getArticleDetail() {
         latitude: article.latitude,
         longitude: article.longitude,
         imageFileId: article.imageFileId,
-        imageUrl: article.imageUrl || ""
+        coverImage: coverUrl // 使用已有的 R2 URL
       })
+
+      // 如果有封面图，设置预览 URL 并标记已存在于服务器
+      if (coverUrl) {
+        coverPreviewUrl.value = coverUrl
+        coverExistsOnServer.value = true
+      }
 
       // 设置位置信息状态
       enableLocation.value = !!(article.latitude && article.longitude)
@@ -222,8 +238,15 @@ function resetForm() {
     latitude: undefined,
     longitude: undefined,
     imageFileId: undefined,
-    imageUrl: ""
+    coverImage: ""
   })
+  // 清除预览 URL（释放内存）
+  if (coverPreviewUrl.value && coverPreviewUrl.value.startsWith("blob:")) {
+    URL.revokeObjectURL(coverPreviewUrl.value)
+  }
+  coverPreviewUrl.value = ""
+  pendingCoverFile.value = null
+  coverExistsOnServer.value = false
   enableLocation.value = false
   imageFileList.value = []
   uploadImages.value = []
@@ -242,33 +265,48 @@ function handleLocationToggle(val: CheckboxValueType) {
   }
 }
 
-// 封面图上传处理
+// 封面图选择处理 - 只预览，不立即上传
 const handleCoverUpload: UploadProps["beforeUpload"] = (file) => {
   const isImage = file.type.startsWith("image/")
-  const isLt2M = file.size / 1024 / 1024 < 2
+  const isLt10M = file.size / 1024 / 1024 < 10
 
   if (!isImage) {
     ElMessage.error("只能上传图片文件!")
     return false
   }
-  if (!isLt2M) {
-    ElMessage.error("图片大小不能超过 2MB!")
+  if (!isLt10M) {
+    ElMessage.error("图片大小不能超过 10MB!")
     return false
   }
 
-  // 这里可以上传到服务器并获取URL，暂时使用本地预览
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    formData.imageUrl = e.target?.result as string
+  // 清理旧的预览 URL
+  if (coverPreviewUrl.value && coverPreviewUrl.value.startsWith("blob:")) {
+    URL.revokeObjectURL(coverPreviewUrl.value)
   }
-  reader.readAsDataURL(file)
+
+  // 创建本地预览 URL
+  coverPreviewUrl.value = URL.createObjectURL(file)
+  // 保存文件对象，等待提交时上传
+  pendingCoverFile.value = file
+  // 清除已有的服务器 URL（因为用户选择了新图片）
+  formData.coverImage = ""
+  formData.imageFileId = undefined
+  coverExistsOnServer.value = false
 
   return false // 阻止自动上传
 }
 
 // 删除封面
 function removeCover() {
-  formData.imageUrl = ""
+  // 清理预览 URL
+  if (coverPreviewUrl.value && coverPreviewUrl.value.startsWith("blob:")) {
+    URL.revokeObjectURL(coverPreviewUrl.value)
+  }
+  coverPreviewUrl.value = ""
+  formData.coverImage = ""
+  formData.imageFileId = undefined
+  pendingCoverFile.value = null
+  coverExistsOnServer.value = false
 }
 
 // 图片上传处理
@@ -304,6 +342,25 @@ async function handleSave() {
   try {
     await formRef.value.validate()
     saving.value = true
+
+    // 如果有待上传的封面图片，先上传到 R2
+    if (pendingCoverFile.value) {
+      try {
+        const uploadRes = await uploadFileApi(pendingCoverFile.value)
+        if (uploadRes.success && uploadRes.data?.url) {
+          formData.coverImage = uploadRes.data.url
+          formData.imageFileId = uploadRes.data.file_id
+          pendingCoverFile.value = null // 清除待上传文件
+        } else {
+          ElMessage.error(uploadRes.errMessage || "封面上传失败")
+          return
+        }
+      } catch (error) {
+        console.error("封面上传失败:", error)
+        ElMessage.error("封面上传失败")
+        return
+      }
+    }
 
     if (isEdit.value) {
       const updateData: UpdateArticleRequest = {
@@ -428,15 +485,23 @@ function handleClose() {
               class="cover-uploader" action="#" :show-file-list="false" :before-upload="handleCoverUpload"
               accept="image/*"
             >
-              <img v-if="formData.imageUrl" :src="formData.imageUrl" class="cover">
+              <img v-if="coverPreviewUrl" :src="coverPreviewUrl" class="cover">
               <el-icon v-else class="cover-uploader-icon">
                 <Plus />
               </el-icon>
             </el-upload>
-            <div class="cover-actions" v-if="formData.imageUrl">
+            <div class="cover-actions" v-if="coverPreviewUrl">
               <el-button size="small" type="danger" @click="removeCover">
                 删除封面
               </el-button>
+              <!-- 待上传状态：有待上传文件 -->
+              <span v-if="pendingCoverFile" class="upload-pending">
+                <el-icon><Upload /></el-icon> 待上传（提交时上传）
+              </span>
+              <!-- 已存在状态：服务器已有图片 -->
+              <span v-else-if="coverExistsOnServer" class="upload-success">
+                <el-icon><CircleCheck /></el-icon> 已存在
+              </span>
             </div>
           </div>
         </el-form-item>
@@ -523,6 +588,10 @@ function handleClose() {
         }
       }
 
+      :deep(.el-upload.is-disabled) {
+        cursor: not-allowed;
+      }
+
       .cover-uploader-icon {
         font-size: 28px;
         color: #8c939d;
@@ -538,10 +607,58 @@ function handleClose() {
         display: block;
         object-fit: cover;
       }
+
+      .cover-loading {
+        width: 120px;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #409eff;
+
+        .is-loading {
+          font-size: 24px;
+          animation: rotating 2s linear infinite;
+        }
+
+        span {
+          margin-top: 8px;
+          font-size: 12px;
+        }
+      }
     }
 
     .cover-actions {
       margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .upload-success {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #67c23a;
+        font-size: 12px;
+      }
+
+      .upload-pending {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #e6a23c;
+        font-size: 12px;
+      }
+    }
+  }
+
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 

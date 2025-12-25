@@ -14,7 +14,8 @@ export interface Article {
   locationName?: string
   latitude?: number
   longitude?: number
-  imageUrl?: string
+  coverImage?: string // R2 封面图 URL
+  imageUrl?: string // 兼容旧字段名
   imageFileId?: number
   articleImage?: number[]
   likeCount: number
@@ -49,6 +50,7 @@ export interface CreateArticleRequest {
   latitude?: number
   longitude?: number
   imageFileId?: number
+  coverImage?: string // R2 图片 URL
   articleImage?: number[]
   likeCount?: number
   commentCount?: number
@@ -68,6 +70,7 @@ export interface UpdateArticleRequest {
   latitude?: number
   longitude?: number
   imageFileId?: number
+  coverImage?: string // R2 图片 URL
   articleImage?: number[]
   likeCount?: number
   commentCount?: number

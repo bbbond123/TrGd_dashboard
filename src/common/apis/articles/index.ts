@@ -3,6 +3,23 @@ import type * as Articles from "./type"
 import type { Article, ArticleComments, LikeArticle } from "./type"
 import { request } from "@/http/axios"
 
+/** 驼峰转下划线 */
+function camelToSnake(str: string): string {
+  return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
+}
+
+/** 转换对象键名为下划线格式 */
+function toSnakeCase<T extends Record<string, any>>(obj: T): Record<string, any> {
+  const result: Record<string, any> = {}
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const snakeKey = camelToSnake(key)
+      result[snakeKey] = obj[key]
+    }
+  }
+  return result
+}
+
 /** 获取文章列表 */
 export function getArticleListApi(data: Articles.ArticleListRequest): Promise<IResponse<Article>> {
   return request({
@@ -34,7 +51,7 @@ export function createArticleApi(data: Articles.CreateArticleRequest): Promise<I
   return request({
     url: "/articles",
     method: "post",
-    data
+    data: toSnakeCase(data) // 转换为 snake_case 发送给后端
   })
 }
 
@@ -42,23 +59,24 @@ export function createArticleApi(data: Articles.CreateArticleRequest): Promise<I
 export function createArticleWithImageApi(data: Articles.CreateArticleWithImageRequest): Promise<IBaseResponse<Article>> {
   const formData = new FormData()
 
-  // 添加文章基本信息
+  // 添加文章基本信息（转换为 snake_case）
   Object.keys(data).forEach((key) => {
     if (key === "images") return
     const value = data[key as keyof Articles.CreateArticleWithImageRequest]
     if (value !== undefined && value !== null) {
+      const snakeKey = camelToSnake(key) // 转换键名为 snake_case
       if (typeof value === "object" && Array.isArray(value)) {
-        formData.append(key, JSON.stringify(value))
+        formData.append(snakeKey, JSON.stringify(value))
       } else {
-        formData.append(key, String(value))
+        formData.append(snakeKey, String(value))
       }
     }
   })
 
   // 添加图片文件
   if (data.images && data.images.length > 0) {
-    data.images.forEach((file, index) => {
-      formData.append(`images`, file)
+    data.images.forEach((file) => {
+      formData.append("image", file) // 后端期望 'image' 字段
     })
   }
 
@@ -77,7 +95,40 @@ export function updateArticleApi(data: Articles.UpdateArticleRequest): Promise<I
   return request({
     url: "/articles",
     method: "put",
-    data
+    data: toSnakeCase(data) // 转换为 snake_case 发送给后端
+  })
+}
+
+/** 更新文章（支持图片上传） */
+export function updateArticleWithImageApi(data: Articles.UpdateArticleRequest & { image?: File }): Promise<IBaseResponse<Article>> {
+  const formData = new FormData()
+
+  // 添加文章基本信息（转换为 snake_case）
+  Object.keys(data).forEach((key) => {
+    if (key === "image") return
+    const value = data[key as keyof typeof data]
+    if (value !== undefined && value !== null) {
+      const snakeKey = camelToSnake(key) // 转换键名为 snake_case
+      if (typeof value === "object" && Array.isArray(value)) {
+        formData.append(snakeKey, JSON.stringify(value))
+      } else {
+        formData.append(snakeKey, String(value))
+      }
+    }
+  })
+
+  // 添加图片文件
+  if (data.image) {
+    formData.append("image", data.image)
+  }
+
+  return request({
+    url: "/articles/with-image",
+    method: "put",
+    data: formData,
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
   })
 }
 
