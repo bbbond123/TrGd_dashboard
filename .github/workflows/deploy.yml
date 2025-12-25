@@ -1,4 +1,4 @@
-name: Build And Deploy v3-admin-vite
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -6,30 +6,34 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+    name: Deploy
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v4
         with:
-          node-version: 22.12.0
+          node-version: '20'
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 10.2.0
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build
-        run: pnpm install && pnpm build
+        run: pnpm build
+        env:
+          VITE_BASE_URL: https://hono.ifoodme.com/api
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
-          ACCESS_TOKEN: ${{ secrets.V3_ADMIN_VITE }}
-          BRANCH: gh-pages
-          FOLDER: dist
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=trgd-dashboard

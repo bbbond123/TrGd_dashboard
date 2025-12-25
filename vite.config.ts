@@ -40,7 +40,8 @@ export default defineConfig(({ mode }) => {
       // 反向代理
       proxy: {
         "/api": {
-          target: "https://hono.ifoodme.com",
+          target: "https://hono.ifoodme.com",     // 线上 Hono
+          // target: "http://localhost:8788",     // 本地 Hono
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, "/api")
         }
