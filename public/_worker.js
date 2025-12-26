@@ -2,23 +2,23 @@
  * Cloudflare Pages Worker
  *
  * Reverse proxy for API requests:
- * admin.ifoodme.com/api/** -> api.ifoodme.com/api/**
+ * admin.ifoodme.com/api/** -> hono.ifoodme.com/api/**
  */
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // Handle /api/** requests - proxy to api.ifoodme.com
+    // Handle /api/** requests - proxy to hono.ifoodme.com
     if (url.pathname.startsWith('/api/')) {
       const apiUrl = new URL(request.url);
-      apiUrl.hostname = 'api.ifoodme.com';
+      apiUrl.hostname = 'hono.ifoodme.com';
       apiUrl.protocol = 'https:';
 
       // Create new request with modified URL
       // Preserve original headers, body, method, etc.
       const newHeaders = new Headers(request.headers);
-      newHeaders.set('Host', 'api.ifoodme.com');
+      newHeaders.set('Host', 'hono.ifoodme.com');
 
       const newRequest = new Request(apiUrl.toString(), {
         method: request.method,
